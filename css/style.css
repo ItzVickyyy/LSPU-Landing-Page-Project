@@ -595,7 +595,168 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   8. Responsive Breakpoints (mobile-first)
+   8. Credibility
+   ------------------------------------------------------------------------- */
+.credibility .credibility-container::before {
+  display: none;
+}
+
+.credibility-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg) var(--space-md);
+}
+
+.credibility-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.credibility-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+}
+
+.credibility-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.credibility-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--color-blue-900);
+}
+
+@media (min-width: 700px) {
+  .credibility-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .credibility-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-xs);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   9. About
+   ------------------------------------------------------------------------- */
+.about .about-container::before {
+  display: none;
+}
+
+.about-content {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about-content h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.about-content p {
+  margin-bottom: var(--space-lg);
+}
+
+/* -------------------------------------------------------------------------
+   10. Academic Programs
+   ------------------------------------------------------------------------- */
+.programs .programs-container::before {
+  display: none;
+}
+
+.programs-intro {
+  max-width: 640px;
+  margin: 0 auto var(--space-xl);
+  text-align: center;
+}
+
+.programs-intro h2 {
+  margin-bottom: var(--space-xs);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.program-card {
+  padding: var(--space-lg);
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: left;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(11, 61, 97, 0.1);
+}
+
+.program-icon {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-sm);
+}
+
+.program-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.program-name {
+  margin-bottom: var(--space-2xs);
+}
+
+.program-desc {
+  margin-bottom: var(--space-sm);
+}
+
+.program-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-blue-700);
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-base), border-color var(--transition-base);
+}
+
+.program-link:hover,
+.program-link:focus-visible {
+  color: var(--color-gold-600);
+  border-color: var(--color-gold-500);
+}
+
+.programs-cta {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .programs-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   11. Responsive Breakpoints (mobile-first)
    ------------------------------------------------------------------------- */
 /* Small: default (≤599px) */
 
