@@ -1,0 +1,324 @@
+/* ==========================================================================
+   LSPU Landing Page — Stage 1: Base Styles & Structure
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. Reset
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   2. Design Tokens
+   ------------------------------------------------------------------------- */
+:root {
+  /* Color palette — LSPU inspired: light blue, gold, white, dark text */
+  --color-blue-900: #0b3d61;   /* deep university blue (headings on light bg, footer bg) */
+  --color-blue-700: #0f5c8f;   /* primary blue */
+  --color-blue-500: #2e8fc2;   /* mid blue */
+  --color-blue-100: #e3f2fb;   /* light blue tint (section backgrounds) */
+  --color-blue-050: #f4fafd;   /* near-white blue tint */
+
+  --color-gold-600: #c99700;   /* deep gold (hover/emphasis) */
+  --color-gold-500: #f2b705;   /* primary gold/yellow accent */
+  --color-gold-100: #fdf1cc;   /* light gold tint */
+
+  --color-white: #ffffff;
+  --color-ink-900: #14202b;    /* primary dark text */
+  --color-ink-600: #4a5a68;    /* secondary text */
+  --color-ink-300: #9aa9b6;    /* muted / placeholder text */
+  --color-border: #d7e4ec;     /* hairline borders on light bg */
+
+  /* Semantic aliases */
+  --color-bg: var(--color-white);
+  --color-bg-alt: var(--color-blue-050);
+  --color-text: var(--color-ink-900);
+  --color-text-muted: var(--color-ink-600);
+  --color-accent: var(--color-gold-500);
+  --color-primary: var(--color-blue-700);
+
+  /* Typography */
+  --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  --fs-xs: 0.8rem;
+  --fs-sm: 0.9rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 3rem;
+
+  /* Spacing scale */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6rem;
+
+  /* Layout */
+  --container-width: 1200px;
+  --container-padding: var(--space-md);
+  --header-height: 76px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  /* Motion */
+  --transition-base: 0.2s ease;
+}
+
+/* -------------------------------------------------------------------------
+   3. Base Typography
+   ------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-blue-900);
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+h4 { font-size: var(--fs-lg); }
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* Fluid type scale for large headings on small screens */
+@media (max-width: 600px) {
+  h1 { font-size: var(--fs-2xl); }
+  h2 { font-size: var(--fs-xl); }
+  h3 { font-size: var(--fs-md); }
+}
+
+/* Visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   4. Layout Primitives
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: var(--space-lg);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   5. Header
+   ------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+}
+
+/* -------------------------------------------------------------------------
+   6. Sections (shared scaffold)
+   ------------------------------------------------------------------------- */
+.section {
+  padding-block: var(--space-2xl);
+  scroll-margin-top: var(--header-height);
+}
+
+.section .container {
+  min-height: 120px; /* placeholder sizing so empty sections remain visible in Stage 1 */
+}
+
+/* Alternate light-blue tint band for visual rhythm between sections */
+.hero,
+.about,
+.campuses,
+.final-cta {
+  background-color: var(--color-bg-alt);
+}
+
+.credibility,
+.programs,
+.news,
+.quick-links {
+  background-color: var(--color-white);
+}
+
+/* Hero gets extra breathing room */
+.hero {
+  padding-block: var(--space-3xl);
+}
+
+/* Final CTA leans on the primary blue with gold accent, footer-adjacent */
+.final-cta {
+  background-color: var(--color-blue-900);
+}
+
+/* Stage-1 dev labels: show which section is which while sections are empty.
+   Safe to remove once real content is added in a later stage. */
+.section .container::before,
+.site-header .container::before,
+.site-footer .container::before {
+  content: attr(data-label);
+  display: block;
+  width: fit-content;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-blue-500);
+  background-color: var(--color-blue-100);
+  border: 1px dashed var(--color-blue-500);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2xs) var(--space-sm);
+}
+
+.final-cta .container::before {
+  color: var(--color-gold-500);
+  background-color: rgba(242, 183, 5, 0.1);
+  border-color: var(--color-gold-500);
+}
+
+.site-footer .container::before {
+  color: var(--color-gold-100);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-gold-100);
+}
+
+/* -------------------------------------------------------------------------
+   7. Footer
+   ------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-blue-900);
+  color: var(--color-white);
+  padding-block: var(--space-xl);
+}
+
+.site-footer .container {
+  min-height: 80px;
+}
+
+/* -------------------------------------------------------------------------
+   8. Responsive Breakpoints (mobile-first)
+   ------------------------------------------------------------------------- */
+/* Small: default (≤599px) */
+
+/* Medium: tablets */
+@media (min-width: 600px) {
+  .section {
+    padding-block: var(--space-3xl);
+  }
+}
+
+/* Large: small desktops */
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: var(--space-xl);
+  }
+}
+
+/* X-Large: wide desktops */
+@media (min-width: 1440px) {
+  :root {
+    --container-width: 1320px;
+  }
+}
