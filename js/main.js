@@ -89,5 +89,8 @@ function initFinalCta() {
 }
 
 function initFooter() {
-  // TODO: footer content, dynamic year, etc.
+  const yearEl = document.getElementById('footerYear');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 }
