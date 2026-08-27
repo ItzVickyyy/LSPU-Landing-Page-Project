@@ -17,7 +17,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initHeader() {
-  // TODO: nav toggle, sticky header state, active link highlighting
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('mainNav');
+
+  if (!toggle || !nav) return;
+
+  const closeMenu = () => {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  };
+
+  const openMenu = () => {
+    nav.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+  };
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.contains('is-open');
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Close the mobile menu after a nav link is chosen
+  nav.querySelectorAll('.nav-link, .nav-cta-mobile a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Reset to desktop state if the viewport is resized past the mobile breakpoint
+  const mobileQuery = window.matchMedia('(min-width: 1024px)');
+  mobileQuery.addEventListener('change', (e) => {
+    if (e.matches) closeMenu();
+  });
 }
 
 function initHero() {

@@ -195,6 +195,53 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
+   4b. Buttons
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  white-space: nowrap;
+  transition: background-color var(--transition-base), color var(--transition-base),
+    border-color var(--transition-base), transform var(--transition-base);
+}
+
+.btn-primary {
+  background-color: var(--color-gold-500);
+  color: var(--color-blue-900);
+  border-color: var(--color-gold-500);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-gold-600);
+  border-color: var(--color-gold-600);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-blue-700);
+  border-color: var(--color-blue-700);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--color-blue-700);
+  color: var(--color-white);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------
    5. Header
    ------------------------------------------------------------------------- */
 .site-header {
@@ -213,6 +260,178 @@ select:focus-visible {
   align-items: center;
   justify-content: space-between;
   min-height: var(--header-height);
+  gap: var(--space-md);
+}
+
+/* Stage-2 header content overrides the Stage-1 dev-label placeholder */
+.site-header .header-container::before {
+  display: none;
+}
+
+/* Brand / logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.brand-mark svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-md);
+  color: var(--color-blue-900);
+}
+
+.brand-full {
+  display: none;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+  .brand-full {
+    display: block;
+  }
+}
+
+/* Primary navigation (desktop-first collapse to mobile menu) */
+.main-nav {
+  flex: 1 1 auto;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.nav-link {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  padding-block: var(--space-2xs);
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-base), border-color var(--transition-base);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-blue-700);
+  border-color: var(--color-gold-500);
+}
+
+.nav-cta-mobile {
+  display: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.header-cta {
+  padding: 0.6rem 1.25rem;
+}
+
+/* Hamburger toggle (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+}
+
+.nav-toggle-bar {
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-blue-900);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu behavior */
+@media (max-width: 1023px) {
+  .header-cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: fixed;
+    inset: var(--header-height) 0 0 0;
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-lg) var(--container-padding);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+    overflow-y: auto;
+  }
+
+  .main-nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+
+  .nav-link {
+    display: block;
+    padding-block: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-cta-mobile {
+    display: block;
+    margin-top: var(--space-sm);
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -245,6 +464,84 @@ select:focus-visible {
 /* Hero gets extra breathing room */
 .hero {
   padding-block: var(--space-3xl);
+}
+
+/* Stage-2 hero content overrides the Stage-1 dev-label placeholder */
+.hero .hero-container::before {
+  display: none;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--space-xl);
+  min-height: 0;
+}
+
+.hero-content {
+  max-width: 640px;
+  text-align: center;
+  animation: hero-fade-in 0.5s ease both;
+}
+
+.hero-title {
+  margin-bottom: var(--space-sm);
+}
+
+.hero-subtitle {
+  font-size: var(--fs-md);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.hero-media {
+  width: 100%;
+  max-width: 420px;
+  animation: hero-fade-in 0.5s ease 0.1s both;
+}
+
+.hero-media svg {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .hero-media {
+    max-width: 440px;
+  }
 }
 
 /* Final CTA leans on the primary blue with gold accent, footer-adjacent */

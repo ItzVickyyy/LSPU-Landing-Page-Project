@@ -14,8 +14,52 @@
 
   <!-- 1. Header -->
   <header id="header" class="site-header">
-    <div class="container" data-label="1. Header">
-      <!-- nav / logo will go here -->
+    <div class="container header-container" data-label="1. Header">
+
+      <a href="#hero" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img" focusable="false">
+            <circle cx="32" cy="32" r="30" fill="var(--color-blue-700)" stroke="var(--color-gold-500)" stroke-width="3"></circle>
+            <text x="32" y="38" text-anchor="middle" font-family="Sora, sans-serif" font-size="16" font-weight="700" fill="var(--color-white)">LSPU</text>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">LSPU</span>
+          <span class="brand-full">Laguna State Polytechnic University</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#admissions" class="nav-link">Admissions</a></li>
+          <li><a href="#programs" class="nav-link">Academics</a></li>
+          <li><a href="#campuses" class="nav-link">Campuses</a></li>
+          <li><a href="#research" class="nav-link">Research &amp; Extension</a></li>
+          <li><a href="#news" class="nav-link">News</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#quick-links" class="nav-link">Student/Online Services</a></li>
+          <li class="nav-cta-mobile"><a href="#admissions" class="btn btn-primary btn-block">Apply Now</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#admissions" class="btn btn-primary header-cta">Apply Now</a>
+        <button
+          type="button"
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="mainNav"
+          aria-label="Open menu"
+        >
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+
     </div>
   </header>
 
@@ -23,8 +67,38 @@
 
     <!-- 2. Hero -->
     <section id="hero" class="section hero">
-      <div class="container" data-label="2. Hero">
-        <!-- hero content will go here -->
+      <div class="container hero-container" data-label="2. Hero">
+
+        <div class="hero-content">
+          <h1 class="hero-title">Laguna State Polytechnic University</h1>
+          <p class="hero-subtitle">Empowering Laguna through Quality Higher Education</p>
+          <div class="hero-actions">
+            <a href="#admissions" class="btn btn-primary">Apply Now</a>
+            <a href="#programs" class="btn btn-secondary">Explore Programs</a>
+          </div>
+        </div>
+
+        <div class="hero-media" aria-hidden="true">
+          <svg viewBox="0 0 480 400" role="img" focusable="false">
+            <rect x="0" y="0" width="480" height="400" rx="16" fill="var(--color-blue-100)"></rect>
+            <rect x="90" y="180" width="300" height="140" fill="var(--color-blue-700)"></rect>
+            <rect x="90" y="180" width="300" height="18" fill="var(--color-blue-900)"></rect>
+            <rect x="115" y="215" width="34" height="45" fill="var(--color-blue-050)"></rect>
+            <rect x="165" y="215" width="34" height="45" fill="var(--color-blue-050)"></rect>
+            <rect x="215" y="215" width="34" height="45" fill="var(--color-blue-050)"></rect>
+            <rect x="281" y="215" width="34" height="45" fill="var(--color-blue-050)"></rect>
+            <rect x="331" y="215" width="34" height="45" fill="var(--color-blue-050)"></rect>
+            <rect x="220" y="270" width="40" height="50" fill="var(--color-blue-900)"></rect>
+            <polygon points="90,180 240,120 390,180" fill="var(--color-blue-900)"></polygon>
+            <circle cx="240" cy="150" r="8" fill="var(--color-gold-500)"></circle>
+            <g>
+              <polygon points="240,80 300,102 240,124 180,102" fill="var(--color-gold-500)"></polygon>
+              <rect x="236" y="122" width="8" height="34" fill="var(--color-gold-600)"></rect>
+              <circle cx="240" cy="156" r="5" fill="var(--color-gold-600)"></circle>
+            </g>
+          </svg>
+        </div>
+
       </div>
     </section>
 
