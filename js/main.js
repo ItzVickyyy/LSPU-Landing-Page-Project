@@ -1,11 +1,22 @@
 /* LSPU Landing Page — interaction and visual enhancement layer */
 
 document.addEventListener('DOMContentLoaded', () => {
+  loadVisualStyles();
   initHeader();
   initVisualAssets();
   initSectionLabels();
+  initNavigationFallbacks();
   initFooter();
 });
+
+function loadVisualStyles() {
+  if (document.querySelector('link[data-visual-upgrade]')) return;
+  const stylesheet = document.createElement('link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = 'css/visual-upgrade.css';
+  stylesheet.dataset.visualUpgrade = 'true';
+  document.head.appendChild(stylesheet);
+}
 
 function initHeader() {
   const toggle = document.getElementById('navToggle');
@@ -44,32 +55,33 @@ function initHeader() {
     if (event.matches) closeMenu();
   });
 
-  // Highlight the section currently in view without changing the existing navigation structure.
   const sectionLinks = [...nav.querySelectorAll('.nav-link')]
     .map((link) => ({ link, id: link.getAttribute('href')?.replace('#', '') }))
     .filter(({ id }) => id && document.getElementById(id));
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      sectionLinks.forEach(({ link, id }) => {
-        const active = id === entry.target.id;
-        link.classList.toggle('is-active', active);
-        if (active) link.setAttribute('aria-current', 'page');
-        else link.removeAttribute('aria-current');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        sectionLinks.forEach(({ link, id }) => {
+          const active = id === entry.target.id;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        });
       });
-    });
-  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
 
-  sectionLinks.forEach(({ id }) => observer.observe(document.getElementById(id)));
+    sectionLinks.forEach(({ id }) => observer.observe(document.getElementById(id)));
+  }
 }
 
 function initVisualAssets() {
   const heroMedia = document.querySelector('.hero-media');
-  if (heroMedia) {
+  if (heroMedia && !heroMedia.querySelector('img')) {
     const heroImage = document.createElement('img');
     heroImage.src = 'Assets/Hero/Hero.jpg';
-    heroImage.alt = 'LSPU campus placeholder image';
+    heroImage.alt = 'LSPU campus image';
     heroImage.loading = 'eager';
     heroMedia.prepend(heroImage);
   }
@@ -85,16 +97,15 @@ function initVisualAssets() {
     const name = card.querySelector('.campus-name')?.textContent.trim();
     const path = campusImages[name];
     const media = card.querySelector('.campus-media');
-    if (!path || !media) return;
+    if (!path || !media || media.querySelector('img')) return;
 
     const image = document.createElement('img');
     image.src = path;
-    image.alt = `${name} campus placeholder image`;
+    image.alt = `${name} campus image`;
     image.loading = 'lazy';
     media.prepend(image);
   });
 
-  // Use the existing seal asset where a real brand mark is available.
   document.querySelectorAll('.brand-mark, .footer-brand-mark').forEach((mark) => {
     const image = document.createElement('img');
     image.src = 'Assets/Branding/LSPU-Seal.png';
@@ -105,9 +116,25 @@ function initVisualAssets() {
 }
 
 function initSectionLabels() {
-  // The data-label values were development scaffolding. Hide them once the page has real content.
   document.querySelectorAll('[data-label]').forEach((element) => {
     element.removeAttribute('data-label');
+  });
+}
+
+function initNavigationFallbacks() {
+  const fallbackTargets = {
+    admissions: '#final-cta',
+    research: '#about',
+    contact: '#footer'
+  };
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    const target = link.getAttribute('href')?.slice(1);
+    if (fallbackTargets[target]) link.setAttribute('href', fallbackTargets[target]);
+    if (link.getAttribute('href') === '#') {
+      link.setAttribute('href', '#programs');
+      link.classList.add('is-placeholder-link');
+    }
   });
 }
 
