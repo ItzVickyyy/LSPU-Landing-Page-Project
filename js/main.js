@@ -73,15 +73,15 @@ function initPrograms() {
 }
 
 function initCampuses() {
-  // TODO: campuses content, map, or carousel
+  // Static content for Stage 4 — no interactive behavior needed yet.
 }
 
 function initNews() {
-  // TODO: news/announcements feed
+  // Static demo content for Stage 4 — replace with a real feed/CMS later.
 }
 
 function initQuickLinks() {
-  // TODO: quick links grid
+  // Static content for Stage 4 — no interactive behavior needed yet.
 }
 
 function initFinalCta() {
