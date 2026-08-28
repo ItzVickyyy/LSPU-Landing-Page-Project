@@ -181,6 +181,24 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-blue-900);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* -------------------------------------------------------------------------
    4. Layout Primitives
    ------------------------------------------------------------------------- */
@@ -278,12 +296,18 @@ select:focus-visible {
    5. Header
    ------------------------------------------------------------------------- */
 .site-header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto;
   width: 100%;
   z-index: 100;
   background: transparent;
   border-bottom: 0;
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.site-header.is-scrolled {
+  background: var(--color-blue-900);
+  box-shadow: 0 4px 20px rgba(4, 20, 40, 0.18);
 }
 
 .site-header .container {
@@ -490,17 +514,6 @@ select:focus-visible {
   background: #071f43;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(4, 31, 78, .97) 0%, rgba(4, 31, 78, .92) 27%, rgba(5, 38, 88, .68) 50%, rgba(5, 38, 88, .25) 75%, rgba(5, 38, 88, .05) 100%),
-    linear-gradient(0deg, rgba(3, 25, 58, .24), transparent 34%);
-}
-
 .hero-container {
   position: relative;
   z-index: 3;
@@ -513,7 +526,20 @@ select:focus-visible {
   align-items: center;
 }
 
+.hero-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(4, 31, 78, .97) 0%, rgba(4, 31, 78, .92) 27%, rgba(5, 38, 88, .68) 50%, rgba(5, 38, 88, .25) 75%, rgba(5, 38, 88, .05) 100%),
+    linear-gradient(0deg, rgba(3, 25, 58, .24), transparent 34%);
+}
+
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 720px;
   color: #fff;
   animation: hero-fade-in 0.7s ease both;
@@ -603,7 +629,7 @@ select:focus-visible {
 @media (max-width: 599px) {
   .hero { min-height: 680px; }
   .hero-container { min-height: 680px; padding: 8rem 1.1rem 3.5rem; align-items: flex-end; }
-  .hero::before {
+  .hero-container::before {
     background: linear-gradient(180deg, rgba(4,31,78,.7) 0%, rgba(4,31,78,.68) 25%, rgba(4,31,78,.9) 64%, rgba(4,31,78,.98) 100%);
   }
   .hero-media img { object-position: 62% center; }
