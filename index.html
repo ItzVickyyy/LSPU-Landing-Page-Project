@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Adds .js to <html> so reveal-on-scroll styles only apply when the
+       script that clears them is actually running; if JS fails to load,
+       content stays fully visible instead of stuck at opacity:0. -->
+  <script>document.documentElement.classList.add('js');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LSPU — Laguna State Polytechnic University</title>
   <meta name="description" content="Laguna State Polytechnic University — official landing page.">
@@ -11,6 +15,9 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <!-- Scroll progress indicator (Mapua-inspired) -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <a href="#main" class="skip-link">Skip to main content</a>
 
@@ -28,18 +35,56 @@
         </span>
       </a>
 
+      <!--
+        Nav dropdowns below ("About" / "Admissions") link out to lspu.edu.ph
+        sub-pages using the site's existing /page/ and /office/ URL
+        conventions, matched to labels from the official LSPU site map.
+        Only the two URLs already verified live elsewhere in this file
+        (admission-of-new-students, admission-requirements) are confirmed;
+        the rest are best-guess paths and should be spot-checked before
+        publishing, same as the rest of this project's external links.
+      -->
       <nav class="main-nav" id="mainNav" aria-label="Primary">
-        <ul class="nav-list">
-          <li><a href="#about" class="nav-link">About</a></li>
+        <ul class="nav-list" id="navList">
+          <li class="nav-item has-dropdown">
+            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="dropdown-about">
+              About
+              <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nav-dropdown" id="dropdown-about">
+              <a href="#about" class="nav-dropdown-link">Why LSPU</a>
+              <a href="https://lspu.edu.ph/page/mission-vision-and-mandate" class="nav-dropdown-link" target="_blank" rel="noopener">Mission, Vision &amp; Mandate</a>
+              <a href="https://lspu.edu.ph/page/quality-policy" class="nav-dropdown-link" target="_blank" rel="noopener">Quality Policy</a>
+              <a href="https://lspu.edu.ph/page/historical-development" class="nav-dropdown-link" target="_blank" rel="noopener">Historical Development</a>
+              <a href="https://lspu.edu.ph/page/university-seal" class="nav-dropdown-link" target="_blank" rel="noopener">University Seal</a>
+            </div>
+          </li>
+
           <li><a href="#programs" class="nav-link">Academics</a></li>
-          <li><a href="https://lspu.edu.ph/page/admission-of-new-students" class="nav-link" target="_blank" rel="noopener">Admissions</a></li>
+
+          <li class="nav-item has-dropdown">
+            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="dropdown-admission">
+              Admissions
+              <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nav-dropdown" id="dropdown-admission">
+              <a href="https://lspu.edu.ph/page/admission-requirements" class="nav-dropdown-link" target="_blank" rel="noopener">Admission Requirements</a>
+              <a href="https://lspu.edu.ph/page/admission-of-new-students" class="nav-dropdown-link" target="_blank" rel="noopener">New Student Application</a>
+              <a href="https://lspu.edu.ph/page/transferee-admission" class="nav-dropdown-link" target="_blank" rel="noopener">Transferee Admission</a>
+              <a href="https://lspu.edu.ph/page/foreign-student-admission" class="nav-dropdown-link" target="_blank" rel="noopener">Foreign Student Admission</a>
+              <a href="https://lspu.edu.ph/login" class="nav-dropdown-link" target="_blank" rel="noopener">Admission Portal</a>
+            </div>
+          </li>
+
           <li><a href="#campuses" class="nav-link">Campuses</a></li>
           <li><a href="#news" class="nav-link">News</a></li>
+
           <li class="nav-cta-mobile">
             <a href="https://lspu.edu.ph/login" class="btn btn-secondary btn-block" target="_blank" rel="noopener">Student Portal</a>
             <a href="https://lspu.edu.ph/page/admission-of-new-students" class="btn btn-primary btn-block" target="_blank" rel="noopener">Apply Now</a>
           </li>
         </ul>
+        <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
       </nav>
 
       <div class="header-actions">
@@ -90,12 +135,12 @@
     <section id="services" class="section services">
       <div class="container services-container">
 
-        <div class="services-heading">
+        <div class="services-heading reveal">
           <h2>Student Services</h2>
           <p>Fast access to the online services students use most.</p>
         </div>
 
-        <ul class="services-bar">
+        <ul class="services-bar reveal-stagger">
           <li class="service-item">
             <a href="https://lspu.edu.ph/page/admission-of-new-students" class="service-link" target="_blank" rel="noopener">
               <span class="service-icon" aria-hidden="true">
@@ -171,7 +216,7 @@
     <!-- 4. Important Announcements (prominent panel) -->
     <section id="announcements" class="section announcements">
       <div class="container announcements-container">
-        <div class="announcement-panel">
+        <div class="announcement-panel reveal">
           <span class="announcement-tag">Admissions Open</span>
           <h2>Enrollment is now open</h2>
           <p>LSPU is currently accepting applications from new and transferee students across all four campuses. Review the admission requirements and apply directly through the official LSPU admissions office.</p>
@@ -187,12 +232,12 @@
     <section id="programs" class="section programs">
       <div class="container programs-container">
 
-        <div class="programs-intro">
+        <div class="programs-intro reveal">
           <h2>Academic Programs</h2>
           <p>Explore LSPU's academic colleges, each preparing students for meaningful, career-ready futures.</p>
         </div>
 
-        <div class="programs-grid">
+        <div class="programs-grid reveal-stagger">
           <article class="program-card">
             <span class="program-icon" aria-hidden="true">
               <svg viewBox="0 0 40 40" role="img" focusable="false">
@@ -272,7 +317,7 @@
     <section id="about" class="section why-lspu">
       <div class="container why-lspu-container">
 
-        <div class="why-lspu-editorial">
+        <div class="why-lspu-editorial reveal">
           <p class="why-lspu-eyebrow">Why LSPU</p>
           <h2>A university built on quality, research, and service</h2>
           <p class="why-lspu-lede">Laguna State Polytechnic University is a state university dedicated to accessible, quality higher education across Laguna. Through its colleges, campuses, and research and extension programs, LSPU prepares graduates who are competitive, community-driven, and ready to serve.</p>
@@ -295,7 +340,7 @@
           <a href="https://lspu.edu.ph/office/1/vprde" class="why-lspu-link" target="_blank" rel="noopener">Research, Development &amp; Extension Office &rarr;</a>
         </div>
 
-        <aside class="why-lspu-credentials" aria-label="LSPU credentials">
+        <aside class="why-lspu-credentials reveal" aria-label="LSPU credentials">
           <ul class="credential-list">
             <li class="credential-item">
               <span class="credential-icon" aria-hidden="true">
@@ -361,12 +406,12 @@
     <section id="campuses" class="section campuses">
       <div class="container campuses-container">
 
-        <div class="campuses-intro">
+        <div class="campuses-intro reveal">
           <h2>Our Campuses</h2>
           <p>LSPU serves students across four campuses throughout Laguna, each offering its own mix of programs and community life.</p>
         </div>
 
-        <div class="campuses-grid">
+        <div class="campuses-grid reveal-stagger">
 
           <article class="campus-card">
             <span class="campus-media">
@@ -421,12 +466,12 @@
     <section id="news" class="section news">
       <div class="container news-container">
 
-        <div class="news-intro">
+        <div class="news-intro reveal">
           <h2>News &amp; Announcements</h2>
           <p>Stay updated with the latest happenings from across the LSPU community.</p>
         </div>
 
-        <div class="news-editorial">
+        <div class="news-editorial reveal">
 
           <article class="news-feature">
             <span class="news-media">
@@ -476,7 +521,7 @@
     <section id="apply" class="section final-cta">
       <div class="container final-cta-container">
 
-        <div class="final-cta-content">
+        <div class="final-cta-content reveal">
           <h2>Ready to join LSPU?</h2>
           <p>Start your journey at Laguna State Polytechnic University.</p>
           <a href="https://lspu.edu.ph/page/admission-of-new-students" class="btn btn-primary" target="_blank" rel="noopener">Apply Now</a>
@@ -506,36 +551,81 @@
           <p class="footer-brand-tagline">Empowering Laguna through Quality Higher Education.</p>
         </div>
 
+        <!--
+          Footer sitemap below is a curated subset of the full LSPU site map
+          (the site has 150+ nested links across About, Admission, Good
+          Governance, Administration, ISO, FOI, Citizen's Charter, etc.).
+          Reproducing every entry would make the footer unusable, so each
+          column keeps the 4-6 items students/visitors look for most, with
+          "View full site map" pointing to the live LSPU site for everything
+          else. Only the URLs already verified elsewhere in this file are
+          confirmed live; the rest follow the site's existing /page/ and
+          /office/ conventions and should be spot-checked before publishing.
+        -->
         <div class="footer-groups">
 
           <div class="footer-group">
-            <h3 class="footer-heading">Explore</h3>
+            <h3 class="footer-heading">About</h3>
             <ul class="footer-links">
               <li><a href="#about">Why LSPU</a></li>
-              <li><a href="#programs">Academic Programs</a></li>
-              <li><a href="#campuses">Campuses</a></li>
-              <li><a href="#news">News</a></li>
+              <li><a href="https://lspu.edu.ph/page/mission-vision-and-mandate" target="_blank" rel="noopener">Mission, Vision &amp; Mandate</a></li>
+              <li><a href="https://lspu.edu.ph/page/historical-development" target="_blank" rel="noopener">Historical Development</a></li>
               <li><a href="https://lspu.edu.ph/page/quality-policy" target="_blank" rel="noopener">Quality Policy</a></li>
+              <li><a href="https://lspu.edu.ph/page/university-seal" target="_blank" rel="noopener">University Seal</a></li>
             </ul>
           </div>
 
           <div class="footer-group">
-            <h3 class="footer-heading">Services</h3>
+            <h3 class="footer-heading">Admission</h3>
             <ul class="footer-links">
-              <li><a href="https://lspu.edu.ph/page/admission-of-new-students" target="_blank" rel="noopener">Admissions</a></li>
-              <li><a href="https://lspu.edu.ph/login" target="_blank" rel="noopener">Student Portal</a></li>
-              <li><a href="https://lspu.edu.ph/office/1/library" target="_blank" rel="noopener">Library</a></li>
+              <li><a href="https://lspu.edu.ph/page/admission-requirements" target="_blank" rel="noopener">Admission Requirements</a></li>
+              <li><a href="https://lspu.edu.ph/page/admission-of-new-students" target="_blank" rel="noopener">New Student Application</a></li>
+              <li><a href="https://lspu.edu.ph/page/transferee-admission" target="_blank" rel="noopener">Transferee Admission</a></li>
+              <li><a href="https://lspu.edu.ph/page/foreign-student-admission" target="_blank" rel="noopener">Foreign Student Admission</a></li>
+              <li><a href="https://lspu.edu.ph/login" target="_blank" rel="noopener">Admission Portal</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-group">
+            <h3 class="footer-heading">Academics</h3>
+            <ul class="footer-links">
+              <li><a href="#programs">Academic Programs</a></li>
+              <li><a href="#campuses">Campuses</a></li>
+              <li><a href="https://lspu.edu.ph/office/1/library" target="_blank" rel="noopener">Library Services</a></li>
+              <li><a href="https://lspu.edu.ph/page/student-handbook" target="_blank" rel="noopener">Student Handbook</a></li>
+              <li><a href="https://lspu.edu.ph/office/1/vprde" target="_blank" rel="noopener">Research &amp; Extension</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-group">
+            <h3 class="footer-heading">Good Governance</h3>
+            <ul class="footer-links">
+              <li><a href="https://lspu.edu.ph/page/philgeps-posting" target="_blank" rel="noopener">PhilGEPS Posting</a></li>
+              <li><a href="https://lspu.edu.ph/page/transparency-seal" target="_blank" rel="noopener">Transparency Seal</a></li>
+              <li><a href="https://lspu.edu.ph/page/citizens-charter" target="_blank" rel="noopener">Citizen's Charter</a></li>
+              <li><a href="https://lspu.edu.ph/page/foi" target="_blank" rel="noopener">Freedom of Information</a></li>
+              <li><a href="https://lspu.edu.ph/page/procurement" target="_blank" rel="noopener">Procurement / Bids</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-group">
+            <h3 class="footer-heading">Careers</h3>
+            <ul class="footer-links">
+              <li><a href="https://lspu.edu.ph/page/careers-teaching" target="_blank" rel="noopener">Teaching Positions</a></li>
+              <li><a href="https://lspu.edu.ph/page/careers-non-teaching" target="_blank" rel="noopener">Non-Teaching Positions</a></li>
+              <li><a href="#news">News &amp; Announcements</a></li>
               <li><a href="https://lspu.edu.ph/page/e-service-for-students" target="_blank" rel="noopener">Student e-Services</a></li>
+              <li><a href="https://lspu.edu.ph/" target="_blank" rel="noopener">View full site map &rarr;</a></li>
             </ul>
           </div>
 
           <div class="footer-group">
             <h3 class="footer-heading">Connect</h3>
             <ul class="footer-links">
-              <li><a href="https://lspu.edu.ph/office/1/vprde" target="_blank" rel="noopener">Research &amp; Extension</a></li>
               <li><span class="footer-detail">Brgy. Bubukal, Santa Cruz, Laguna</span></li>
               <li><a href="mailto:info@lspu.edu.ph">info@lspu.edu.ph</a></li>
               <li><a href="tel:+63493047000">(049) 304-7000</a></li>
+              <li><a href="https://lspu.edu.ph/login" target="_blank" rel="noopener">Student Portal</a></li>
             </ul>
             <div class="footer-social" aria-label="LSPU on social media">
               <a href="https://www.facebook.com/LSPUOfficial/" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener">
@@ -562,6 +652,11 @@
 
     </div>
   </footer>
+
+  <!-- Back to top (Mapua-inspired scroll behavior) -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>
+  </button>
 
   <script src="js/main.js"></script>
 </body>
