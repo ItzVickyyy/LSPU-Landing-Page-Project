@@ -13,7 +13,7 @@ function loadVisualStyles() {
   if (document.querySelector('link[data-visual-upgrade]')) return;
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = 'css/visual-upgrade.css';
+  stylesheet.href = 'CSS/visual-upgrade.css';
   stylesheet.dataset.visualUpgrade = 'true';
   document.head.appendChild(stylesheet);
 }
