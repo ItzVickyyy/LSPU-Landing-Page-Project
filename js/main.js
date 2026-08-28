@@ -1,22 +1,11 @@
-/* LSPU Landing Page — interaction and visual enhancement layer */
+/* LSPU Landing Page — interaction layer
+   Handles the mobile nav menu, active-link highlighting on scroll,
+   and the footer's copyright year. */
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadVisualStyles();
   initHeader();
-  initVisualAssets();
-  initSectionLabels();
-  initNavigationFallbacks();
   initFooter();
 });
-
-function loadVisualStyles() {
-  if (document.querySelector('link[data-visual-upgrade]')) return;
-  const stylesheet = document.createElement('link');
-  stylesheet.rel = 'stylesheet';
-  stylesheet.href = 'CSS/visual-upgrade.css';
-  stylesheet.dataset.visualUpgrade = 'true';
-  document.head.appendChild(stylesheet);
-}
 
 function initHeader() {
   const toggle = document.getElementById('navToggle');
@@ -50,11 +39,13 @@ function initHeader() {
     if (event.key === 'Escape') closeMenu();
   });
 
-  const mobileQuery = window.matchMedia('(min-width: 1024px)');
-  mobileQuery.addEventListener('change', (event) => {
+  // Close the mobile menu automatically if the viewport grows into desktop size
+  const desktopQuery = window.matchMedia('(min-width: 1024px)');
+  desktopQuery.addEventListener('change', (event) => {
     if (event.matches) closeMenu();
   });
 
+  // Highlight the nav link for whichever section is currently in view
   const sectionLinks = [...nav.querySelectorAll('.nav-link')]
     .map((link) => ({ link, id: link.getAttribute('href')?.replace('#', '') }))
     .filter(({ id }) => id && document.getElementById(id));
@@ -74,68 +65,6 @@ function initHeader() {
 
     sectionLinks.forEach(({ id }) => observer.observe(document.getElementById(id)));
   }
-}
-
-function initVisualAssets() {
-  const heroMedia = document.querySelector('.hero-media');
-  if (heroMedia && !heroMedia.querySelector('img')) {
-    const heroImage = document.createElement('img');
-    heroImage.src = 'Assets/Hero/Hero.jpg';
-    heroImage.alt = 'LSPU campus image';
-    heroImage.loading = 'eager';
-    heroMedia.prepend(heroImage);
-  }
-
-  const campusImages = {
-    'Santa Cruz': 'Assets/Campuses/SC.png',
-    'San Pablo City': 'Assets/Campuses/SPCS.png',
-    'Los Baños': 'Assets/Campuses/LBC.png',
-    'Siniloan': 'Assets/Campuses/SCS.png'
-  };
-
-  document.querySelectorAll('.campus-card').forEach((card) => {
-    const name = card.querySelector('.campus-name')?.textContent.trim();
-    const path = campusImages[name];
-    const media = card.querySelector('.campus-media');
-    if (!path || !media || media.querySelector('img')) return;
-
-    const image = document.createElement('img');
-    image.src = path;
-    image.alt = `${name} campus image`;
-    image.loading = 'lazy';
-    media.prepend(image);
-  });
-
-  document.querySelectorAll('.brand-mark, .footer-brand-mark').forEach((mark) => {
-    const image = document.createElement('img');
-    image.src = 'Assets/Branding/LSPU-Seal.png';
-    image.alt = 'LSPU seal';
-    image.loading = 'lazy';
-    mark.replaceChildren(image);
-  });
-}
-
-function initSectionLabels() {
-  document.querySelectorAll('[data-label]').forEach((element) => {
-    element.removeAttribute('data-label');
-  });
-}
-
-function initNavigationFallbacks() {
-  const fallbackTargets = {
-    admissions: '#final-cta',
-    research: '#about',
-    contact: '#footer'
-  };
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    const target = link.getAttribute('href')?.slice(1);
-    if (fallbackTargets[target]) link.setAttribute('href', fallbackTargets[target]);
-    if (link.getAttribute('href') === '#') {
-      link.setAttribute('href', '#programs');
-      link.classList.add('is-placeholder-link');
-    }
-  });
 }
 
 function initFooter() {
