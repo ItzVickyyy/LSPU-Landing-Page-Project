@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="assets/branding/LSPU-Seal.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -49,6 +49,7 @@
         </span>
         <span class="brand-text">
           <span class="brand-name">Laguna State Polytechnic University</span>
+          <span class="brand-tagline">Leadership, Integrity, Professionalism, Innovation</span>
         </span>
       </a>
 
@@ -260,19 +261,23 @@
                 <img src="assets/about/Students%20Talking.webp" alt="LSPU students talking together on campus" width="3264" height="4928" loading="lazy" draggable="false">
               </li>
             </ul>
+
+            <div class="about-carousel-dots" id="aboutCarouselDots" role="tablist" aria-label="Choose slide">
+              <button type="button" class="about-carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+            </div>
           </div>
 
-          <button type="button" class="about-carousel-arrow about-carousel-prev" id="aboutCarouselPrev" aria-label="Previous slide">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button type="button" class="about-carousel-arrow about-carousel-next" id="aboutCarouselNext" aria-label="Next slide">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-
-          <div class="about-carousel-dots" id="aboutCarouselDots" role="tablist" aria-label="Choose slide">
-            <button type="button" class="about-carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-            <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-            <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+          <div class="about-carousel-controls">
+            <div class="about-carousel-arrows">
+              <button type="button" class="about-carousel-arrow about-carousel-prev" id="aboutCarouselPrev" aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" class="about-carousel-arrow about-carousel-next" id="aboutCarouselNext" aria-label="Next slide">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -284,12 +289,12 @@
       <div class="stats-marquee">
         <ul class="stats-track">
           <li class="stat-chip">
-            <span class="stat-value">SUC Level III</span>
-            <span class="stat-label">Institutional accreditation status</span>
+            <span class="stat-value">37,000+</span>
+            <span class="stat-label">Students enrolled system-wide</span>
           </li>
           <li class="stat-chip">
-            <span class="stat-value">ISO 9001:2015</span>
-            <span class="stat-label">Certified quality management</span>
+            <span class="stat-value">52 Programs</span>
+            <span class="stat-label">Undergraduate &amp; graduate degrees</span>
           </li>
           <li class="stat-chip">
             <span class="stat-value">15 Colleges</span>
@@ -298,16 +303,48 @@
           <li class="stat-chip">
             <span class="stat-value">4 Campuses</span>
             <span class="stat-label">Across Laguna province</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">SUC Level III</span>
+            <span class="stat-label">Institutional accreditation status</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">ISO 9001:2015</span>
+            <span class="stat-label">Certified quality management</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">73+ Years</span>
+            <span class="stat-label">Of academic excellence since 1952</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">WURI Rank 337</span>
+            <span class="stat-label">2026 Top 500 innovative universities</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">AACCUP Accredited</span>
+            <span class="stat-label">Only institutionally accredited SUC in CALABARZON</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">CHED Center of Development</span>
+            <span class="stat-label">Recognized Teacher Education program</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">Board Topnotchers</span>
+            <span class="stat-label">In licensure exams since 2000</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">Growing Linkages</span>
+            <span class="stat-label">Research &amp; international partnerships</span>
           </li>
         </ul>
         <ul class="stats-track" aria-hidden="true">
           <li class="stat-chip">
-            <span class="stat-value">SUC Level III</span>
-            <span class="stat-label">Institutional accreditation status</span>
+            <span class="stat-value">37,000+</span>
+            <span class="stat-label">Students enrolled system-wide</span>
           </li>
           <li class="stat-chip">
-            <span class="stat-value">ISO 9001:2015</span>
-            <span class="stat-label">Certified quality management</span>
+            <span class="stat-value">52 Programs</span>
+            <span class="stat-label">Undergraduate &amp; graduate degrees</span>
           </li>
           <li class="stat-chip">
             <span class="stat-value">15 Colleges</span>
@@ -316,6 +353,38 @@
           <li class="stat-chip">
             <span class="stat-value">4 Campuses</span>
             <span class="stat-label">Across Laguna province</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">SUC Level III</span>
+            <span class="stat-label">Institutional accreditation status</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">ISO 9001:2015</span>
+            <span class="stat-label">Certified quality management</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">73+ Years</span>
+            <span class="stat-label">Of academic excellence since 1952</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">WURI Rank 337</span>
+            <span class="stat-label">2026 Top 500 innovative universities</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">AACCUP Accredited</span>
+            <span class="stat-label">Only institutionally accredited SUC in CALABARZON</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">CHED Center of Development</span>
+            <span class="stat-label">Recognized Teacher Education program</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">Board Topnotchers</span>
+            <span class="stat-label">In licensure exams since 2000</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">Growing Linkages</span>
+            <span class="stat-label">Research &amp; international partnerships</span>
           </li>
         </ul>
       </div>
