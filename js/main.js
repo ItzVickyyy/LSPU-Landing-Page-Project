@@ -18,26 +18,32 @@ function initHeader() {
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('mainNav');
   const header = document.getElementById('header');
+  const topbar = document.getElementById('topbar');
 
-  // The Main Nav is `position: sticky; top: 0`, so the browser handles the
-  // actual pinning natively (no jump/flicker). This listener only adds a
-  // drop shadow once the bar is actually pinned — i.e. once the user has
-  // scrolled past the Top bar's height, matching --topbar-height in CSS.
   if (header) {
     let ticking = false;
-    const SCROLL_THRESHOLD = 40;
 
     const updateHeaderState = () => {
-      header.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
+      const scrollY = window.scrollY || window.pageYOffset;
+      const topbarHeight = topbar ? topbar.getBoundingClientRect().height : 0;
+
+      // DLSU-style two-stage navigation:
+      // - At the very top, the Main Nav overlays the hero beneath the Top Bar.
+      // - Once scrolling starts, the Main Nav becomes solid.
+      // - Once the Top Bar has left the viewport, the Main Nav is pinned to top: 0.
+      header.classList.toggle('is-scrolled', scrollY > 8);
+      header.classList.toggle('is-pinned', scrollY >= Math.max(1, topbarHeight));
       ticking = false;
     };
 
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(updateHeaderState);
-    }, { passive: true });
+    };
 
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateHeaderState, { passive: true });
     updateHeaderState();
   }
 
