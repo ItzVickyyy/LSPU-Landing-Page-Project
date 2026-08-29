@@ -24,7 +24,22 @@
 
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- 1. Header -->
+  <!-- 1. Top Navigation Bar -->
+  <div class="topbar" id="topbar">
+    <div class="container topbar-container">
+      <ul class="topbar-list topbar-list-left">
+        <li><a href="https://lspu.edu.ph/page/academic-calendar" class="topbar-link" target="_blank" rel="noopener">Academic Calendar</a></li>
+        <li><a href="#program-finder" class="topbar-link">Degree Finder</a></li>
+      </ul>
+      <ul class="topbar-list topbar-list-right">
+        <li><a href="https://lspu.edu.ph/page/events" class="topbar-link" target="_blank" rel="noopener">Events</a></li>
+        <li><a href="https://lspu.edu.ph/page/careers-teaching" class="topbar-link" target="_blank" rel="noopener">Career Opportunities</a></li>
+        <li><a href="https://lspu.edu.ph/page/faqs" class="topbar-link" target="_blank" rel="noopener">FAQs</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. Main Navigation Bar -->
   <header id="header" class="site-header">
     <div class="container header-container">
 
@@ -111,7 +126,7 @@
 
   <main id="main">
 
-    <!-- 2. Hero -->
+    <!-- 3. Hero Section -->
     <section id="hero" class="section hero">
       <div class="container hero-container">
 
@@ -132,7 +147,7 @@
       </div>
     </section>
 
-    <!-- 3. Program Finder (Mapua-inspired placement/concept, LSPU-styled;
+    <!-- 4. Program Finder Section (Mapua-inspired placement/concept, LSPU-styled;
          design-only for now — see notes on the button/selects below) -->
     <section id="program-finder" class="section program-finder">
       <div class="container">
@@ -190,92 +205,7 @@
       </div>
     </section>
 
-    <!-- 4. Academic Programs -->
-    <section id="programs" class="section programs">
-      <div class="container programs-container">
-
-        <div class="programs-intro reveal">
-          <h2>Academic Programs</h2>
-          <p>Explore LSPU's academic colleges, each preparing students for meaningful, career-ready futures.</p>
-        </div>
-
-        <div class="programs-grid reveal-stagger">
-          <article class="program-card">
-            <span class="program-icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" role="img" focusable="false">
-                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
-                <g fill="var(--color-blue-700)">
-                  <rect x="18" y="7" width="4" height="6" rx="1"></rect>
-                  <rect x="18" y="27" width="4" height="6" rx="1"></rect>
-                  <rect x="7" y="18" width="6" height="4" rx="1"></rect>
-                  <rect x="27" y="18" width="6" height="4" rx="1"></rect>
-                  <rect x="10.5" y="10.5" width="4" height="6" rx="1" transform="rotate(45 12.5 13.5)"></rect>
-                  <rect x="25.5" y="10.5" width="4" height="6" rx="1" transform="rotate(-45 27.5 13.5)"></rect>
-                  <rect x="10.5" y="23.5" width="4" height="6" rx="1" transform="rotate(-45 12.5 26.5)"></rect>
-                  <rect x="25.5" y="23.5" width="4" height="6" rx="1" transform="rotate(45 27.5 26.5)"></rect>
-                  <circle cx="20" cy="20" r="7"></circle>
-                </g>
-                <circle cx="20" cy="20" r="3" fill="var(--color-blue-050)"></circle>
-              </svg>
-            </span>
-            <h3 class="program-name">College of Engineering</h3>
-            <p class="program-desc">Building skilled engineers ready to design and solve real-world problems.</p>
-            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
-          </article>
-
-          <article class="program-card">
-            <span class="program-icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" role="img" focusable="false">
-                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
-                <rect x="10" y="17" width="20" height="13" rx="2" fill="var(--color-blue-700)"></rect>
-                <rect x="16" y="12" width="8" height="6" rx="1.5" fill="none" stroke="var(--color-blue-700)" stroke-width="2.2"></rect>
-                <rect x="10" y="21" width="20" height="3" fill="var(--color-gold-500)"></rect>
-              </svg>
-            </span>
-            <h3 class="program-name">College of Business</h3>
-            <p class="program-desc">Developing future business leaders, entrepreneurs, and finance professionals.</p>
-            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
-          </article>
-
-          <article class="program-card">
-            <span class="program-icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" role="img" focusable="false">
-                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
-                <polygon points="20,11 33,17 20,23 7,17" fill="var(--color-blue-700)"></polygon>
-                <rect x="17" y="23" width="6" height="8" fill="var(--color-blue-900)"></rect>
-                <circle cx="31" cy="19.5" r="1.8" fill="var(--color-gold-500)"></circle>
-                <line x1="31" y1="19.5" x2="31" y2="25" stroke="var(--color-gold-500)" stroke-width="1.6"></line>
-              </svg>
-            </span>
-            <h3 class="program-name">College of Education</h3>
-            <p class="program-desc">Shaping passionate educators who will inspire the next generation of learners.</p>
-            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
-          </article>
-
-          <article class="program-card">
-            <span class="program-icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" role="img" focusable="false">
-                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
-                <rect x="9" y="11" width="22" height="15" rx="1.5" fill="var(--color-blue-700)"></rect>
-                <rect x="12" y="14" width="16" height="9" fill="var(--color-blue-050)"></rect>
-                <rect x="16" y="27" width="8" height="2.5" fill="var(--color-blue-900)"></rect>
-                <rect x="13" y="29.5" width="14" height="2.2" rx="1" fill="var(--color-blue-900)"></rect>
-              </svg>
-            </span>
-            <h3 class="program-name">College of Computer Studies</h3>
-            <p class="program-desc">Training tech-driven graduates in computing, software, and digital innovation.</p>
-            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
-          </article>
-        </div>
-
-        <div class="programs-cta">
-          <a href="https://lspu.edu.ph/courses/scc" class="btn btn-primary" target="_blank" rel="noopener">View All Programs</a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 5. Why LSPU (editorial / split layout, merges About + Credibility) -->
+    <!-- 5. About LSPU (editorial / split layout, merges About + Credibility) -->
     <section id="about" class="section why-lspu">
       <div class="container why-lspu-container">
 
@@ -364,7 +294,49 @@
       </div>
     </section>
 
-    <!-- 6. Campuses (image-focused layout) -->
+    <!-- 6. Moving Horizontal Stats Section -->
+    <section id="stats" class="stats" aria-label="LSPU at a glance">
+      <div class="stats-marquee">
+        <ul class="stats-track">
+          <li class="stat-chip">
+            <span class="stat-value">SUC Level III</span>
+            <span class="stat-label">Institutional accreditation status</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">ISO 9001:2015</span>
+            <span class="stat-label">Certified quality management</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">15 Colleges</span>
+            <span class="stat-label">&amp; academic departments</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">4 Campuses</span>
+            <span class="stat-label">Across Laguna province</span>
+          </li>
+        </ul>
+        <ul class="stats-track" aria-hidden="true">
+          <li class="stat-chip">
+            <span class="stat-value">SUC Level III</span>
+            <span class="stat-label">Institutional accreditation status</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">ISO 9001:2015</span>
+            <span class="stat-label">Certified quality management</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">15 Colleges</span>
+            <span class="stat-label">&amp; academic departments</span>
+          </li>
+          <li class="stat-chip">
+            <span class="stat-value">4 Campuses</span>
+            <span class="stat-label">Across Laguna province</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Our Campuses (image-focused layout) -->
     <section id="campuses" class="section campuses">
       <div class="container campuses-container">
 
@@ -424,7 +396,92 @@
       </div>
     </section>
 
-    <!-- 7. News (editorial layout) -->
+    <!-- 8. Academic Programs -->
+    <section id="programs" class="section programs">
+      <div class="container programs-container">
+
+        <div class="programs-intro reveal">
+          <h2>Academic Programs</h2>
+          <p>Explore LSPU's academic colleges, each preparing students for meaningful, career-ready futures.</p>
+        </div>
+
+        <div class="programs-grid reveal-stagger">
+          <article class="program-card">
+            <span class="program-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" role="img" focusable="false">
+                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
+                <g fill="var(--color-blue-700)">
+                  <rect x="18" y="7" width="4" height="6" rx="1"></rect>
+                  <rect x="18" y="27" width="4" height="6" rx="1"></rect>
+                  <rect x="7" y="18" width="6" height="4" rx="1"></rect>
+                  <rect x="27" y="18" width="6" height="4" rx="1"></rect>
+                  <rect x="10.5" y="10.5" width="4" height="6" rx="1" transform="rotate(45 12.5 13.5)"></rect>
+                  <rect x="25.5" y="10.5" width="4" height="6" rx="1" transform="rotate(-45 27.5 13.5)"></rect>
+                  <rect x="10.5" y="23.5" width="4" height="6" rx="1" transform="rotate(-45 12.5 26.5)"></rect>
+                  <rect x="25.5" y="23.5" width="4" height="6" rx="1" transform="rotate(45 27.5 26.5)"></rect>
+                  <circle cx="20" cy="20" r="7"></circle>
+                </g>
+                <circle cx="20" cy="20" r="3" fill="var(--color-blue-050)"></circle>
+              </svg>
+            </span>
+            <h3 class="program-name">College of Engineering</h3>
+            <p class="program-desc">Building skilled engineers ready to design and solve real-world problems.</p>
+            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
+          </article>
+
+          <article class="program-card">
+            <span class="program-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" role="img" focusable="false">
+                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
+                <rect x="10" y="17" width="20" height="13" rx="2" fill="var(--color-blue-700)"></rect>
+                <rect x="16" y="12" width="8" height="6" rx="1.5" fill="none" stroke="var(--color-blue-700)" stroke-width="2.2"></rect>
+                <rect x="10" y="21" width="20" height="3" fill="var(--color-gold-500)"></rect>
+              </svg>
+            </span>
+            <h3 class="program-name">College of Business</h3>
+            <p class="program-desc">Developing future business leaders, entrepreneurs, and finance professionals.</p>
+            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
+          </article>
+
+          <article class="program-card">
+            <span class="program-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" role="img" focusable="false">
+                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
+                <polygon points="20,11 33,17 20,23 7,17" fill="var(--color-blue-700)"></polygon>
+                <rect x="17" y="23" width="6" height="8" fill="var(--color-blue-900)"></rect>
+                <circle cx="31" cy="19.5" r="1.8" fill="var(--color-gold-500)"></circle>
+                <line x1="31" y1="19.5" x2="31" y2="25" stroke="var(--color-gold-500)" stroke-width="1.6"></line>
+              </svg>
+            </span>
+            <h3 class="program-name">College of Education</h3>
+            <p class="program-desc">Shaping passionate educators who will inspire the next generation of learners.</p>
+            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
+          </article>
+
+          <article class="program-card">
+            <span class="program-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" role="img" focusable="false">
+                <circle cx="20" cy="20" r="18" fill="var(--color-blue-050)"></circle>
+                <rect x="9" y="11" width="22" height="15" rx="1.5" fill="var(--color-blue-700)"></rect>
+                <rect x="12" y="14" width="16" height="9" fill="var(--color-blue-050)"></rect>
+                <rect x="16" y="27" width="8" height="2.5" fill="var(--color-blue-900)"></rect>
+                <rect x="13" y="29.5" width="14" height="2.2" rx="1" fill="var(--color-blue-900)"></rect>
+              </svg>
+            </span>
+            <h3 class="program-name">College of Computer Studies</h3>
+            <p class="program-desc">Training tech-driven graduates in computing, software, and digital innovation.</p>
+            <a href="https://lspu.edu.ph/courses/scc" class="program-link" target="_blank" rel="noopener">View Programs &rarr;</a>
+          </article>
+        </div>
+
+        <div class="programs-cta">
+          <a href="https://lspu.edu.ph/courses/scc" class="btn btn-primary" target="_blank" rel="noopener">View All Programs</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. News & Announcements (editorial layout) -->
     <section id="news" class="section news">
       <div class="container news-container">
 
@@ -501,7 +558,7 @@
       </div>
     </section>
 
-    <!-- 8. Student Services (compact action bar) -->
+    <!-- 10. Student Services (compact action bar) -->
     <section id="services" class="section services">
       <div class="container services-container">
 
@@ -585,7 +642,7 @@
 
   </main>
 
-  <!-- 9. Footer -->
+  <!-- 11. Footer -->
   <footer id="footer" class="site-footer">
     <div class="container footer-container">
 

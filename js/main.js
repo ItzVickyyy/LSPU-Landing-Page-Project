@@ -17,10 +17,10 @@ function initHeader() {
   const nav = document.getElementById('mainNav');
   const header = document.getElementById('header');
 
-  // Transparent-over-hero header that gains a solid background + shadow
-  // once the user scrolls past the hero (DLSU-style). The CSS for
-  // `.is-scrolled` already existed but nothing was ever toggling it —
-  // this was the "no background at all" bug.
+  // The Main Nav is `position: sticky; top: 0`, so the browser handles the
+  // actual pinning natively (no jump/flicker). This listener only adds a
+  // drop shadow once the bar is actually pinned — i.e. once the user has
+  // scrolled past the Top bar's height, matching --topbar-height in CSS.
   if (header) {
     let ticking = false;
     const SCROLL_THRESHOLD = 40;

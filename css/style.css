@@ -136,7 +136,8 @@ select {
   /* Layout */
   --container-width: 1240px;
   --container-padding: var(--space-md);
-  --header-height: 76px;
+  --topbar-height: 40px;
+  --header-height: 88px;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
@@ -302,28 +303,81 @@ select:focus-visible {
 .btn-block { width: 100%; }
 
 /* -------------------------------------------------------------------------
-   5. Header
+   5. Header — two-level: Top (utility) bar + Main Navigation bar
+      Behavior: the top bar sits in normal flow above the Main Nav and
+      scrolls away as the page scrolls. The Main Nav is `position: sticky;
+      top: 0`, so it naturally slides up behind the departing top bar and
+      locks to the top of the viewport once the top bar has scrolled out
+      — a purely CSS-driven effect with no layout jump, flicker, or
+      duplicate headers. Scrolling back up reverses the same way. A tiny
+      bit of JS (see js/main.js) only toggles a shadow once it's pinned.
    ------------------------------------------------------------------------- */
+
+/* 5a. Top Navigation Bar (utility bar) */
+.topbar {
+  position: relative;
+  z-index: 101;
+  background: var(--color-blue-900);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: var(--topbar-height);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.topbar-container::-webkit-scrollbar { display: none; }
+
+.topbar-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+.topbar-link {
+  display: inline-block;
+  padding: 0.5rem 0.1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition-base), border-color var(--transition-base);
+}
+
+.topbar-link:hover,
+.topbar-link:focus-visible {
+  color: var(--color-gold-500);
+  border-color: var(--color-gold-500);
+}
+
+/* 5b. Main Navigation Bar */
 .site-header {
-  position: fixed;
-  inset: 0 0 auto;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: 100;
-  background: transparent;
-  border-bottom: 0;
-  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-base);
 }
 
 .site-header.is-scrolled {
-  background: var(--color-blue-900);
-  box-shadow: 0 4px 20px rgba(4, 20, 40, 0.18);
+  box-shadow: 0 4px 20px rgba(11, 61, 97, 0.12);
 }
 
 .site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 88px;
+  min-height: var(--header-height);
   gap: var(--space-md);
 }
 
@@ -331,7 +385,8 @@ select:focus-visible {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .brand-mark img {
@@ -339,20 +394,26 @@ select:focus-visible {
   width: 44px;
   height: 44px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
+  min-width: 0;
 }
 
 .brand-name {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: var(--fs-md);
-  color: #fff;
+  color: var(--color-blue-900);
   letter-spacing: 0.01em;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .brand-full {
@@ -360,7 +421,7 @@ select:focus-visible {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-ink-600);
   white-space: nowrap;
 }
 
@@ -384,7 +445,7 @@ select:focus-visible {
   padding: 0.6rem 0.65rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.94);
+  color: var(--color-blue-900);
   border-radius: 7px;
   transition: color var(--transition-base), background-color var(--transition-base);
 }
@@ -392,8 +453,8 @@ select:focus-visible {
 .nav-link:hover,
 .nav-link:focus-visible,
 .nav-link.is-active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-blue-700);
+  background: var(--color-blue-050);
 }
 
 .nav-cta-mobile { display: none; }
@@ -406,13 +467,13 @@ select:focus-visible {
 }
 
 .header-portal {
-  color: rgba(255, 255, 255, 0.92);
-  text-decoration-color: rgba(255, 255, 255, 0.5);
+  color: var(--color-blue-700);
+  text-decoration-color: var(--color-border);
 }
 
 .header-portal:hover,
 .header-portal:focus-visible {
-  color: #fff;
+  color: var(--color-blue-900);
   text-decoration-color: var(--color-gold-500);
 }
 
@@ -432,7 +493,7 @@ select:focus-visible {
 .nav-toggle-bar {
   width: 22px;
   height: 2px;
-  background-color: #fff;
+  background-color: var(--color-blue-900);
   border-radius: 2px;
   transition: transform var(--transition-base), opacity var(--transition-base);
 }
@@ -558,17 +619,31 @@ select:focus-visible {
 }
 
 @media (max-width: 1023px) {
-  .site-header {
-    background: rgba(4, 31, 78, 0.82);
-  }
-
   .header-portal { display: none; }
 
   .nav-toggle { display: flex; }
 
+  /* While the off-canvas menu is open, pin the Main Nav to the very top
+     and collapse the Top bar so the menu panel (anchored to
+     --header-height below) lines up correctly no matter how far down
+     the page the user had scrolled before opening it. */
+  body.menu-open .topbar {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    border-bottom-width: 0;
+  }
+
+  body.menu-open .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
   .main-nav {
     position: fixed;
-    inset: 74px 0 0 0;
+    inset: var(--header-height) 0 0 0;
     background-color: var(--color-white);
     border-top: 1px solid var(--color-border);
     padding: var(--space-lg) var(--container-padding);
@@ -646,7 +721,7 @@ select:focus-visible {
   max-width: none;
   min-height: 100%;
   margin: 0;
-  padding: 9rem max(var(--container-padding), calc((100vw - var(--container-width)) / 2)) 5rem;
+  padding: 4.5rem max(var(--container-padding), calc((100vw - var(--container-width)) / 2)) 5rem;
   display: flex;
   align-items: center;
 }
@@ -747,13 +822,13 @@ select:focus-visible {
 
 @media (max-width: 1023px) {
   .hero { min-height: 640px; height: auto; }
-  .hero-container { padding: 8.5rem var(--container-padding) 4.5rem; }
+  .hero-container { padding: 4rem var(--container-padding) 4.5rem; }
   .hero-title { font-size: clamp(2.6rem, 8vw, 4.2rem); }
 }
 
 @media (max-width: 599px) {
   .hero { min-height: 680px; }
-  .hero-container { min-height: 680px; padding: 8rem 1.1rem 3.5rem; align-items: flex-end; }
+  .hero-container { min-height: 680px; padding: 3.5rem 1.1rem 3.5rem; align-items: flex-end; }
   .hero-container::before {
     background: linear-gradient(180deg, rgba(4,31,78,.7) 0%, rgba(4,31,78,.68) 25%, rgba(4,31,78,.9) 64%, rgba(4,31,78,.98) 100%);
   }
@@ -1149,7 +1224,70 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   12. Campuses — image-focused layout
+   12. Moving Horizontal Stats Section — auto-scrolling marquee of
+       credential/at-a-glance figures (reuses the same stat values shown
+       in the Why LSPU credentials list). Purely decorative motion, so it
+       always respects prefers-reduced-motion.
+   ------------------------------------------------------------------------- */
+.stats {
+  background: var(--color-blue-900);
+  padding-block: clamp(1.5rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+.stats-marquee {
+  display: flex;
+  width: max-content;
+  animation: stats-scroll 28s linear infinite;
+}
+
+.stats:hover .stats-marquee,
+.stats:focus-within .stats-marquee {
+  animation-play-state: paused;
+}
+
+.stats-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  padding-inline: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.stat-chip {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-md);
+  color: var(--color-gold-500);
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@keyframes stats-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stats-marquee {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   13. Campuses — image-focused layout
    ------------------------------------------------------------------------- */
 .campuses { background: #fff; }
 
@@ -1222,7 +1360,7 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   13. News — editorial layout (feature + list)
+   14. News — editorial layout (feature + list)
    ------------------------------------------------------------------------- */
 .news { background: var(--color-blue-050); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
 
@@ -1317,7 +1455,7 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   14. Footer — compact
+   15. Footer — compact
    ------------------------------------------------------------------------- */
 .site-footer {
   background-color: #082f4b;
@@ -1452,12 +1590,18 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   15. Responsive polish
+   16. Responsive polish
    ------------------------------------------------------------------------- */
 @media (max-width: 699px) {
   .container { padding-inline: 1.1rem; }
   .section { padding-block: 3.5rem; }
   .news-row { grid-template-columns: 88px 1fr; }
+
+  /* Give the hamburger + Apply Now room to breathe next to the full
+     university name on narrow phones. */
+  .brand-mark img { width: 34px; height: 34px; }
+  .brand-name { font-size: 0.92rem; }
+  .header-cta { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
 }
 
 @media (min-width: 1440px) {
@@ -1473,7 +1617,7 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   16. Scroll behavior (Mapua-inspired): progress bar, reveal-on-scroll,
+   17. Scroll behavior (Mapua-inspired): progress bar, reveal-on-scroll,
    back-to-top button
    ------------------------------------------------------------------------- */
 .scroll-progress {
