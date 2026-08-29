@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
   initBackToTop();
   initRevealOnScroll();
+  initProgramFinder();
+  initAboutCarousel();
   initFooter();
 });
 
@@ -255,6 +257,117 @@ function initRevealOnScroll() {
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
   targets.forEach((el) => observer.observe(el));
+}
+
+/* Program Finder — dependent dropdowns. Area of Study unlocks once a
+   Program Level is chosen (including "All Program Levels"); Campus
+   unlocks once an Area of Study is chosen. "Find Your Program" is
+   intentionally left without a listener — design-only for this phase. */
+function initProgramFinder() {
+  const level = document.getElementById('pfLevel');
+  const area = document.getElementById('pfArea');
+  const campus = document.getElementById('pfCampus');
+  if (!level || !area || !campus) return;
+
+  const AREA_LOCKED_LABEL = 'Select a Program Level first';
+  const AREA_UNLOCKED_LABEL = 'All Areas of Study';
+  const CAMPUS_LOCKED_LABEL = 'Select an Area of Study first';
+  const CAMPUS_UNLOCKED_LABEL = 'All Campuses';
+
+  const setPlaceholder = (select, text) => {
+    const placeholder = select.querySelector('option[value=""]');
+    if (placeholder) placeholder.textContent = text;
+  };
+
+  const lockField = (select, placeholderText) => {
+    select.disabled = true;
+    select.setAttribute('aria-disabled', 'true');
+    select.value = '';
+    setPlaceholder(select, placeholderText);
+  };
+
+  const unlockField = (select, placeholderText) => {
+    select.disabled = false;
+    select.removeAttribute('aria-disabled');
+    setPlaceholder(select, placeholderText);
+  };
+
+  level.addEventListener('change', () => {
+    if (level.value) {
+      unlockField(area, AREA_UNLOCKED_LABEL);
+    } else {
+      lockField(area, AREA_LOCKED_LABEL);
+    }
+    lockField(campus, CAMPUS_LOCKED_LABEL);
+  });
+
+  area.addEventListener('change', () => {
+    if (area.value) {
+      unlockField(campus, CAMPUS_UNLOCKED_LABEL);
+    } else {
+      lockField(campus, CAMPUS_LOCKED_LABEL);
+    }
+  });
+}
+
+/* About-section student-life carousel. Advances a flex track via
+   transform so there's no reflow per slide. Prev/next buttons and dots
+   are kept in sync; autoplay pauses on hover/focus/touch and is skipped
+   entirely when the user prefers reduced motion. */
+function initAboutCarousel() {
+  const root = document.querySelector('.about-carousel');
+  const track = document.getElementById('aboutCarouselTrack');
+  const prevBtn = document.getElementById('aboutCarouselPrev');
+  const nextBtn = document.getElementById('aboutCarouselNext');
+  const dotsWrap = document.getElementById('aboutCarouselDots');
+  if (!root || !track || !prevBtn || !nextBtn || !dotsWrap) return;
+
+  const slides = [...track.children];
+  const dots = [...dotsWrap.children];
+  if (!slides.length) return;
+
+  let index = 0;
+  let autoplayTimer = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const render = () => {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === index);
+      dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+  };
+
+  const goTo = (next) => {
+    index = (next + slides.length) % slides.length;
+    render();
+  };
+
+  const startAutoplay = () => {
+    if (reduceMotion) return;
+    stopAutoplay();
+    autoplayTimer = setInterval(() => goTo(index + 1), 5000);
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  };
+
+  prevBtn.addEventListener('click', () => { goTo(index - 1); startAutoplay(); });
+  nextBtn.addEventListener('click', () => { goTo(index + 1); startAutoplay(); });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); startAutoplay(); });
+  });
+
+  root.addEventListener('mouseenter', stopAutoplay);
+  root.addEventListener('mouseleave', startAutoplay);
+  root.addEventListener('focusin', stopAutoplay);
+  root.addEventListener('focusout', startAutoplay);
+
+  render();
+  startAutoplay();
 }
 
 function initFooter() {

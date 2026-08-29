@@ -148,7 +148,10 @@
     </section>
 
     <!-- 4. Program Finder Section (Mapua-inspired placement/concept, LSPU-styled;
-         design-only for now — see notes on the button/selects below) -->
+         design-only for now — see notes on the button/selects below).
+         Area of Study and Campus start disabled and are unlocked in sequence
+         by initProgramFinder() in js/main.js once the field before them has
+         a value (including the "All ..." options). -->
     <section id="program-finder" class="section program-finder">
       <div class="container">
         <div class="program-finder-panel reveal">
@@ -156,7 +159,8 @@
           <div class="program-finder-field">
             <label class="program-finder-label" for="pfLevel">Program Level</label>
             <select id="pfLevel" class="program-finder-select">
-              <option value="" selected>Select Program Level</option>
+              <option value="" selected disabled>Select Program Level</option>
+              <option value="all">All Program Levels</option>
               <option value="undergraduate">Undergraduate</option>
               <option value="graduate">Graduate</option>
               <option value="doctorate">Doctorate</option>
@@ -165,8 +169,9 @@
 
           <div class="program-finder-field">
             <label class="program-finder-label" for="pfArea">Area of Study</label>
-            <select id="pfArea" class="program-finder-select">
-              <option value="" selected>Area of Study</option>
+            <select id="pfArea" class="program-finder-select" disabled aria-disabled="true">
+              <option value="" selected disabled>Select a Program Level first</option>
+              <option value="all">All Areas of Study</option>
               <option value="engineering">Engineering</option>
               <option value="information-technology">Information Technology</option>
               <option value="computer-science">Computer Science</option>
@@ -184,8 +189,9 @@
 
           <div class="program-finder-field">
             <label class="program-finder-label" for="pfCampus">Campus</label>
-            <select id="pfCampus" class="program-finder-select">
-              <option value="" selected>Select Campus</option>
+            <select id="pfCampus" class="program-finder-select" disabled aria-disabled="true">
+              <option value="" selected disabled>Select an Area of Study first</option>
+              <option value="all">All Campuses</option>
               <option value="santa-cruz">Santa Cruz</option>
               <option value="san-pablo-city">San Pablo City</option>
               <option value="los-banos">Los Baños</option>
@@ -205,91 +211,70 @@
       </div>
     </section>
 
-    <!-- 5. About LSPU (editorial / split layout, merges About + Credibility) -->
+    <!-- 5. About LSPU (editorial text + student-life carousel).
+         Paragraph order and the final "legacy" paragraph were adjusted per
+         a later revision: the governance/awards/rankings copy now leads,
+         and the original opening paragraph was condensed into a single
+         short summary sentence at the end, per request. The old credential
+         cards (SUC Level, ISO, Colleges, Campuses) were removed from this
+         section in Phase 2; those figures now live in the Moving
+         Horizontal Stats section below. -->
     <section id="about" class="section why-lspu">
       <div class="container why-lspu-container">
 
         <div class="why-lspu-editorial reveal">
-          <p class="why-lspu-eyebrow">Why LSPU</p>
-          <h2>A university built on quality, research, and service</h2>
-          <p class="why-lspu-lede">Laguna State Polytechnic University is a state university dedicated to accessible, quality higher education across Laguna. Through its colleges, campuses, and research and extension programs, LSPU prepares graduates who are competitive, community-driven, and ready to serve.</p>
+          <p class="why-lspu-eyebrow">About LSPU</p>
+          <h2>About LSPU</h2>
 
-          <div class="why-lspu-pillar">
-            <h3>Vision</h3>
-            <p>An ASEAN Polytechnic University by 2030.</p>
-          </div>
+          <p class="why-lspu-body">The university is governed by its Board of Regents and led by senior administrative officials overseeing multiple campuses. Its strategic plan focuses on sustainable growth and expanding academic offerings across diverse programs.</p>
 
-          <div class="why-lspu-pillar">
-            <h3>Mission</h3>
-            <p>A premier ASEAN polytechnic university that LEADS in multidisciplinary education and applied research, equipping future-ready servant LEADers to drive innovation for sustainable regional development.</p>
-          </div>
+          <p class="why-lspu-body">LSPU has consistently demonstrated operational efficiency and public service excellence, as evidenced by awards such as the Performance-Based Bonus (PBB) from the DBM, the Quality Management System Award from GQMP, the PRIME-HR Award from CSC, and the Platinum Award from IPOPHIL for intellectual property innovation.</p>
 
-          <div class="why-lspu-pillar">
-            <h3>Quality Policy</h3>
-            <p>LSPU delivers quality education through responsive instruction, distinctive research, sustainable extension and production services. Thus, we commit to continually improve to meet applicable requirements to provide quality, efficient and effective services to the university stakeholder's highest level of satisfaction through an excellent management system imbued with utmost integrity, professionalism and innovation.</p>
-          </div>
+          <p class="why-lspu-body">Internationally, LSPU is steadily climbing university rankings, including EduRank, UniRank, Webometrics, AD Scientific Index, and Study Abroad Aide, reflecting strong research productivity, digital presence, and global competitiveness.</p>
 
-          <a href="https://lspu.edu.ph/office/1/vprde" class="why-lspu-link" target="_blank" rel="noopener">Research, Development &amp; Extension Office &rarr;</a>
+          <p class="why-lspu-body">This chapter outlines LSPU's historical roots, governance, academic profile, and institutional standing, highlighting its continuous pursuit of quality education and innovation.</p>
+
+          <p class="why-lspu-body">With a legacy spanning over 73 years, LSPU is a Level III State University and College holding ISO 9001:2015 and AACCUP accreditation.</p>
+
+          <a href="https://lspu.edu.ph/page/contact-us" class="btn btn-primary why-lspu-cta" target="_blank" rel="noopener">Inquire Now</a>
         </div>
 
-        <aside class="why-lspu-credentials reveal" aria-label="LSPU credentials">
-          <ul class="credential-list">
-            <li class="credential-item">
-              <span class="credential-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" role="img" focusable="false">
-                  <circle cx="20" cy="20" r="18" fill="var(--color-blue-100)"></circle>
-                  <path d="M20 9 24 16 32 17 26.5 22.5 28 30 20 26 12 30 13.5 22.5 8 17 16 16Z" fill="var(--color-gold-500)"></path>
-                </svg>
-              </span>
-              <span class="credential-text">
-                <span class="credential-value">SUC Level III</span>
-                <span class="credential-label">Institutional accreditation status</span>
-              </span>
-            </li>
+        <!--
+          Student-life carousel (replaces the old credential cards).
+          Three slides using the existing assets in assets/about/. Prev/next
+          buttons and dots are wired up by initAboutCarousel() in
+          js/main.js; slides advance via a CSS transform on the track, no
+          layout thrash. Autoplay pauses on hover/focus and is skipped
+          entirely for prefers-reduced-motion.
+        -->
+        <div class="about-carousel reveal" aria-label="Student life at LSPU" aria-roledescription="carousel">
+          <div class="about-carousel-viewport">
+            <ul class="about-carousel-track" id="aboutCarouselTrack">
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                <img src="assets/about/Student%20Raising%20Hands.webp" alt="LSPU student raising their hand to participate in class" width="539" height="360" loading="lazy" draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                <img src="assets/about/Student%20Entering%20Classroom.webp" alt="LSPU student entering a classroom" width="3264" height="4928" loading="lazy" draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                <img src="assets/about/Students%20Talking.webp" alt="LSPU students talking together on campus" width="3264" height="4928" loading="lazy" draggable="false">
+              </li>
+            </ul>
+          </div>
 
-            <li class="credential-item">
-              <span class="credential-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" role="img" focusable="false">
-                  <circle cx="20" cy="20" r="18" fill="var(--color-blue-100)"></circle>
-                  <path d="M13 20.5 18 25.5 27 15" fill="none" stroke="var(--color-blue-700)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </span>
-              <span class="credential-text">
-                <span class="credential-value">ISO 9001:2015</span>
-                <span class="credential-label">Certified quality management</span>
-              </span>
-            </li>
+          <button type="button" class="about-carousel-arrow about-carousel-prev" id="aboutCarouselPrev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="about-carousel-arrow about-carousel-next" id="aboutCarouselNext" aria-label="Next slide">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
 
-            <li class="credential-item">
-              <span class="credential-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" role="img" focusable="false">
-                  <circle cx="20" cy="20" r="18" fill="var(--color-blue-100)"></circle>
-                  <rect x="12" y="16" width="6" height="14" fill="var(--color-blue-700)"></rect>
-                  <rect x="20" y="11" width="6" height="19" fill="var(--color-blue-700)"></rect>
-                  <rect x="10" y="30" width="20" height="2.5" fill="var(--color-blue-900)"></rect>
-                </svg>
-              </span>
-              <span class="credential-text">
-                <span class="credential-value">15 Colleges</span>
-                <span class="credential-label">&amp; academic departments</span>
-              </span>
-            </li>
-
-            <li class="credential-item">
-              <span class="credential-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" role="img" focusable="false">
-                  <circle cx="20" cy="20" r="18" fill="var(--color-blue-100)"></circle>
-                  <path d="M20 10c-4.4 0-8 3.5-8 7.9 0 6 8 12.1 8 12.1s8-6.1 8-12.1c0-4.4-3.6-7.9-8-7.9Z" fill="var(--color-blue-700)"></path>
-                  <circle cx="20" cy="18" r="2.6" fill="var(--color-white)"></circle>
-                </svg>
-              </span>
-              <span class="credential-text">
-                <span class="credential-value">4 Campuses</span>
-                <span class="credential-label">Across Laguna province</span>
-              </span>
-            </li>
-          </ul>
-        </aside>
+          <div class="about-carousel-dots" id="aboutCarouselDots" role="tablist" aria-label="Choose slide">
+            <button type="button" class="about-carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+            <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+            <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+          </div>
+        </div>
 
       </div>
     </section>

@@ -908,6 +908,15 @@ select:focus-visible {
   border-color: var(--color-blue-700);
 }
 
+/* Area of Study / Campus start disabled and are unlocked in sequence by
+   initProgramFinder() in js/main.js. */
+.program-finder-select:disabled {
+  color: var(--color-ink-300);
+  background-color: var(--color-blue-050);
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}
+
 .program-finder-btn.btn {
   height: 48px;
   width: 100%;
@@ -1120,6 +1129,7 @@ select:focus-visible {
    11. Why LSPU — editorial split layout (merges About + Credibility)
    ------------------------------------------------------------------------- */
 .why-lspu {
+  padding-block: clamp(2.5rem, 4vw, 3.5rem);
   background: var(--color-blue-050);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
@@ -1128,7 +1138,7 @@ select:focus-visible {
 .why-lspu-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .why-lspu-eyebrow {
@@ -1142,92 +1152,122 @@ select:focus-visible {
 
 .why-lspu-editorial h2 {
   max-width: 620px;
-  margin-bottom: 1rem;
-  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  margin-bottom: 0.85rem;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
 }
 
-.why-lspu-lede {
-  max-width: 640px;
-  margin-bottom: 1.75rem;
-  font-size: var(--fs-md);
-  line-height: 1.75;
-}
-
-.why-lspu-pillar {
+.why-lspu-body {
   max-width: 620px;
-  padding-block: 1rem;
-  border-top: 1px solid var(--color-border);
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
 }
 
-.why-lspu-pillar h3 {
-  margin-bottom: 0.35rem;
-  font-size: var(--fs-md);
-  color: var(--color-blue-700);
+.why-lspu-body:last-of-type { margin-bottom: 0; }
+
+.why-lspu-cta { margin-top: 1.35rem; }
+
+/* Student-life carousel — replaces the old credential cards. Fixed
+   aspect-ratio viewport + object-fit: cover keeps all three images
+   (two portrait, one landscape) at the same visible proportions. */
+.about-carousel {
+  position: relative;
+  align-self: start;
+  max-width: 380px;
+  margin-inline: auto;
 }
 
-.why-lspu-pillar p { font-size: 0.95rem; }
-
-.why-lspu-link {
-  display: inline-flex;
-  margin-top: 1.5rem;
-  font-weight: 700;
-  font-size: var(--fs-sm);
-  color: var(--color-blue-700);
-  border-bottom: 2px solid transparent;
-  transition: color var(--transition-base), border-color var(--transition-base);
-}
-
-.why-lspu-link:hover,
-.why-lspu-link:focus-visible {
-  color: var(--color-gold-600);
-  border-color: var(--color-gold-500);
-}
-
-.why-lspu-credentials { align-self: start; }
-
-.credential-list {
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+.about-carousel-viewport {
   overflow: hidden;
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
+  background: var(--color-blue-100);
 }
 
-.credential-item {
+.about-carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
+}
+
+.about-carousel-slide {
+  flex: 0 0 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.about-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: 1.15rem 1.3rem;
-}
-
-.credential-item + .credential-item { border-top: 1px solid var(--color-border); }
-
-.credential-icon { flex-shrink: 0; width: 42px; height: 42px; }
-.credential-icon svg { width: 100%; height: 100%; }
-
-.credential-text { display: flex; flex-direction: column; }
-
-.credential-value {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: var(--fs-md);
+  justify-content: center;
+  width: 38px;
+  height: 38px;
   color: var(--color-blue-900);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  box-shadow: var(--shadow-soft);
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-.credential-label { font-size: 0.78rem; color: var(--color-text-muted); }
+.about-carousel-arrow svg { width: 19px; height: 19px; }
+
+.about-carousel-arrow:hover,
+.about-carousel-arrow:focus-visible {
+  color: var(--color-white);
+  background: var(--color-blue-700);
+}
+
+.about-carousel-prev { left: -14px; }
+.about-carousel-next { right: -14px; }
+
+.about-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.about-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  transition: background-color var(--transition-base), transform var(--transition-base);
+}
+
+.about-carousel-dot:hover { background: var(--color-blue-500); }
+
+.about-carousel-dot.is-active {
+  background: var(--color-blue-700);
+  transform: scale(1.3);
+}
 
 @media (min-width: 900px) {
   .why-lspu-container {
     grid-template-columns: 1.5fr 1fr;
     align-items: start;
   }
+
+  .about-carousel { max-width: 425px; margin-inline: auto; }
 }
 
 /* -------------------------------------------------------------------------
    12. Moving Horizontal Stats Section — auto-scrolling marquee of
-       credential/at-a-glance figures (reuses the same stat values shown
-       in the Why LSPU credentials list). Purely decorative motion, so it
-       always respects prefers-reduced-motion.
+       LSPU's key figures (SUC Level, ISO certification, colleges,
+       campuses — formerly shown as credential cards in the About
+       section, now surfaced here instead per Phase 2). Purely decorative
+       motion, so it always respects prefers-reduced-motion.
    ------------------------------------------------------------------------- */
 .stats {
   background: var(--color-blue-900);
