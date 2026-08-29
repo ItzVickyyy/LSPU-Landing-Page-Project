@@ -1,7 +1,4 @@
-/* LSPU Landing Page — interaction layer
-   Handles the mobile nav menu, active-link highlighting on scroll,
-   nav dropdowns + sliding indicator, scroll progress bar, back-to-top,
-   reveal-on-scroll animations, and the footer's copyright year. */
+/* LSPU Landing Page — interaction layer: nav, header, program finder, carousel */
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
@@ -27,10 +24,7 @@ function initHeader() {
       const scrollY = window.scrollY || window.pageYOffset;
       const topbarHeight = topbar ? topbar.getBoundingClientRect().height : 0;
 
-      // DLSU-style two-stage navigation:
-      // - At the very top, the Main Nav overlays the hero beneath the Top Bar.
-      // - Once scrolling starts, the Main Nav becomes solid.
-      // - Once the Top Bar has left the viewport, the Main Nav is pinned to top: 0.
+      // Solid once scrolling starts; pinned once the top bar has scrolled out.
       header.classList.toggle('is-scrolled', scrollY > 8);
       header.classList.toggle('is-pinned', scrollY >= Math.max(1, topbarHeight));
       ticking = false;
@@ -104,9 +98,8 @@ function initHeader() {
   }
 }
 
-/* Sliding underline indicator beneath the active/hovered top-level nav
-   item, DLSU-style. Recalculates on hover, on active-section change,
-   and on resize so it stays aligned with the right link. */
+/* Sliding underline indicator beneath the active/hovered nav item;
+   recalculated on hover, active-section change, and resize. */
 function moveNavIndicator(targetLink) {
   const nav = document.getElementById('mainNav');
   const indicator = document.getElementById('navIndicator');
@@ -138,10 +131,8 @@ function initNavIndicatorEvents() {
   window.addEventListener('resize', () => moveNavIndicator());
 }
 
-/* Nav dropdowns ("About" / "Admissions"): hover-intent open on desktop
-   pointers, click/Enter toggle for touch + keyboard, closes on outside
-   click, Escape, or when another dropdown opens. On mobile the same
-   markup becomes an in-place accordion inside the off-canvas menu. */
+/* Nav dropdowns: hover-intent on desktop, click/Enter toggle on touch +
+   keyboard. On mobile the same markup becomes an accordion. */
 function initNavDropdowns() {
   const items = document.querySelectorAll('.nav-item.has-dropdown');
   if (!items.length) return;
@@ -173,8 +164,7 @@ function initNavDropdowns() {
       isOpen ? closeAll() : openItem(item);
     });
 
-    // Hover-intent: only on devices with a real pointer (skip touch), and
-    // only above the mobile off-canvas breakpoint.
+    // Hover-intent only on real-pointer devices above the mobile breakpoint.
     item.addEventListener('mouseenter', () => {
       if (!window.matchMedia('(hover: hover) and (min-width: 1024px)').matches) return;
       clearTimeout(hoverTimer);
@@ -199,8 +189,7 @@ function initNavDropdowns() {
   initNavIndicatorEvents();
 }
 
-/* Thin progress bar across the top of the viewport reflecting how far
-   down the page the user has scrolled. */
+/* Thin progress bar reflecting scroll position. */
 function initScrollProgress() {
   const bar = document.getElementById('scrollProgress');
   if (!bar) return;
@@ -224,8 +213,7 @@ function initScrollProgress() {
   update();
 }
 
-/* Floating back-to-top button that appears after scrolling past the
-   hero and smooth-scrolls the page back up on click. */
+/* Floating back-to-top button; appears past the hero, smooth-scrolls up. */
 function initBackToTop() {
   const button = document.getElementById('backToTop');
   if (!button) return;
@@ -242,9 +230,7 @@ function initBackToTop() {
   });
 }
 
-/* Fade/slide-up reveal for content blocks as they enter the viewport.
-   Elements keep their revealed state once shown (no re-hiding on scroll
-   back up) to avoid distracting flicker while reading. */
+/* Fade/slide-up reveal on scroll; elements stay revealed once shown. */
 function initRevealOnScroll() {
   const targets = document.querySelectorAll('.reveal, .reveal-stagger');
   if (!targets.length) return;
@@ -265,10 +251,8 @@ function initRevealOnScroll() {
   targets.forEach((el) => observer.observe(el));
 }
 
-/* Program Finder — dependent dropdowns. Area of Study unlocks once a
-   Program Level is chosen (including "All Program Levels"); Campus
-   unlocks once an Area of Study is chosen. "Find Your Program" is
-   intentionally left without a listener — design-only for this phase. */
+/* Program Finder — dependent dropdowns (Level unlocks Area unlocks
+   Campus). "Find Your Program" intentionally has no listener attached. */
 function initProgramFinder() {
   const level = document.getElementById('pfLevel');
   const area = document.getElementById('pfArea');
@@ -316,10 +300,8 @@ function initProgramFinder() {
   });
 }
 
-/* About-section student-life carousel. Advances a flex track via
-   transform so there's no reflow per slide. Prev/next buttons and dots
-   are kept in sync; autoplay pauses on hover/focus/touch and is skipped
-   entirely when the user prefers reduced motion. */
+/* About-section carousel; autoplay pauses on hover/focus and respects
+   prefers-reduced-motion. */
 function initAboutCarousel() {
   const root = document.querySelector('.about-carousel');
   const track = document.getElementById('aboutCarouselTrack');

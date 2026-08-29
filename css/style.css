@@ -1,7 +1,4 @@
-/* ==========================================================================
-   LSPU Landing Page — Stylesheet
-   Design tokens, layout primitives, and component styles.
-   ========================================================================== */
+/* LSPU Landing Page — Stylesheet: design tokens, layout primitives, components */
 
 /* -------------------------------------------------------------------------
    1. Reset
@@ -34,8 +31,7 @@ video {
   height: auto;
 }
 
-/* Images are non-draggable site-wide (belt-and-suspenders alongside the
-   draggable="false" attribute on each <img>). */
+/* Images are non-draggable site-wide (alongside draggable="false" on each <img>) */
 img {
   -webkit-user-drag: none;
   user-drag: none;
@@ -303,14 +299,8 @@ select:focus-visible {
 .btn-block { width: 100%; }
 
 /* -------------------------------------------------------------------------
-   5. Header — two-level: Top (utility) bar + Main Navigation bar
-      Behavior: the top bar sits in normal flow above the Main Nav and
-      scrolls away as the page scrolls. The Main Nav is `position: sticky;
-      top: 0`, so it naturally slides up behind the departing top bar and
-      locks to the top of the viewport once the top bar has scrolled out
-      — a purely CSS-driven effect with no layout jump, flicker, or
-      duplicate headers. Scrolling back up reverses the same way. A tiny
-      bit of JS (see js/main.js) only toggles a shadow once it's pinned.
+   5. Header — Top bar (normal flow) + Main Nav (sticky, pins to top
+      once the top bar scrolls out). JS in js/main.js toggles state classes.
    ------------------------------------------------------------------------- */
 
 /* 5a. Top Navigation Bar (utility bar) */
@@ -358,11 +348,8 @@ select:focus-visible {
   border-color: var(--color-gold-500);
 }
 
-/* 5b. Main Navigation Bar — DLSU-style scroll behavior
-   At the top of the page the Main Nav overlays the hero directly beneath
-   the Top Nav. As the page begins to scroll it becomes solid, and once the
-   Top Nav has completely left the viewport it pins itself to the very top.
-   There is no duplicate header and no layout jump. */
+/* 5b. Main Navigation Bar — overlays the hero at top, becomes solid on
+   scroll, pins to the very top once the Top Nav has left the viewport. */
 .site-header {
   position: absolute;
   top: var(--topbar-height);
@@ -555,7 +542,7 @@ select:focus-visible {
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* -------------------------------------------------------------------------
-   5b. Nav dropdowns + sliding indicator (DLSU-inspired)
+   5b. Nav dropdowns + sliding indicator
    ------------------------------------------------------------------------- */
 .nav-item { position: relative; }
 
@@ -684,10 +671,8 @@ select:focus-visible {
 
   .nav-toggle { display: flex; }
 
-  /* While the off-canvas menu is open, pin the Main Nav to the very top
-     and collapse the Top bar so the menu panel (anchored to
-     --header-height below) lines up correctly no matter how far down
-     the page the user had scrolled before opening it. */
+  /* Off-canvas menu open: pin Main Nav to top and collapse Top bar so the
+   menu panel lines up regardless of prior scroll position. */
   body.menu-open .topbar {
     max-height: 0;
     opacity: 0;
@@ -896,13 +881,8 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   8. Program Finder — horizontal strip directly below the Hero
-      (Mapua-inspired concept/placement, styled for LSPU). Sits in normal
-      document flow directly under the Hero (no overlap/negative-margin
-      tricks, so it can't clip or collide with the Hero or header at any
-      breakpoint). Design-only for now: the select styling/focus states
-      are real, but the dropdowns and "Find Your Program" button
-      intentionally do nothing yet.
+   8. Program Finder — horizontal strip below the Hero, normal document
+      flow. Design-only: styling/focus states are real but inert.
    ------------------------------------------------------------------------- */
 .program-finder {
   padding-block: clamp(1.75rem, 4vw, 2.5rem);
@@ -961,7 +941,7 @@ select:focus-visible {
   border-color: var(--color-blue-700);
 }
 
-/* Area of Study / Campus start disabled and are unlocked in sequence by
+/* Area of Study / Campus start disabled, unlocked in sequence by
    initProgramFinder() in js/main.js. */
 .program-finder-select:disabled {
   color: var(--color-ink-300);
@@ -1179,7 +1159,7 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   11. Why LSPU — editorial split layout (merges About + Credibility)
+   11. Why LSPU — editorial split layout
    ------------------------------------------------------------------------- */
 .why-lspu {
   padding-block: clamp(2.5rem, 4vw, 3.5rem);
@@ -1221,9 +1201,8 @@ select:focus-visible {
 
 .why-lspu-cta { margin-top: 1.35rem; }
 
-/* Student-life carousel — replaces the old credential cards. Fixed
-   aspect-ratio viewport + object-fit: cover keeps all three images
-   (two portrait, one landscape) at the same visible proportions. */
+/* Fixed aspect-ratio viewport + object-fit: cover keeps all three
+   carousel images (two portrait, one landscape) at consistent proportions. */
 .about-carousel {
   position: relative;
   align-self: start;
@@ -1336,10 +1315,8 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   12. Moving Horizontal Stats Section — auto-scrolling marquee of
-       LSPU's key figures (enrollment, programs, colleges, campuses,
-       accreditation, rankings, and partnerships). Purely decorative
-       motion, so it always respects prefers-reduced-motion.
+   12. Moving Horizontal Stats Section — auto-scrolling marquee;
+       respects prefers-reduced-motion.
    ------------------------------------------------------------------------- */
 .stats {
   position: relative;
@@ -1719,8 +1696,8 @@ select:focus-visible {
   .section { padding-block: 3.5rem; }
   .news-row { grid-template-columns: 88px 1fr; }
 
-  /* Give the hamburger + Apply Now room to breathe next to the full
-     university name on narrow phones. */
+  /* Room for the hamburger + Apply Now next to the full university name
+   on narrow phones. */
   .brand-mark img { width: 40px; height: 40px; }
   .brand-name { font-size: 0.92rem; }
   .brand-tagline { font-size: 0.6rem; }
@@ -1740,8 +1717,7 @@ select:focus-visible {
 }
 
 /* -------------------------------------------------------------------------
-   17. Scroll behavior (Mapua-inspired): progress bar, reveal-on-scroll,
-   back-to-top button
+   17. Scroll behavior: progress bar, reveal-on-scroll, back-to-top
    ------------------------------------------------------------------------- */
 .scroll-progress {
   position: fixed;
