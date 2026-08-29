@@ -251,7 +251,7 @@ select:focus-visible {
 
 .btn-primary {
   background-color: var(--color-gold-500);
-  color: var(--color-blue-900);
+  color: #fff;
   border-color: var(--color-gold-500);
   box-shadow: 0 8px 18px rgba(242, 183, 5, 0.2);
 }
@@ -798,7 +798,7 @@ select:focus-visible {
   font-size: clamp(2.7rem, 5.6vw, 5.1rem);
   font-weight: 700;
   line-height: 1.04;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.05em;
   color: #fff;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.16);
 }
@@ -1311,7 +1311,10 @@ select:focus-visible {
     align-items: start;
   }
 
-  .about-carousel { max-width: 425px; margin-inline: auto; }
+  .about-carousel { 
+    max-width: 500px; 
+    margin-inline: auto; 
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -1596,7 +1599,7 @@ select:focus-visible {
 }
 
 .footer-heading {
-  font-family: var(--font-display);
+  font-family: var(--fo nt-display);
   font-weight: 700;
   font-size: var(--fs-xs);
   letter-spacing: 0.04em;
