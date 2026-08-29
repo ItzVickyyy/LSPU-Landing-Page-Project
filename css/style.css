@@ -623,7 +623,7 @@ select:focus-visible {
   position: relative;
   isolation: isolate;
   min-height: 700px;
-  height: min(760px, 100vh);
+  height: clamp(700px, 100vh, 960px);
   padding: 0;
   display: flex;
   align-items: stretch;
@@ -1455,6 +1455,14 @@ select:focus-visible {
 
 @media (min-width: 1440px) {
   :root { --container-width: 1320px; }
+}
+
+@media (min-width: 1680px) {
+  :root { --container-width: 1440px; }
+}
+
+@media (min-width: 1920px) {
+  :root { --container-width: 1560px; }
 }
 
 /* -------------------------------------------------------------------------
