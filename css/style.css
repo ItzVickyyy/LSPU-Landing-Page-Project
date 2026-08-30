@@ -205,6 +205,18 @@ select:focus-visible {
   top: 0;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* -------------------------------------------------------------------------
    4. Layout Primitives
    ------------------------------------------------------------------------- */
@@ -307,7 +319,7 @@ select:focus-visible {
 .topbar {
   position: relative;
   z-index: 101;
-  background: var(--color-blue-900);
+  background: #222222;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -323,11 +335,35 @@ select:focus-visible {
 
 .topbar-container::-webkit-scrollbar { display: none; }
 
+.topbar-side {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
 .topbar-list {
   display: flex;
   align-items: center;
   gap: var(--space-md);
   flex-shrink: 0;
+}
+
+/* Government seals in the top bar. Height is capped so it can never grow
+   the 40px topbar; width follows each seal's own aspect ratio. */
+.topbar-seals {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.topbar-seals img {
+  display: block;
+  height: 22px;
+  width: auto;
+  max-width: 26px;
+  object-fit: contain;
 }
 
 .topbar-link {
@@ -362,8 +398,7 @@ select:focus-visible {
   transition:
     background-color 0.22s ease,
     box-shadow 0.22s ease,
-    border-color 0.22s ease,
-    color 0.22s ease;
+    border-color 0.22s ease;
 }
 
 .site-header.is-scrolled {
@@ -404,6 +439,16 @@ select:focus-visible {
   flex-shrink: 0;
 }
 
+/* Bagong Pilipinas seal, placed before the LSPU seal. Capped at the same
+   footprint as the LSPU seal so the 88px main nav bar height never changes. */
+.brand-gov-mark img {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .brand-text {
   display: flex;
   flex-direction: column;
@@ -411,11 +456,20 @@ select:focus-visible {
   min-width: 0;
 }
 
+.brand-name,
+.brand-tagline,
+.nav-link,
+.header-search-toggle {
+  transition:
+    color 1.2s ease,
+    background-color 1.2s ease;
+}
+
 .brand-name {
   font-family: "Old English Text MT", "UnifrakturMaguntia", var(--font-display);
   font-weight: 400;
   font-size: var(--fs-md);
-  color: #fff;
+  color: var(--color-blue-900);
   letter-spacing: 0.01em;
   display: block;
   overflow: hidden;
@@ -433,7 +487,7 @@ select:focus-visible {
   font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-ink-600);
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -461,7 +515,7 @@ select:focus-visible {
   padding: 0.6rem 0.65rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--color-blue-900);
   border-radius: 7px;
   transition: color var(--transition-base), background-color var(--transition-base);
 }
@@ -481,7 +535,21 @@ select:focus-visible {
 .site-header:not(.is-scrolled):not(.is-pinned) .nav-link:hover,
 .site-header:not(.is-scrolled):not(.is-pinned) .nav-link:focus-visible,
 .site-header:not(.is-scrolled):not(.is-pinned) .nav-link.is-active {
-  color: #fff;
+  color: var(--color-blue-900);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .brand-name,
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .brand-tagline,
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .nav-link,
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .header-search-toggle {
+  color: var(--color-white);
+}
+
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .nav-link:hover,
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .nav-link:focus-visible,
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .nav-link.is-active {
+  color: var(--color-white);
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -494,24 +562,113 @@ select:focus-visible {
   flex-shrink: 0;
 }
 
-.header-portal {
-  color: #fff;
-  text-decoration-color: rgba(255, 255, 255, 0.45);
-}
-
-.header-portal:hover,
-.header-portal:focus-visible {
-  color: var(--color-blue-900);
-  text-decoration-color: var(--color-gold-500);
-}
-
-.site-header.is-scrolled .header-portal,
-.site-header.is-pinned .header-portal {
-  color: var(--color-blue-700);
-  text-decoration-color: var(--color-border);
-}
-
 .header-cta { padding: 0.65rem 1.3rem; }
+
+/* Search toggle — icon-only button; sits immediately before Apply Now,
+   in the position previously occupied by the Student Portal link. */
+.header-search-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  color: var(--color-blue-900);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+.header-search-toggle:hover,
+.header-search-toggle:focus-visible {
+  color: var(--color-gold-500);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.site-header.is-scrolled .header-search-toggle,
+.site-header.is-pinned .header-search-toggle {
+  color: var(--color-blue-900);
+}
+
+.site-header.is-scrolled .header-search-toggle:hover,
+.site-header.is-pinned .header-search-toggle:hover,
+.site-header.is-scrolled .header-search-toggle:focus-visible,
+.site-header.is-pinned .header-search-toggle:focus-visible {
+  color: var(--color-blue-700);
+  background: var(--color-blue-050);
+}
+
+.header-search-toggle.is-active {
+  color: var(--color-gold-500);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.site-header.is-scrolled .header-search-toggle.is-active,
+.site-header.is-pinned .header-search-toggle.is-active {
+  color: var(--color-blue-700);
+  background: var(--color-blue-050);
+}
+
+.header-search-icon { width: 20px; height: 20px; }
+
+/* Search — icon-anchored expanding panel. The panel is absolutely
+   positioned just to the left of the toggle button (its nearest
+   positioned ancestor is .header-search) so the input visibly grows
+   outward from the icon's own position instead of dropping a full-width
+   bar below the nav. Layout of the rest of the header is undisturbed. */
+.header-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-search-panel {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 0.4rem);
+  transform: translateY(-50%);
+  z-index: 105;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+  transition: width var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.header-search-panel.is-open {
+  width: min(260px, 60vw);
+  opacity: 1;
+  visibility: visible;
+}
+
+.header-search-panel form { display: flex; }
+
+.header-search-input {
+  width: 100%;
+  height: 42px;
+  padding-inline: 0.85rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-radius: inherit;
+}
+
+.header-search-input:focus-visible {
+  outline: none;
+  background: var(--color-blue-050);
+}
+
+.header-search-input::-webkit-search-cancel-button { display: none; }
+
+@media (max-width: 599px) {
+  .header-search-panel.is-open { width: min(200px, 56vw); }
+}
 
 .nav-toggle {
   display: none;
@@ -667,8 +824,6 @@ select:focus-visible {
     height: 44px;
   }
 
-  .header-portal { display: none; }
-
   .nav-toggle { display: flex; }
 
   /* Off-canvas menu open: pin Main Nav to top and collapse Top bar so the
@@ -757,7 +912,7 @@ select:focus-visible {
   padding: 0;
   display: flex;
   align-items: stretch;
-  background: #071f43;
+  background: var(--color-white);
 }
 
 .hero-container {
@@ -772,23 +927,59 @@ select:focus-visible {
   align-items: center;
 }
 
-.hero-container::before {
-  content: "";
+.hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(4, 31, 78, .97) 0%, rgba(4, 31, 78, .92) 27%, rgba(5, 38, 88, .68) 50%, rgba(5, 38, 88, .25) 75%, rgba(5, 38, 88, .05) 100%),
-    linear-gradient(0deg, rgba(3, 25, 58, .24), transparent 34%);
+  transition: opacity 1.2s ease;
 }
+
+.hero-image-overlay {
+  opacity: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, .97) 0%,
+      rgba(255, 255, 255, .93) 27%,
+      rgba(255, 255, 255, .76) 50%,
+      rgba(255, 255, 255, .34) 75%,
+      rgba(255, 255, 255, .08) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, .22),
+      transparent 34%
+    );
+}
+
+.hero-video-overlay {
+  opacity: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 24, 39, .82) 0%,
+      rgba(5, 24, 39, .68) 38%,
+      rgba(5, 24, 39, .42) 70%,
+      rgba(5, 24, 39, .28) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, .28),
+      transparent 45%
+    );
+}
+
+.hero.is-video-active .hero-image-overlay { opacity: 0; }
+.hero.is-video-active .hero-video-overlay { opacity: 1; }
 
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 720px;
-  color: #fff;
+  color: var(--color-blue-900);
   animation: hero-fade-in 0.7s ease both;
+  transition: color 1.2s ease;
 }
 
 .hero-title {
@@ -799,8 +990,9 @@ select:focus-visible {
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.05em;
-  color: #fff;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.16);
+  color: var(--color-blue-900);
+  text-shadow: none;
+  transition: color 1.2s ease, text-shadow 1.2s ease;
 }
 
 .hero-title span { color: var(--color-gold-500); }
@@ -818,7 +1010,8 @@ select:focus-visible {
   margin-bottom: 2rem;
   font-size: clamp(1rem, 1.4vw, 1.15rem);
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink-600);
+  transition: color 1.2s ease, text-shadow 1.2s ease;
 }
 
 .hero-actions {
@@ -827,30 +1020,66 @@ select:focus-visible {
   gap: 0.85rem;
 }
 
-.hero-actions .btn-secondary {
-  color: #fff;
-  background: rgba(5, 28, 67, 0.2);
-  border-color: rgba(255, 255, 255, 0.9);
-}
-
-.hero-actions .btn-secondary:hover,
-.hero-actions .btn-secondary:focus-visible {
-  color: var(--color-blue-900);
-  background: #fff;
-  border-color: #fff;
-}
-
 .hero-media {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
+  background: var(--color-blue-900);
 }
 
-.hero-media img {
+.hero-media img,
+.hero-media video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.hero-background-image,
+.hero-background-video {
+  transition: opacity 1.2s ease;
+}
+
+.hero-background-image {
+  opacity: 1;
+}
+
+.hero-background-video {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero.is-video-active .hero-background-image {
+  opacity: 0;
+}
+
+.hero.is-video-active .hero-background-video {
+  opacity: 1;
+}
+
+.hero.is-video-active .hero-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .28);
+}
+
+.hero.is-video-active .hero-subtitle {
+  color: rgba(255, 255, 255, .9);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .24);
+}
+
+.hero.is-video-active .hero-actions .btn-secondary {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, .82);
+}
+
+.hero.is-video-active .hero-actions .btn-secondary:hover,
+.hero.is-video-active .hero-actions .btn-secondary:focus-visible {
+  background-color: rgba(255, 255, 255, .14);
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 @keyframes hero-fade-in {
@@ -867,10 +1096,11 @@ select:focus-visible {
 @media (max-width: 599px) {
   .hero { min-height: 680px; }
   .hero-container { min-height: 680px; padding: 3.5rem 1.1rem 3.5rem; align-items: flex-end; }
-  .hero-container::before {
-    background: linear-gradient(180deg, rgba(4,31,78,.7) 0%, rgba(4,31,78,.68) 25%, rgba(4,31,78,.9) 64%, rgba(4,31,78,.98) 100%);
+  .hero-image-overlay {
+    background: linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.74) 25%, rgba(255,255,255,.93) 64%, rgba(255,255,255,.98) 100%);
   }
-  .hero-media img { object-position: 62% center; }
+  .hero-media img,
+  .hero-media video { object-position: 62% center; }
   .hero-title { font-size: clamp(2.3rem, 11vw, 3.3rem); }
   .hero-actions { width: 100%; flex-direction: column; }
   .hero-actions .btn { width: 100%; }
@@ -878,23 +1108,53 @@ select:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-content { animation: none; }
+  .hero-background-image,
+  .hero-background-video,
+  .hero-image-overlay,
+  .hero-video-overlay,
+  .hero-content,
+  .hero-title,
+  .hero-subtitle {
+    transition: none;
+  }
+
+  .hero.is-video-active .hero-background-image {
+    opacity: 1;
+  }
+
+  .hero.is-video-active .hero-background-video {
+    opacity: 0;
+  }
+
+  .hero.is-video-active .hero-title {
+    color: var(--color-blue-900);
+    text-shadow: none;
+  }
+
+  .hero.is-video-active .hero-subtitle {
+    color: var(--color-ink-600);
+    text-shadow: none;
+  }
+
+  .hero.is-video-active .hero-actions .btn-secondary {
+    color: var(--color-blue-700);
+    border-color: var(--color-blue-700);
+  }
 }
 
 /* -------------------------------------------------------------------------
-   8. Program Finder — horizontal strip below the Hero, normal document
-      flow. Design-only: styling/focus states are real but inert.
+   8. Program Finder — now lives inside the Colleges & Programs section
+      (#programs), directly under its title/subtitle and above the college
+      list, so both share one combined section instead of two stacked
+      ones. Design-only: styling/focus states are real but inert.
    ------------------------------------------------------------------------- */
-.program-finder {
-  padding-block: clamp(1.75rem, 4vw, 2.5rem);
-  background: var(--color-blue-050);
-}
-
 .program-finder-panel {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1.25rem;
-  background: #fff;
+  margin-bottom: var(--space-xl);
+  background: var(--color-blue-050);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
@@ -957,6 +1217,18 @@ select:focus-visible {
   white-space: nowrap;
 }
 
+.program-finder-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+}
+
+.program-finder-reset {
+  align-self: center;
+  font-size: var(--fs-xs);
+}
+
 @media (min-width: 700px) {
   .program-finder-panel { grid-template-columns: 1fr 1fr; align-items: end; }
 }
@@ -968,195 +1240,360 @@ select:focus-visible {
     padding: 1.5rem 1.75rem;
   }
   .program-finder-btn.btn { width: auto; min-width: 200px; }
+  .program-finder-actions { align-items: center; }
+  .program-finder-reset { align-self: center; }
 }
 
-/* -------------------------------------------------------------------------
-   9. Student Services — compact action bar
-   ------------------------------------------------------------------------- */
-.services {
-  padding-block: clamp(3rem, 5vw, 4rem);
-  background: #fff;
+/* Program Finder — results, rendered into the #pfResultsModal body by
+   initProgramFinder() in js/main.js once the user submits a search
+   (see .site-modal below for the modal shell itself). */
+.pf-results-count {
+  margin-bottom: 0.9rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-blue-700);
 }
 
-.services-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.services-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.services-heading h2 { font-size: var(--fs-xl); }
-.services-heading p { margin: 0; font-size: var(--fs-sm); }
-
-.services-bar {
+.pf-results-list {
   display: grid;
   grid-template-columns: 1fr;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  gap: 1.25rem;
 }
 
-.service-item + .service-item { border-top: 1px solid var(--color-border); }
-
-.service-link {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 1.1rem 1.3rem;
-  transition: background-color var(--transition-base);
+.pf-result-college-name {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  color: var(--color-blue-900);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.service-link:hover,
-.service-link:focus-visible {
-  background: var(--color-blue-050);
-}
-
-.service-icon {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-}
-
-.service-icon svg { width: 100%; height: 100%; }
-
-.service-text {
+.pf-result-programs {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
-  min-width: 0;
+  gap: 0.7rem;
 }
 
-.service-label {
-  font-family: var(--font-display);
+.pf-result-program {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--color-blue-050);
+  border-radius: var(--radius-sm);
+}
+
+.pf-result-program-name {
   font-weight: 700;
   font-size: var(--fs-sm);
-  color: var(--color-blue-900);
+  color: var(--color-text);
 }
 
-.service-sub {
-  font-size: 0.78rem;
+.pf-result-program-meta {
+  font-size: var(--fs-xs);
   color: var(--color-text-muted);
 }
 
-.service-arrow {
-  flex-shrink: 0;
-  color: var(--color-gold-600);
-  font-weight: 700;
-  transition: transform var(--transition-base);
+.pf-result-program-majors {
+  margin-top: 0.15rem;
+  font-size: var(--fs-xs);
+  color: var(--color-blue-700);
 }
 
-.service-link:hover .service-arrow,
-.service-link:focus-visible .service-arrow {
-  transform: translateX(3px);
+.pf-result-program-note {
+  margin-top: 0.15rem;
+  font-size: var(--fs-xs);
+  font-style: italic;
+  color: var(--color-text-muted);
 }
 
-@media (min-width: 700px) {
-  .services-bar { grid-template-columns: repeat(4, 1fr); }
-  .service-item + .service-item { border-top: 0; border-left: 1px solid var(--color-border); }
-  .service-link { flex-direction: column; align-items: flex-start; gap: var(--space-xs); height: 100%; }
-  .service-arrow { align-self: flex-end; margin-top: auto; }
-}
-
-/* -------------------------------------------------------------------------
-   10. Academic Programs
-   ------------------------------------------------------------------------- */
-.programs { background: #fff; }
-
-.programs-intro {
-  max-width: 640px;
-  margin: 0 auto var(--space-xl);
+.pf-results-empty {
+  padding: 0.75rem 0.25rem;
   text-align: center;
 }
 
-.programs-intro h2 { margin-bottom: var(--space-xs); }
+.pf-results-empty-title {
+  font-weight: 700;
+  color: var(--color-blue-900);
+  margin-bottom: 0.3rem;
+}
 
-.programs-grid {
+.pf-results-empty-hint {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 640px) {
+  .pf-results-list { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+/* -------------------------------------------------------------------------
+   10. College and Programs — combined with the Program Finder above into
+   one section (see #program-finder .program-finder-panel). The college
+   directory list itself (.college-list, below) no longer sits inline on
+   the page — it now renders only inside the #pfResultsModal opened by
+   "Find Your Program", one row per college (code, name, program count,
+   "View Programs"), generated entirely by renderCollegeList() in
+   js/main.js from the same filtered ACADEMIC_DATA used by the Program
+   Finder. Each row's "View Programs" opens #collegeDetailModal, stacked
+   on top, for that college's full program/major detail.
+   ------------------------------------------------------------------------- */
+.programs { background: var(--color-blue-050); }
+
+.programs-intro {
+  max-width: 640px;
+  margin: 0 0 var(--space-xl);
+}
+
+.programs-eyebrow {
+  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+}
+
+.programs-intro h2 { margin-bottom: 0.6rem; }
+
+/* Compact college directory — one slim row per college (code badge, name,
+   program count, chevron). Replaces an earlier card-grid layout that grew
+   to 13 near-identical cards once every LSPU college was added and read
+   as information overload; a dense list scans far faster at that count.
+   Full detail for a given college is left to #collegeDetailModal, opened
+   by the row itself (see initProgramFinder()). See renderCollegeList()
+   in js/main.js. */
+.college-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
-.program-card {
-  position: relative;
+/* `display: grid` above would otherwise beat the UA [hidden] rule. */
+.college-list[hidden] { display: none; }
+
+.college-row {
   display: flex;
-  flex-direction: column;
-  min-height: 270px;
-  padding: 1.75rem;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  min-width: 0;
+  padding: 0.85rem 1.1rem;
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: 0 6px 20px rgba(11, 61, 97, 0.045);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
 }
 
-.program-card::before {
+.college-row:hover,
+.college-row:focus-visible {
+  border-color: rgba(15, 92, 143, 0.28);
+  background: var(--color-blue-050);
+}
+
+.college-row:hover .college-row-chevron,
+.college-row:focus-visible .college-row-chevron {
+  transform: translateX(3px);
+  color: var(--color-blue-900);
+}
+
+.college-row-code {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  padding: 0.3rem 0.4rem;
+  background: var(--color-blue-050);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-blue-700);
+}
+
+.college-row-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.6rem;
+  row-gap: 0.1rem;
+}
+
+.college-row-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-blue-900);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.college-row-count {
+  flex: none;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.college-row-chevron {
+  flex: none;
+  display: inline-flex;
+  color: var(--color-blue-700);
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.college-row-chevron svg { width: 18px; height: 18px; }
+
+@media (min-width: 900px) {
+  .college-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Program / major detail — reused inside #collegeDetailModal by
+   buildCollegeProgramsList() in js/main.js. */
+.college-programs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.college-program {
+  padding: 0.75rem 0.9rem;
+  background: var(--color-blue-050);
+  border-radius: var(--radius-sm);
+}
+
+.college-program-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+}
+
+.college-program-name {
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.college-program-level {
+  flex: none;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-blue-700);
+  white-space: nowrap;
+}
+
+.college-program-campuses {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.college-program-note {
+  margin: 0.35rem 0 0;
+  font-size: var(--fs-xs);
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.college-majors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+.college-majors-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-ink-300);
+  margin-bottom: 0.1rem;
+}
+
+.college-major-item {
+  position: relative;
+  padding-left: 0.9rem;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.college-major-item::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  width: 100%;
-  height: 4px;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   background: var(--color-gold-500);
-  transform: scaleX(0.22);
-  transform-origin: left;
-  transition: transform var(--transition-base);
 }
 
-.program-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(15, 92, 143, 0.24);
-  box-shadow: var(--shadow-card-hover);
+/* `display: flex` below would otherwise beat the UA [hidden] rule
+   (author-origin styles win cascade ties against the UA stylesheet, same
+   reason .college-list[hidden] is spelled out above). */
+.programs-empty-message[hidden] { display: none; }
+
+.programs-empty-message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  background: var(--color-blue-050);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
 }
 
-.program-card:hover::before { transform: scaleX(1); }
-
-.program-icon {
-  display: inline-block;
-  width: 52px;
-  height: 52px;
-  margin-bottom: 1.1rem;
+.programs-empty-title {
+  font-weight: 700;
+  font-size: var(--fs-md);
+  color: var(--color-blue-900);
 }
 
-.program-icon svg { width: 100%; height: 100%; }
-
-.program-name { margin-bottom: 0.5rem; font-size: 1.15rem; }
-.program-desc { margin-bottom: 1.1rem; }
-
-.program-link {
-  margin-top: auto;
-  width: fit-content;
+.programs-empty-hint {
   font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.programs-empty-message a,
+.programs-empty-message .link-button {
   font-weight: 700;
   color: var(--color-blue-700);
-  border-bottom: 2px solid transparent;
-  transition: color var(--transition-base), border-color var(--transition-base);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.program-link:hover,
-.program-link:focus-visible {
-  color: var(--color-gold-600);
-  border-color: var(--color-gold-500);
+/* Inline text-link styled as a <button> (used inside the results modal,
+   where "reset the Program Finder" needs to run JS and close the modal
+   rather than just navigate to an anchor). */
+.link-button {
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
 }
 
 .programs-cta { margin-top: 2.25rem; text-align: center; }
-
-@media (min-width: 600px) {
-  .programs-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 1024px) {
-  .programs-grid { grid-template-columns: repeat(4, 1fr); }
-}
 
 /* -------------------------------------------------------------------------
    11. Why LSPU — editorial split layout
@@ -1246,7 +1683,7 @@ select:focus-visible {
 .about-carousel-arrows {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.65rem;
 }
 
 .about-carousel-arrow {
@@ -1254,17 +1691,19 @@ select:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 52px;
+  height: 52px;
   color: var(--color-blue-900);
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--color-border);
   border-radius: 50%;
   box-shadow: var(--shadow-soft);
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition: background-color var(--transition-base), color var(--transition-base), transform var(--transition-base);
 }
 
-.about-carousel-arrow svg { width: 17px; height: 17px; }
+.about-carousel-arrow svg { width: 22px; height: 22px; }
+
+.about-carousel-arrow:active { transform: scale(0.94); }
 
 .about-carousel-arrow:hover,
 .about-carousel-arrow:focus-visible {
@@ -1315,6 +1754,11 @@ select:focus-visible {
     max-width: 500px; 
     margin-inline: auto; 
   }
+}
+
+@media (max-width: 420px) {
+  .about-carousel-arrow { width: 46px; height: 46px; }
+  .about-carousel-arrow svg { width: 19px; height: 19px; }
 }
 
 /* -------------------------------------------------------------------------
@@ -1428,11 +1872,44 @@ select:focus-visible {
 .campus-name { margin-bottom: 0.4rem; font-size: 1.2rem; }
 .campus-desc { margin-bottom: 0.85rem; font-size: 0.93rem; }
 
-.campus-contact {
-  font-size: 0.82rem;
-  line-height: 1.6;
+/* Icon-based contact row: replaces the old large address/phone text block.
+   Each icon is a real functional control (map modal, tel:, mailto:, external link). */
+.campus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.campus-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
   color: var(--color-blue-700);
-  font-weight: 600;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  box-shadow: var(--shadow-soft);
+  transition: background-color var(--transition-base), color var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
+}
+
+.campus-icon-btn svg { width: 19px; height: 19px; }
+
+.campus-icon-btn:hover,
+.campus-icon-btn:focus-visible {
+  color: var(--color-white);
+  background: var(--color-blue-700);
+  border-color: var(--color-blue-700);
+  transform: translateY(-2px);
+}
+
+.campus-icon-btn:active { transform: translateY(0); }
+
+@media (max-width: 380px) {
+  .campus-icon-btn { width: 40px; height: 40px; }
+  .campus-icon-btn svg { width: 18px; height: 18px; }
 }
 
 @media (min-width: 600px) {
@@ -1450,7 +1927,7 @@ select:focus-visible {
 /* -------------------------------------------------------------------------
    14. News — editorial layout (feature + list)
    ------------------------------------------------------------------------- */
-.news { background: var(--color-blue-050); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.news { background: #fff; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
 
 .news-intro {
   max-width: 640px;
@@ -1538,8 +2015,303 @@ select:focus-visible {
 .news-cta { margin-top: 2.25rem; text-align: center; }
 
 @media (min-width: 900px) {
-  .news-editorial { grid-template-columns: 1.4fr 1fr; align-items: start; }
-  .news-row .news-summary { display: block; margin-top: 0.35rem; font-size: 0.85rem; }
+  /* Keep the desktop News section compact enough to behave like a
+     viewport-sized content section, while preserving the editorial layout. */
+  .news {
+    height: calc(100vh - var(--header-height));
+    min-height: 700px;
+    padding-block: 2.75rem 2rem;
+  }
+
+  .news-intro {
+    margin-bottom: 1.25rem;
+  }
+
+  .news-intro h2 { margin-bottom: 0.25rem; }
+  .news-intro p { line-height: 1.45; }
+
+  .news-editorial {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .news-feature {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .news-feature .news-media {
+    aspect-ratio: 16 / 7;
+    flex-shrink: 0;
+  }
+
+  .news-feature-body {
+    padding: 1rem 1.2rem 1.1rem;
+  }
+
+  .news-feature .news-headline {
+    margin-top: 0.25rem;
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+    line-height: 1.2;
+  }
+
+  .news-feature .news-summary {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .news-list {
+    display: grid;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    min-height: 0;
+  }
+
+  .news-row {
+    min-height: 0;
+    grid-template-columns: 100px 1fr;
+    gap: 0.8rem;
+    padding: 0.65rem;
+    overflow: hidden;
+  }
+
+  .news-row-body { min-width: 0; }
+
+  .news-row .news-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .news-date { font-size: 0.7rem; }
+
+  .news-row .news-headline {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .news-row .news-summary {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .news-cta { margin-top: 1rem; }
+}
+
+/* -------------------------------------------------------------------------
+   14b. Spotlight — editorial tile grid
+   ------------------------------------------------------------------------- */
+.spotlight {
+  padding: 30px 30px 30px;
+  background-color: #f4f9fc;
+}
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 24px;
+  background: transparent;
+}
+
+.spotlight-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 0;
+}
+
+.spotlight-card-wide {
+  grid-column: span 3;
+  width: 93.4%;
+  justify-self: center;
+  aspect-ratio: 21 / 10;
+}
+
+.spotlight-card:focus-visible {
+  outline: 3px solid var(--color-gold-500);
+  outline-offset: -3px;
+}
+
+.spotlight-media {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.spotlight-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.spotlight-card:hover .spotlight-media img,
+.spotlight-card:focus-visible .spotlight-media img {
+  transform: scale(1.04);
+}
+
+.spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 20, 18, 0.62) 0%,
+    rgba(12, 20, 18, 0.16) 42%,
+    rgba(12, 20, 18, 0.12) 58%,
+    rgba(8, 16, 14, 0.72) 100%
+  );
+  transition: opacity var(--transition-base);
+}
+
+.spotlight-card:hover .spotlight-overlay,
+.spotlight-card:focus-visible .spotlight-overlay {
+  opacity: 0.9;
+}
+
+.spotlight-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 30px 32px 31px;
+}
+
+.spotlight-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  max-width: 15ch;
+}
+
+.spotlight-cta {
+  position: absolute;
+  right: 22px;
+  bottom: 20px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.spotlight-card:hover .spotlight-cta,
+.spotlight-card:focus-visible .spotlight-cta {
+  transform: translate(2px, -2px);
+  opacity: 0.9;
+}
+
+.spotlight-cta-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.spotlight-cta-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1023px) {
+  .spotlight {
+    padding: 24px 24px 24px;
+  }
+
+  .spotlight-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .spotlight-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .spotlight-card-wide {
+    grid-column: span 3;
+    width: 100%;
+    aspect-ratio: 21 / 10;
+  }
+
+  .spotlight-title {
+    max-width: 16ch;
+  }
+}
+
+@media (max-width: 640px) {
+  .spotlight {
+    padding: 18px 16px 18px;
+  }
+
+  .spotlight-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .spotlight-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .spotlight-card-wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  .spotlight-content {
+    padding: 20px 18px 18px;
+  }
+
+  .spotlight-title {
+    font-size: 22px;
+  }
+
+  .spotlight-cta {
+    right: 16px;
+    bottom: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .spotlight {
+    padding: 80px 12px 14px;
+  }
+
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .spotlight-card {
+    aspect-ratio: 16 / 11;
+  }
+
+  .spotlight-card-wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 11;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-media img,
+  .spotlight-cta,
+  .spotlight-cta-icon { transition: none; }
 }
 
 /* -------------------------------------------------------------------------
@@ -1702,6 +2474,7 @@ select:focus-visible {
   /* Room for the hamburger + Apply Now next to the full university name
    on narrow phones. */
   .brand-mark img { width: 40px; height: 40px; }
+  .brand-gov-mark img { width: 40px; height: 40px; }
   .brand-name { font-size: 0.92rem; }
   .brand-tagline { font-size: 0.6rem; }
   .header-cta { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
@@ -1791,5 +2564,241 @@ select:focus-visible {
   .js .reveal-stagger > * {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   18. Campus Location Modal — Google Maps popup opened from the campus
+       map-pin icon; see initCampusMapModal() in js/main.js
+   ------------------------------------------------------------------------- */
+.campus-map-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.campus-map-modal[hidden] { display: none; }
+
+.campus-map-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 30, 46, 0.6);
+  backdrop-filter: blur(2px);
+  animation: campus-modal-fade 0.2s ease both;
+}
+
+.campus-map-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+  max-height: min(640px, 88vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-hover);
+  overflow: hidden;
+  animation: campus-modal-pop 0.22s ease both;
+}
+
+.campus-map-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.campus-map-modal-title {
+  margin: 0;
+  font-size: var(--fs-md);
+}
+
+.campus-map-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  color: var(--color-blue-900);
+  background: var(--color-blue-050);
+  border-radius: 50%;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.campus-map-modal-close svg { width: 18px; height: 18px; }
+
+.campus-map-modal-close:hover,
+.campus-map-modal-close:focus-visible {
+  color: var(--color-white);
+  background: var(--color-blue-700);
+}
+
+.campus-map-modal-body {
+  position: relative;
+  flex: 1;
+  min-height: 320px;
+  background: var(--color-blue-050);
+}
+
+.campus-map-modal-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@keyframes campus-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes campus-modal-pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 599px) {
+  .campus-map-modal { padding: 0.75rem; }
+  .campus-map-modal-dialog { max-height: min(560px, 82vh); }
+  .campus-map-modal-body { min-height: 260px; }
+}
+
+/* -------------------------------------------------------------------------
+   14b. Site Modal — generic shell shared by the Program Finder results
+   modal (#pfResultsModal) and the College Detail modal
+   (#collegeDetailModal). Same visual language as .campus-map-modal above;
+   kept as its own reusable component since these two open on top of a
+   scrollable body of content rather than a fixed-height iframe.
+   ------------------------------------------------------------------------- */
+.site-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.site-modal[hidden] { display: none; }
+
+.site-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 30, 46, 0.6);
+  backdrop-filter: blur(2px);
+  animation: campus-modal-fade 0.2s ease both;
+}
+
+.site-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  max-height: min(680px, 88vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-hover);
+  overflow: hidden;
+  animation: campus-modal-pop 0.22s ease both;
+}
+
+.site-modal-dialog--wide { max-width: 920px; }
+
+.site-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex: none;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-modal-header-college {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.site-modal-header-college .college-card-icon { width: 36px; height: 36px; margin-bottom: 0; }
+.site-modal-header-college .college-card-icon svg { width: 20px; height: 20px; }
+
+.site-modal-title {
+  margin: 0;
+  font-size: var(--fs-md);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.site-modal-subtitle {
+  margin: 0.2rem 0 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.site-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  color: var(--color-blue-900);
+  background: var(--color-blue-050);
+  border-radius: 50%;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.site-modal-close svg { width: 18px; height: 18px; }
+
+.site-modal-close:hover,
+.site-modal-close:focus-visible {
+  color: var(--color-white);
+  background: var(--color-blue-700);
+}
+
+.site-modal-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.25rem;
+}
+
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 599px) {
+  .site-modal { padding: 0.75rem; }
+  .site-modal-dialog,
+  .site-modal-dialog--wide {
+    max-width: 100%;
+    max-height: min(560px, 82vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-modal-overlay,
+  .site-modal-dialog {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campus-map-modal-overlay,
+  .campus-map-modal-dialog {
+    animation: none;
   }
 }
