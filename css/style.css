@@ -1158,8 +1158,16 @@ body.directory-open { overflow: hidden; }
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 700px;
-  height: clamp(700px, 100vh, 960px);
+  /* The top utility bar sits in normal flow above the hero (the main nav
+     is absolutely positioned and overlays the hero itself), so the hero's
+     vh-based height has to subtract that bar's height to fill exactly the
+     rest of the screen. No upper cap: the section should always match
+     100% of the current browser viewport, whether that viewport is
+     shortened by a visible bookmarks bar or tall because it's hidden, on
+     any monitor. Only a floor is kept so it never gets uncomfortably
+     short on very small viewports. */
+  min-height: 640px;
+  height: max(640px, calc(100vh - var(--topbar-height)));
   padding: 0;
   display: flex;
   align-items: stretch;
@@ -1333,6 +1341,123 @@ body.directory-open { overflow: hidden; }
   border-color: var(--color-white);
 }
 
+.hero-music-control {
+  --hmc-flip-x: 0px;
+  --hmc-flip-y: 0px;
+  position: absolute;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  opacity: 0;
+  visibility: hidden;
+  /* The FLIP translate (set from JS when the control pins/unpins) and the
+     show/hide slide compose into one transform so both can animate
+     independently without fighting each other. */
+  transform: translate(var(--hmc-flip-x), var(--hmc-flip-y)) translateY(8px);
+  transition: opacity .5s ease, transform .5s ease, visibility .5s ease;
+}
+
+.hero-music-control.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(var(--hmc-flip-x), var(--hmc-flip-y)) translateY(0);
+}
+
+/* Once the visitor leaves the audio on and scrolls the Hero out of view,
+   the control switches from "anchored inside the Hero" to "fixed to the
+   viewport", stacked directly above the back-to-top button so it keeps
+   following the page instead of scrolling away silently. The jump this
+   would otherwise cause (position: absolute -> fixed can't be smoothly
+   transitioned by the browser) is bridged in JS via a FLIP transform, so
+   the control visually slides into its pinned spot instead of snapping. */
+.hero-music-control.is-pinned {
+  position: fixed;
+  right: var(--space-md);
+  bottom: calc(var(--space-md) + 46px + var(--space-sm));
+  z-index: 95;
+}
+
+/* Volume slider — hidden until the control is hovered/focused, then pops
+   up above the toggle button. */
+.hero-music-volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .9rem .5rem;
+  border-radius: 999px;
+  background: rgba(11, 61, 97, .55);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-card-hover);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px) scale(.92);
+  transform-origin: bottom center;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.hero-music-control:hover .hero-music-volume,
+.hero-music-control:focus-within .hero-music-volume {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.hero-music-volume-input {
+  -webkit-appearance: slider-vertical;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 4px;
+  height: 84px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-gold-500);
+}
+
+.hero-music-toggle {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(11, 61, 97, .55);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  box-shadow: var(--shadow-card-hover);
+  transition: background-color var(--transition-base);
+}
+
+.hero-music-toggle:hover,
+.hero-music-toggle:focus-visible {
+  background: rgba(11, 61, 97, .8);
+}
+
+/* Once pinned to the viewport (scrolled past the Hero), the toggle switches
+   to a solid brand color so it reads clearly against whatever section is
+   currently behind it, instead of the translucent Hero-only treatment. */
+.hero-music-control.is-pinned .hero-music-toggle {
+  background: var(--color-blue-900);
+}
+
+.hero-music-control.is-pinned .hero-music-toggle:hover,
+.hero-music-control.is-pinned .hero-music-toggle:focus-visible {
+  background: var(--color-blue-700);
+}
+
+.hero-music-icon { width: 20px; height: 20px; }
+
+.hero-music-icon-unmuted { display: none; }
+
+.hero-music-toggle[aria-pressed="true"] .hero-music-icon-muted { display: none; }
+.hero-music-toggle[aria-pressed="true"] .hero-music-icon-unmuted { display: block; }
+
 @keyframes hero-fade-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1342,6 +1467,29 @@ body.directory-open { overflow: hidden; }
   .hero { min-height: 640px; height: auto; }
   .hero-container { padding: 4rem var(--container-padding) 4.5rem; }
   .hero-title { font-size: clamp(2.6rem, 8vw, 4.2rem); }
+}
+
+@media (max-width: 599px) {
+  .hero-music-control { right: var(--space-sm); bottom: var(--space-sm); }
+  .hero-music-toggle { width: 40px; height: 40px; }
+  .hero-music-icon { width: 18px; height: 18px; }
+  .hero-music-volume-input { height: 72px; }
+}
+
+/* Touch devices have no hover; tapping the button is the only realistic
+   interaction, so the volume popover would otherwise be unreachable. It's
+   kept available on focus (e.g. tabbing to the slider isn't possible while
+   hidden, so on touch/coarse pointers show it whenever the control itself
+   is visible instead of gating it behind :hover). */
+@media (hover: none) {
+  .hero-music-volume {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    position: static;
+  }
+  .hero-music-control { flex-direction: row; }
 }
 
 @media (max-width: 599px) {
@@ -2693,12 +2841,12 @@ body.directory-open { overflow: hidden; }
   position: fixed;
   right: var(--space-md);
   bottom: var(--space-md);
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 2px;
   background: var(--color-blue-900);
   color: #fff;
   box-shadow: var(--shadow-card-hover);

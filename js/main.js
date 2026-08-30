@@ -19,10 +19,188 @@ function initHeroVideo() {
   const hero = document.querySelector('.hero');
   const video = document.querySelector('.hero-background-video');
   const header = document.getElementById('header');
+  const musicControl = document.getElementById('heroMusicControl');
+  const musicToggle = document.getElementById('heroMusicToggle');
+  const volumeInput = document.getElementById('heroMusicVolume');
   if (!hero || !video) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
+
+  // Video's audio stays muted until the visitor opts in via the toggle,
+  // but a sensible volume is pre-set so unmuting isn't silent.
+  const DEFAULT_VOLUME = 0.8;
+  video.muted = true;
+  video.volume = DEFAULT_VOLUME;
+
+  // .hero (isolation: isolate) and .hero-container (position: relative +
+  // z-index) each start their own stacking context. A position: fixed
+  // descendant still gets trapped inside that context for paint-order
+  // purposes even though it's positioned relative to the viewport, so its
+  // z-index only wins against other things inside .hero — later sections
+  // like Spotlight (painted after .hero in the document) still cover it.
+  // Reparenting the control to <body> while it's pinned lets it compete in
+  // the root stacking context instead, where z-index: 95 actually wins.
+  const musicControlHome = musicControl ? musicControl.parentElement : null;
+
+  // Keeps the button icon/label and the slider's handle position in sync
+  // with the video's actual muted/volume state, whichever one changed it.
+  const updateMusicButtonState = () => {
+    const isOn = !video.muted && video.volume > 0;
+    if (musicToggle) {
+      musicToggle.setAttribute('aria-pressed', String(isOn));
+      musicToggle.setAttribute('aria-label', isOn ? 'Mute hero video' : 'Unmute hero video');
+    }
+    if (volumeInput) {
+      volumeInput.value = String(Math.round(video.volume * 100));
+    }
+  };
+
+  // Flips the control between "anchored inside the Hero" and "pinned to
+  // the viewport" using the FLIP technique: measure where it visually sits
+  // before the change, apply the change (including the reparent), measure
+  // where it landed, then bridge the two with a transform so the move
+  // animates smoothly instead of snapping (position: absolute -> fixed
+  // can't be transitioned directly by the browser).
+  const setPinned = (shouldPin) => {
+    if (!musicControl) return;
+    const isPinned = musicControl.classList.contains('is-pinned');
+    if (isPinned === shouldPin) return;
+
+    const isVisible = musicControl.classList.contains('is-visible') && !musicControl.hidden;
+    const applyChange = () => {
+      if (shouldPin) {
+        document.body.appendChild(musicControl);
+      } else if (musicControlHome) {
+        musicControlHome.appendChild(musicControl);
+      }
+      musicControl.classList.toggle('is-pinned', shouldPin);
+    };
+
+    if (!isVisible) {
+      applyChange();
+      return;
+    }
+
+    const first = musicControl.getBoundingClientRect();
+    applyChange();
+    const last = musicControl.getBoundingClientRect();
+    const deltaX = first.left - last.left;
+    const deltaY = first.top - last.top;
+
+    if (deltaX || deltaY) {
+      musicControl.style.transition = 'none';
+      musicControl.style.setProperty('--hmc-flip-x', `${deltaX}px`);
+      musicControl.style.setProperty('--hmc-flip-y', `${deltaY}px`);
+      // Force a reflow so the inverted position is actually painted before
+      // we animate away from it on the next frame.
+      musicControl.getBoundingClientRect();
+      requestAnimationFrame(() => {
+        musicControl.style.transition = '';
+        musicControl.style.setProperty('--hmc-flip-x', '0px');
+        musicControl.style.setProperty('--hmc-flip-y', '0px');
+      });
+    }
+  };
+
+  const syncMusicUI = () => {
+    updateMusicButtonState();
+    updatePinnedState();
+  };
+
+  // While audio is on and the visitor scrolls the Hero fully out of view,
+  // the control follows along (fixed, stacked above back-to-top) instead
+  // of scrolling away with the rest of the Hero and going silent unnoticed.
+  const updatePinnedState = () => {
+    if (!musicControl || musicControl.hidden) return;
+    const isOn = !video.muted && video.volume > 0;
+    const scrolledPastHero = hero.getBoundingClientRect().bottom <= 0;
+    setPinned(isOn && scrolledPastHero);
+  };
+
+  window.addEventListener('scroll', updatePinnedState, { passive: true });
+  window.addEventListener('resize', updatePinnedState);
+
+  const showMusicToggle = () => {
+    if (!musicControl) return;
+    musicControl.hidden = false;
+    // Defer to the next frame so the browser registers the un-hidden
+    // state before the opacity/transform transition kicks in.
+    requestAnimationFrame(() => musicControl.classList.add('is-visible'));
+    updatePinnedState();
+  };
+
+  // Matches the .hero-music-control opacity/transform transition duration
+  // in CSS, so the pinned control has time to fade out before it's
+  // repositioned back into the (off-screen) Hero.
+  const PIN_UNPIN_DELAY = 500;
+  let unpinTimer = null;
+
+  // Muting while the control is pinned (fixed to the viewport, scrolled
+  // past the Hero) would otherwise snap the control from "fixed" back to
+  // "absolute inside the Hero" the instant is-pinned drops off, making it
+  // vanish mid-screen. Fading the control out first, then letting it
+  // reposition only once it's already invisible, keeps that transition
+  // smooth instead of an abrupt disappearance. is-visible is restored
+  // right after, so the control isn't left permanently hidden/unclickable
+  // once it's scrolled back into the Hero.
+  const turnAudioOff = () => {
+    video.muted = true;
+    updateMusicButtonState();
+    const wasPinned = musicControl && musicControl.classList.contains('is-pinned');
+    if (wasPinned) {
+      musicControl.classList.remove('is-visible');
+      if (unpinTimer) window.clearTimeout(unpinTimer);
+      unpinTimer = window.setTimeout(() => {
+        unpinTimer = null;
+        updatePinnedState();
+        musicControl.classList.add('is-visible');
+      }, PIN_UNPIN_DELAY);
+    } else {
+      updatePinnedState();
+    }
+  };
+
+  const turnAudioOn = () => {
+    if (unpinTimer) {
+      window.clearTimeout(unpinTimer);
+      unpinTimer = null;
+    }
+    video.muted = false;
+    video.volume = video.volume > 0 ? video.volume : DEFAULT_VOLUME;
+    musicControl && musicControl.classList.add('is-visible');
+    syncMusicUI();
+  };
+
+  if (musicToggle) {
+    musicToggle.addEventListener('click', () => {
+      if (video.muted || video.volume === 0) {
+        turnAudioOn();
+      } else {
+        turnAudioOff();
+      }
+    });
+  }
+
+  if (volumeInput) {
+    volumeInput.addEventListener('input', () => {
+      const level = Number(volumeInput.value) / 100;
+      video.volume = level;
+      if (level === 0) {
+        turnAudioOff();
+      } else {
+        if (unpinTimer) {
+          window.clearTimeout(unpinTimer);
+          unpinTimer = null;
+        }
+        video.muted = false;
+        musicControl && musicControl.classList.add('is-visible');
+        syncMusicUI();
+      }
+    });
+  }
+
+  syncMusicUI();
 
   let activated = false;
   let activationTimer = null;
@@ -53,6 +231,7 @@ function initHeroVideo() {
           // main-nav contents (links, dropdown carets, search icon, brand
           // text) also switch to light text while the video plays.
           if (header) header.classList.add('is-hero-video-active');
+          showMusicToggle();
         })
         .catch(() => {
           // Keep the original hero image visible if autoplay is blocked.
@@ -63,6 +242,7 @@ function initHeroVideo() {
     } else {
       hero.classList.add('is-video-active');
       if (header) header.classList.add('is-hero-video-active');
+      showMusicToggle();
     }
   };
 
@@ -72,6 +252,10 @@ function initHeroVideo() {
     if (activationTimer) window.clearTimeout(activationTimer);
     hero.classList.remove('is-video-active');
     if (header) header.classList.remove('is-hero-video-active');
+    if (musicControl) {
+      musicControl.classList.remove('is-visible', 'is-pinned');
+      musicControl.hidden = true;
+    }
   }, { once: true });
 
   window.addEventListener('pagehide', () => {
