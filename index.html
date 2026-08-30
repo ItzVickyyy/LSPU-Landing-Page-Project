@@ -70,7 +70,7 @@
       <nav class="main-nav" id="mainNav" aria-label="Primary">
         <ul class="nav-list" id="navList">
           <li class="nav-item has-dropdown">
-            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="dropdown-about">
+            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="dropdown-about" data-section="about">
               About
               <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
@@ -134,6 +134,19 @@
         <a href="" class="btn btn-primary header-cta" target="_blank" rel="noopener">Apply Now</a>
         <button
           type="button"
+          class="site-directory-toggle"
+          id="siteDirectoryToggle"
+          aria-expanded="false"
+          aria-controls="siteDirectory"
+          aria-label="Open site directory"
+        >
+          <span class="site-directory-toggle-bar"></span>
+          <span class="site-directory-toggle-bar"></span>
+          <span class="site-directory-toggle-bar"></span>
+          <span class="sr-only">Site Directory</span>
+        </button>
+        <button
+          type="button"
           class="nav-toggle"
           id="navToggle"
           aria-expanded="false"
@@ -148,6 +161,369 @@
 
     </div>
   </header>
+
+  <!-- Site Directory: full-sitemap off-canvas drawer, separate from the -->
+  <!-- primary nav above. Ordered by expected traffic (public/prospective- -->
+  <!-- student tasks first, institutional/compliance content lower but -->
+  <!-- still fully reachable). No decorative icons — native disclosure -->
+  <!-- markers only. -->
+  <div class="site-directory-overlay" id="siteDirectoryOverlay" hidden></div>
+  <aside class="site-directory" id="siteDirectory" aria-hidden="true" aria-label="Full site directory">
+    <div class="site-directory-header">
+      <span class="site-directory-title">Site Directory</span>
+      <button type="button" class="site-directory-close" id="siteDirectoryClose" aria-label="Close site directory">Close</button>
+    </div>
+
+    <div class="site-directory-search">
+      <input type="search" id="siteDirectorySearch" class="site-directory-search-input" placeholder="Search pages&hellip;" aria-label="Search the site directory">
+    </div>
+
+    <nav class="site-directory-nav" aria-label="Full site directory links" data-sd-accordion>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="true" aria-controls="sd-panel-about">
+          <span>About LSPU</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-about">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="#about">Why LSPU</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Mission, Vision &amp; Mandate</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Quality Policy</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Historical Development</a></li>
+                        <li><a href="" target="_blank" rel="noopener">University Seal</a></li>
+                        <li><a href="" target="_blank" rel="noopener">University Hymn</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Group Values &amp; Performance Pledge</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-admissions">
+          <span>Admissions</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-admissions">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Admission Requirements</a></li>
+                        <li><a href="" target="_blank" rel="noopener">New / Freshmen Application</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Transferee Admission</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Non-Regular Admission</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Foreign Student Admission</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Admission Portal</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-academics">
+          <span>Academics</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-academics">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="#programs">Program Offerings</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; Santa Cruz</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; San Pablo City</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; Los Ba&ntilde;os</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; Siniloan</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-campuses">
+          <span>Campuses</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-campuses">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="#campuses">Santa Cruz (Main)</a></li>
+                        <li><a href="" target="_blank" rel="noopener">San Pablo City</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Los Ba&ntilde;os</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Siniloan</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-services">
+          <span>Student &amp; Online Services</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-services">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Library Services</a></li>
+                        <li><a href="" target="_blank" rel="noopener">LSPU Online (Students &amp; Faculty)</a></li>
+                        <li><a href="" target="_blank" rel="noopener">MyAccount (Legacy System)</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Student Admission Form</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Student Portal</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-news">
+          <span>News &amp; Updates</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-news">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="#news">News &amp; Articles</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Alumni News</a></li>
+                        <li><a href="" target="_blank" rel="noopener">President's Report</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Photo News</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Upcoming Events</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-rde">
+          <span>Research, Development &amp; Extension</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-rde">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Thrust and Priorities</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Faculty Research</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Research Publication &amp; Presentation</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Patents and Utility Models</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Innovation &amp; Technology Support Office</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Intellectual Property &amp; Tech Business Management</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Extension &amp; Training Services</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Symposiums &amp; Conferences</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Agri-Aqua Technology Business Incubation (AATBI)</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-careers">
+          <span>Careers</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-careers">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Teaching Positions</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Non-Teaching Positions</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-admin">
+          <span>Administration</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-admin">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Board of Regents</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Office of the President</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Gender and Development (GAD)</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Management Information System</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Planning &amp; Development</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Executive Assistant</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Internal Control Unit</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Quality Assurance</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Disaster Risk Reduction &amp; Management</a></li>
+                      </ul>
+      <div class="sd-subgroups" data-sd-accordion>
+        <div class="sd-subgroup" data-sd-item>
+          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-admin-aa">
+            <span>Academic Affairs</span>
+            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sd-panel" id="sd-panel-admin-aa">
+            <div class="sd-panel-inner">
+              <ul class="sd-links">
+          <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
+          <li><a href="" target="_blank" rel="noopener">Admission &amp; Registrarship</a></li>
+          <li><a href="" target="_blank" rel="noopener">Curriculum Instruction Development</a></li>
+          <li><a href="" target="_blank" rel="noopener">Library Services</a></li>
+          <li><a href="" target="_blank" rel="noopener">National Service Training Program</a></li>
+          <li><a href="" target="_blank" rel="noopener">Scholarship &amp; Financial Assistance</a></li>
+          <li><a href="" target="_blank" rel="noopener">Sports</a></li>
+          <li><a href="" target="_blank" rel="noopener">Alumni Affairs &amp; Placement Services</a></li>
+          <li><a href="" target="_blank" rel="noopener">International Affairs</a></li>
+          <li><a href="" target="_blank" rel="noopener">Office of Student Affairs &amp; Services (OSAS)</a></li>
+          <li><a href="" target="_blank" rel="noopener">Cultural &amp; Literary Arts</a></li>
+        </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sd-subgroup" data-sd-item>
+          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-admin-as">
+            <span>Administrative Services</span>
+            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sd-panel" id="sd-panel-admin-as">
+            <div class="sd-panel-inner">
+              <ul class="sd-links">
+          <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
+          <li><a href="" target="_blank" rel="noopener">Budget &amp; Finance Services</a></li>
+          <li><a href="" target="_blank" rel="noopener">Business Affairs, Production &amp; Marketing</a></li>
+          <li><a href="" target="_blank" rel="noopener">Information Communication &amp; Technology</a></li>
+          <li><a href="" target="_blank" rel="noopener">Physical Plant &amp; Site Development</a></li>
+          <li><a href="" target="_blank" rel="noopener">Security Management &amp; Services</a></li>
+        </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-governance">
+          <span>Good Governance &amp; Transparency</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-governance">
+          <div class="sd-panel-inner">
+      <div class="sd-subgroups" data-sd-accordion>
+        <div class="sd-subgroup" data-sd-item>
+          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-proc">
+            <span>Procurement &amp; Bids</span>
+            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sd-panel" id="sd-panel-gov-proc">
+            <div class="sd-panel-inner">
+              <ul class="sd-links">
+          <li><a href="" target="_blank" rel="noopener">PhilGEPS Posting</a></li>
+          <li><a href="" target="_blank" rel="noopener">Invitation to Bid (ITB)</a></li>
+          <li><a href="" target="_blank" rel="noopener">Request for Quotation (RFQ)</a></li>
+          <li><a href="" target="_blank" rel="noopener">Negotiated Procurement &ndash; Two Failed Biddings</a></li>
+        </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sd-subgroup" data-sd-item>
+          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-cert">
+            <span>Certification &amp; Compliance</span>
+            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sd-panel" id="sd-panel-gov-cert">
+            <div class="sd-panel-inner">
+              <ul class="sd-links">
+          <li><a href="" target="_blank" rel="noopener">ISO Certificate of Compliance</a></li>
+          <li><a href="" target="_blank" rel="noopener">Quality Manual &amp; Work Instructions</a></li>
+          <li><a href="" target="_blank" rel="noopener">Government Procurement Policy Board (GPPB)</a></li>
+          <li><a href="" target="_blank" rel="noopener">Agency Procurement Compliance Indicator (APCPI)</a></li>
+          <li><a href="" target="_blank" rel="noopener">Procurement Monitoring Reports</a></li>
+        </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sd-subgroup" data-sd-item>
+          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-foi">
+            <span>Freedom of Information</span>
+            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sd-panel" id="sd-panel-gov-foi">
+            <div class="sd-panel-inner">
+              <ul class="sd-links">
+          <li><a href="" target="_blank" rel="noopener">People's FOI Manual</a></li>
+          <li><a href="" target="_blank" rel="noopener">eFOI Portal Link</a></li>
+          <li><a href="" target="_blank" rel="noopener">AID-FOI Tool</a></li>
+          <li><a href="" target="_blank" rel="noopener">FOI Reports &amp; Feedback</a></li>
+        </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sd-subgroup" data-sd-item>
+          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-seal">
+            <span>Transparency Seal</span>
+            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sd-panel" id="sd-panel-gov-seal">
+            <div class="sd-panel-inner">
+              <ul class="sd-links">
+          <li><a href="" target="_blank" rel="noopener">Citizen's Charter (by year)</a></li>
+          <li><a href="" target="_blank" rel="noopener">Annual Report</a></li>
+        </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-advocacies">
+          <span>Advocacies</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-advocacies">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Bagong Pilipinas (Pledge &amp; Hymn)</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Sustainable Development Goals</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Green University</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Internationalization</a></li>
+                        <li><a href="" target="_blank" rel="noopener">DRRM Climate Action Center</a></li>
+                        <li><a href="" target="_blank" rel="noopener">GAD Corner</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-downloads">
+          <span>Downloads</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-downloads">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
+                        <li><a href="" target="_blank" rel="noopener">CART Directory</a></li>
+                        <li><a href="" target="_blank" rel="noopener">LSPU Institutional Templates</a></li>
+                        <li><a href="" target="_blank" rel="noopener">General Downloads Hub</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sd-group" data-sd-item>
+        <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-connect">
+          <span>Connect</span>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sd-panel" id="sd-panel-connect">
+          <div class="sd-panel-inner">
+              <ul class="sd-links">
+                        <li><a href="" target="_blank" rel="noopener">Address &amp; Contact Information</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Social Media</a></li>
+                        <li><a href="" target="_blank" rel="noopener">Campus Directory</a></li>
+                      </ul>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+  </aside>
 
   <main id="main">
 
@@ -525,8 +901,8 @@
       <div class="container programs-container">
 
         <div class="programs-intro reveal">
-          <p class="programs-eyebrow">Academic Programs</p>
-          <h2>Colleges &amp; Programs</h2>
+          <p class="programs-eyebrow">Academics</p>
+          <h2>Academic Programs</h2>
           <p>Set your Program Level, Area of Study, and Campus below, then select "Find Your Program" to browse matching colleges and their full list of programs and majors.</p>
         </div>
 

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initHeroVideo();
   initNavDropdowns();
+  initSiteDirectory();
   initScrollProgress();
   initBackToTop();
   initRevealOnScroll();
@@ -65,7 +66,7 @@ function initHeroVideo() {
     }
   };
 
-  activationTimer = window.setTimeout(activateVideo, 5000);
+  activationTimer = window.setTimeout(activateVideo, 2000);
 
   video.addEventListener('error', () => {
     if (activationTimer) window.clearTimeout(activationTimer);
@@ -142,31 +143,157 @@ function initHeader() {
     if (event.matches) closeMenu();
   });
 
-  // Highlight the nav link for whichever section is currently in view
+  // Highlight the nav link for whichever section is currently in view.
+  // Includes both plain links (href="#id") and dropdown toggles that
+  // represent a section via [data-section] (e.g. the "About" button,
+  // which opens a dropdown instead of linking straight to #about).
   const sectionLinks = [...nav.querySelectorAll('.nav-link')]
-    .map((link) => ({ link, id: link.getAttribute('href')?.replace('#', '') }))
+    .map((link) => ({
+      link,
+      id: link.getAttribute('href')?.replace('#', '') || link.dataset.section,
+    }))
     .filter(({ id }) => id && document.getElementById(id));
 
+  // Track every top-level page section — not just the ones with a nav
+  // link — so that sections with no nav entry (e.g. the stats strip or
+  // the Spotlight grid) correctly CLEAR the highlight instead of letting
+  // the last-matched link stay active while scrolled somewhere else.
+  const trackedSections = [...document.querySelectorAll('main > section[id]')];
+
+  const setActive = (id) => {
+    sectionLinks.forEach(({ link, id: linkId }) => {
+      const active = id === linkId;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    moveNavIndicator();
+  };
+
   if ('IntersectionObserver' in window) {
+    // Sections currently inside the "active band" in the middle of the
+    // viewport, most recent first — so we always highlight the one
+    // closest to the top of that band, even if several overlap briefly.
+    let inView = [];
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        sectionLinks.forEach(({ link, id }) => {
-          const active = id === entry.target.id;
-          link.classList.toggle('is-active', active);
-          if (active) link.setAttribute('aria-current', 'page');
-          else link.removeAttribute('aria-current');
-        });
-        moveNavIndicator();
+        inView = inView.filter((id) => id !== entry.target.id);
+        if (entry.isIntersecting) inView.unshift(entry.target.id);
       });
+
+      const currentId = inView[0];
+      const hasLink = sectionLinks.some(({ id }) => id === currentId);
+      setActive(hasLink ? currentId : null);
     }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
 
-    sectionLinks.forEach(({ id }) => observer.observe(document.getElementById(id)));
+    trackedSections.forEach((section) => observer.observe(section));
   }
 }
 
 /* Sliding underline indicator beneath the active/hovered nav item;
    recalculated on hover, active-section change, and resize. */
+/* Site Directory: off-canvas full-sitemap drawer (separate from the
+   primary nav's mobile menu). Handles open/close, overlay click, Escape,
+   a single-open accordion (each accordion scope — the top-level group
+   list, and each group's own subgroup list — allows only one item open
+   at a time), and a live text filter over the sd-links entries. */
+function initSiteDirectory() {
+  const toggle = document.getElementById('siteDirectoryToggle');
+  const closeBtn = document.getElementById('siteDirectoryClose');
+  const panel = document.getElementById('siteDirectory');
+  const overlay = document.getElementById('siteDirectoryOverlay');
+  const search = document.getElementById('siteDirectorySearch');
+  if (!toggle || !panel || !overlay) return;
+
+  const openDirectory = () => {
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    overlay.hidden = false;
+    requestAnimationFrame(() => overlay.classList.add('is-visible'));
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close site directory');
+    document.body.classList.add('directory-open');
+    if (search) search.focus({ preventScroll: true });
+  };
+
+  const closeDirectory = () => {
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('is-visible');
+    document.body.classList.remove('directory-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open site directory');
+    // Wait for the slide-out transition (see .site-directory transition-
+    // delay in CSS) before actually hiding the overlay, so closing looks
+    // as smooth as opening instead of snapping away mid-animation.
+    window.setTimeout(() => { overlay.hidden = true; }, 320);
+  };
+
+  toggle.addEventListener('click', () => {
+    panel.classList.contains('is-open') ? closeDirectory() : openDirectory();
+  });
+  closeBtn?.addEventListener('click', closeDirectory);
+  overlay.addEventListener('click', closeDirectory);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && panel.classList.contains('is-open')) closeDirectory();
+  });
+
+  // Single-open accordion: every [data-sd-accordion] container is its own
+  // independent scope, so opening a subgroup inside "Administration"
+  // doesn't affect the other top-level groups, and vice versa.
+  panel.querySelectorAll('[data-sd-accordion]').forEach((scope) => {
+    const items = Array.from(scope.children).filter((el) => el.matches('[data-sd-item]'));
+    const summaries = items
+      .map((item) => item.querySelector(':scope > .sd-group-summary, :scope > .sd-subgroup-summary'))
+      .filter(Boolean);
+
+    summaries.forEach((summary) => {
+      summary.addEventListener('click', () => {
+        const willOpen = summary.getAttribute('aria-expanded') !== 'true';
+        summaries.forEach((s) => s.setAttribute('aria-expanded', 'false'));
+        summary.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+    });
+  });
+
+  // Live filter: matching links stay visible; groups/subgroups containing
+  // a match open automatically, everything else collapses out of view.
+  if (search) {
+    const groups = Array.from(panel.querySelectorAll('.sd-group'));
+
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLowerCase();
+
+      groups.forEach((group, index) => {
+        let groupHasMatch = false;
+        const groupSummary = group.querySelector(':scope > .sd-group-summary');
+
+        group.querySelectorAll('.sd-links li').forEach((item) => {
+          const matches = query === '' || item.textContent.toLowerCase().includes(query);
+          item.classList.toggle('is-hidden', !matches);
+          if (matches) groupHasMatch = true;
+        });
+
+        group.classList.toggle('is-hidden', query !== '' && !groupHasMatch);
+
+        if (query !== '') {
+          groupSummary?.setAttribute('aria-expanded', groupHasMatch ? 'true' : 'false');
+          group.querySelectorAll('.sd-subgroup').forEach((sub) => {
+            const subSummary = sub.querySelector(':scope > .sd-subgroup-summary');
+            const subHasMatch = Array.from(sub.querySelectorAll('.sd-links li')).some((li) => !li.classList.contains('is-hidden'));
+            subSummary?.setAttribute('aria-expanded', subHasMatch ? 'true' : 'false');
+          });
+        } else {
+          groupSummary?.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+          group.querySelectorAll('.sd-subgroup-summary').forEach((s) => s.setAttribute('aria-expanded', 'false'));
+        }
+      });
+    });
+  }
+}
+
 function moveNavIndicator(targetLink) {
   const nav = document.getElementById('mainNav');
   const indicator = document.getElementById('navIndicator');

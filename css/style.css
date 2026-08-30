@@ -19,6 +19,10 @@ html {
 body {
   min-height: 100vh;
   line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -90,7 +94,6 @@ select {
 
   --color-gold-600: #c99700;
   --color-gold-500: #f2b705;
-  --color-gold-100: #fdf1cc;
 
   --color-white: #ffffff;
   --color-ink-900: #14202b;
@@ -100,11 +103,8 @@ select {
 
   /* Semantic aliases */
   --color-bg: var(--color-white);
-  --color-bg-alt: var(--color-blue-050);
   --color-text: var(--color-ink-900);
   --color-text-muted: var(--color-ink-600);
-  --color-accent: var(--color-gold-500);
-  --color-primary: var(--color-blue-700);
 
   /* Typography */
   --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
@@ -127,7 +127,6 @@ select {
   --space-lg: 2rem;
   --space-xl: 3rem;
   --space-2xl: 4.5rem;
-  --space-3xl: 6rem;
 
   /* Layout */
   --container-width: 1240px;
@@ -136,7 +135,6 @@ select {
   --header-height: 88px;
   --radius-sm: 8px;
   --radius-md: 14px;
-  --radius-lg: 22px;
   --shadow-soft: 0 10px 30px rgba(11, 61, 97, 0.08);
   --shadow-card: 0 18px 40px rgba(11, 61, 97, 0.1);
   --shadow-card-hover: 0 22px 50px rgba(11, 61, 97, 0.15);
@@ -148,13 +146,6 @@ select {
 /* -------------------------------------------------------------------------
    3. Base Typography
    ------------------------------------------------------------------------- */
-body {
-  font-family: var(--font-body);
-  font-size: var(--fs-base);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -499,7 +490,7 @@ select:focus-visible {
   color: var(--color-ink-600);
 }
 
-.main-nav { flex: 1 1 auto; }
+.main-nav { flex: 1 1 auto; position: relative; }
 
 .nav-list {
   display: flex;
@@ -699,7 +690,268 @@ select:focus-visible {
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* -------------------------------------------------------------------------
-   5b. Nav dropdowns + sliding indicator
+   5b. Site Directory — off-canvas full-sitemap drawer, separate from the
+   primary nav. Single-open accordion (opening one group/subgroup closes
+   its siblings), driven by JS toggling [aria-expanded] + a class; the
+   height animation itself is pure CSS via a grid-template-rows trick so
+   it stays smooth without JS measuring scrollHeight.
+   ------------------------------------------------------------------------- */
+.site-directory-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  flex-shrink: 0;
+  transition: background-color var(--transition-base);
+}
+
+.site-directory-toggle-bar {
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-blue-900);
+  border-radius: 2px;
+  transition: background-color var(--transition-base), transform var(--transition-base), opacity var(--transition-base);
+}
+
+.site-header.is-hero-video-active:not(.is-scrolled):not(.is-pinned) .site-directory-toggle-bar {
+  background-color: var(--color-white);
+}
+
+.site-directory-toggle:hover,
+.site-directory-toggle:focus-visible {
+  background-color: var(--color-blue-050);
+}
+
+.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(2) { opacity: 0; }
+.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.site-directory-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 21, 31, 0.5);
+  z-index: 240;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.site-directory-overlay[hidden] { display: none; }
+
+.site-directory {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 250;
+  width: min(400px, 88vw);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  visibility: hidden;
+  /* visibility waits for the slide transition to finish on close, but
+     switches instantly on open, so the close animation is never cut short. */
+  transition: transform 0.32s ease, visibility 0s linear 0.32s;
+}
+
+.site-directory.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.32s ease, visibility 0s linear 0s;
+}
+
+.site-directory-overlay.is-visible { opacity: 1; }
+
+body.directory-open { overflow: hidden; }
+
+.site-directory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  flex: 0 0 auto;
+}
+
+.site-directory-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-blue-900);
+}
+
+.site-directory-close {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-blue-700);
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.site-directory-close:hover,
+.site-directory-close:focus-visible {
+  background-color: var(--color-blue-050);
+  border-color: var(--color-blue-500);
+}
+
+.site-directory-search {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  flex: 0 0 auto;
+}
+
+.site-directory-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: var(--color-blue-050);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.site-directory-search-input:focus-visible {
+  outline: 2px solid var(--color-blue-500);
+  outline-offset: 1px;
+}
+
+.site-directory-nav {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding: var(--space-xs) 0 var(--space-lg);
+}
+
+.sd-group { border-bottom: 1px solid var(--color-border); }
+
+.sd-group-summary,
+.sd-subgroup-summary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.sd-group-summary {
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-blue-900);
+}
+
+.sd-group-summary:hover,
+.sd-group-summary:focus-visible,
+.sd-group-summary[aria-expanded="true"] { color: var(--color-blue-700); }
+
+/* The grid-rows trick: 0fr collapses the row to zero height, 1fr lets it
+   grow to content height — both are transition-able, unlike max-height. */
+.sd-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.sd-group-summary[aria-expanded="true"] + .sd-panel,
+.sd-subgroup-summary[aria-expanded="true"] + .sd-panel {
+  grid-template-rows: 1fr;
+}
+
+.sd-panel-inner { overflow: hidden; min-height: 0; }
+
+.sd-chevron {
+  flex-shrink: 0;
+  width: 12px;
+  height: 8px;
+  color: var(--color-ink-300);
+  transition: transform var(--transition-base);
+}
+
+.sd-group-summary[aria-expanded="true"] .sd-chevron,
+.sd-subgroup-summary[aria-expanded="true"] .sd-chevron {
+  transform: rotate(180deg);
+  color: var(--color-blue-700);
+}
+
+.sd-subgroups {
+  padding: 0 var(--space-md) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sd-subgroup {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.sd-subgroup-summary {
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-ink-600);
+}
+
+.sd-subgroup-summary:hover,
+.sd-subgroup-summary:focus-visible,
+.sd-subgroup-summary[aria-expanded="true"] { color: var(--color-blue-900); }
+
+.sd-subgroup .sd-links { padding: 0 var(--space-sm) var(--space-xs); }
+
+.sd-links {
+  padding: var(--space-2xs) var(--space-md) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.sd-links a {
+  display: block;
+  padding: 0.4rem var(--space-xs);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.sd-links a:hover,
+.sd-links a:focus-visible {
+  background-color: var(--color-blue-050);
+  color: var(--color-blue-900);
+}
+
+.sd-links li.is-hidden,
+.sd-group.is-hidden { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-directory,
+  .site-directory-overlay,
+  .sd-panel,
+  .sd-chevron { transition: none; }
+}
+
+/* -------------------------------------------------------------------------
+   5c. Nav dropdowns + sliding indicator
    ------------------------------------------------------------------------- */
 .nav-item { position: relative; }
 
@@ -760,9 +1012,8 @@ select:focus-visible {
 }
 
 /* Underline indicator that slides beneath whichever top-level nav item is
-   active/hovered — recalculated in JS to match the target link's position. */
-.main-nav { position: relative; }
-
+   active/hovered — recalculated in JS to match the target link's position.
+   Positioned relative to .main-nav (see flex/position rule above). */
 .nav-indicator {
   position: absolute;
   bottom: -6px;
@@ -1244,92 +1495,6 @@ select:focus-visible {
   .program-finder-reset { align-self: center; }
 }
 
-/* Program Finder — results, rendered into the #pfResultsModal body by
-   initProgramFinder() in js/main.js once the user submits a search
-   (see .site-modal below for the modal shell itself). */
-.pf-results-count {
-  margin-bottom: 0.9rem;
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--color-blue-700);
-}
-
-.pf-results-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
-
-.pf-result-college-name {
-  margin-bottom: 0.6rem;
-  font-family: var(--font-display);
-  font-size: var(--fs-base);
-  color: var(--color-blue-900);
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.pf-result-programs {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
-.pf-result-program {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.6rem 0.75rem;
-  background: var(--color-blue-050);
-  border-radius: var(--radius-sm);
-}
-
-.pf-result-program-name {
-  font-weight: 700;
-  font-size: var(--fs-sm);
-  color: var(--color-text);
-}
-
-.pf-result-program-meta {
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-}
-
-.pf-result-program-majors {
-  margin-top: 0.15rem;
-  font-size: var(--fs-xs);
-  color: var(--color-blue-700);
-}
-
-.pf-result-program-note {
-  margin-top: 0.15rem;
-  font-size: var(--fs-xs);
-  font-style: italic;
-  color: var(--color-text-muted);
-}
-
-.pf-results-empty {
-  padding: 0.75rem 0.25rem;
-  text-align: center;
-}
-
-.pf-results-empty-title {
-  font-weight: 700;
-  color: var(--color-blue-900);
-  margin-bottom: 0.3rem;
-}
-
-.pf-results-empty-hint {
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-}
-
-@media (min-width: 640px) {
-  .pf-results-list { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-}
-
 /* -------------------------------------------------------------------------
    10. College and Programs — combined with the Program Finder above into
    one section (see #program-finder .program-finder-panel). The college
@@ -1609,15 +1774,6 @@ select:focus-visible {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-lg);
-}
-
-.why-lspu-eyebrow {
-  margin-bottom: 0.6rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-blue-500);
 }
 
 .why-lspu-editorial h2 {
@@ -2015,11 +2171,13 @@ select:focus-visible {
 .news-cta { margin-top: 2.25rem; text-align: center; }
 
 @media (min-width: 900px) {
-  /* Keep the desktop News section compact enough to behave like a
-     viewport-sized content section, while preserving the editorial layout. */
+  /* Aim for a viewport-sized News section on desktop, but use min-height
+     (not height) so that if the editorial content ever needs more room
+     than the viewport gives it — narrower windows, larger text settings,
+     etc. — the section grows to fit instead of clipping/overflowing and
+     visually overlapping the Spotlight section that follows it. */
   .news {
-    height: calc(100vh - var(--header-height));
-    min-height: 700px;
+    min-height: calc(100vh - var(--header-height));
     padding-block: 2.75rem 2rem;
   }
 
@@ -2290,7 +2448,12 @@ select:focus-visible {
 
 @media (max-width: 420px) {
   .spotlight {
-    padding: 80px 12px 14px;
+    /* Previously padded 80px at the top as a band-aid for Spotlight
+       overlapping the News section above it on short viewports. The
+       real fix is on .news (min-height instead of a hard height), so
+       Spotlight can go back to the same compact padding as the other
+       breakpoints. */
+    padding: 16px 12px 14px;
   }
 
   .spotlight-grid {
