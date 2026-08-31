@@ -2353,7 +2353,7 @@ body.directory-open {
 
 @media (min-width: 900px) {
   .why-lspu-container {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
   }
 
@@ -3816,7 +3816,7 @@ body.modal-open {
   }
 
   .hero-container {
-    padding: calc(var(--header-height) + 1rem) var(--container-padding) 2.25rem;
+    padding: calc(var(--header-height) + 1rem + env(safe-area-inset-top, 0px)) var(--container-padding) calc(2.25rem + env(safe-area-inset-bottom, 0px));
     align-items: flex-end;
   }
 
@@ -3877,7 +3877,7 @@ body.modal-open {
   }
 
   .hero-container {
-    padding: calc(var(--header-height) + 1.5rem) var(--container-padding) 3rem;
+    padding: calc(var(--header-height) + 1.5rem + env(safe-area-inset-top, 0px)) var(--container-padding) calc(3rem + env(safe-area-inset-bottom, 0px));
   }
 
   .hero-title {
@@ -4622,17 +4622,12 @@ body.modal-open {
     padding-inline: max(var(--container-padding), env(safe-area-inset-left, 0px)) max(var(--container-padding), env(safe-area-inset-right, 0px));
   }
 
-  .hero {
-    height: auto;
-    min-height: max(560px, 100svh);
-    max-height: none;
-  }
-
-  .hero-container {
-    min-height: max(560px, 100svh);
-    padding-top: calc(var(--header-height) + 1.5rem + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
-  }
+  /* Hero height/min-height are owned entirely by Section 19c's breakpoints
+     (which already bake in env(safe-area-inset-*) via .hero-container's
+     padding above) — redeclaring them here previously fought that cascade
+     and, combined with the max-width:420px rule below, silently collapsed
+     the hero to a fixed 540px on narrow phones regardless of actual
+     viewport height. */
 }
 
 @media (max-width: 767px) {
@@ -4732,12 +4727,7 @@ body.modal-open {
     padding-inline: 0.8rem;
   }
 
-  .hero {
-    min-height: 540px;
-  }
-
   .hero-container {
-    min-height: 540px;
     padding-top: calc(var(--header-height) + 1rem + env(safe-area-inset-top, 0px));
     padding-bottom: calc(1.35rem + env(safe-area-inset-bottom, 0px));
   }
