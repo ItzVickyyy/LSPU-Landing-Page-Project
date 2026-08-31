@@ -125,6 +125,17 @@
 
           <li><a href="#news" class="nav-link">News</a></li>
 
+          <li class="nav-directory-mobile">
+            <button type="button" class="nav-link nav-directory-link" id="navDirectoryLink"
+              aria-haspopup="true" aria-controls="siteDirectory">
+              Full Site Directory
+              <svg class="nav-directory-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </li>
+
           <li class="nav-cta-mobile">
             <a href="" class="btn btn-primary btn-block" target="_blank" rel="noopener">Apply Now</a>
           </li>
@@ -168,6 +179,10 @@
     </div>
   </header>
 
+  <!-- Backdrop for the mobile/tablet primary-nav drawer (<1024px); tapping
+       it closes the menu, same pattern as the Site Directory overlay below. -->
+  <div class="nav-overlay" id="navOverlay" hidden></div>
+
   <!-- Site Directory: full-sitemap off-canvas drawer, separate from the -->
   <!-- primary nav above. Ordered by expected traffic (public/prospective- -->
   <!-- student tasks first, institutional/compliance content lower but -->
@@ -176,14 +191,17 @@
   <div class="site-directory-overlay" id="siteDirectoryOverlay" hidden></div>
   <aside class="site-directory" id="siteDirectory" aria-hidden="true" aria-label="Full site directory">
     <div class="site-directory-header">
-      <span class="site-directory-title">Site Directory</span>
+      <div class="site-directory-search">
+        <input type="search" id="siteDirectorySearch" class="site-directory-search-input"
+          placeholder="Search pages&hellip;" aria-label="Search the site directory">
+      </div>
       <button type="button" class="site-directory-close" id="siteDirectoryClose"
-        aria-label="Close site directory">Close</button>
-    </div>
-
-    <div class="site-directory-search">
-      <input type="search" id="siteDirectorySearch" class="site-directory-search-input"
-        placeholder="Search pages&hellip;" aria-label="Search the site directory">
+        aria-label="Close site directory">
+        <svg class="site-directory-close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" />
+        </svg>
+      </button>
     </div>
 
     <nav class="site-directory-nav" aria-label="Full site directory links" data-sd-accordion>
@@ -685,18 +703,46 @@
         <div class="about-carousel reveal" aria-label="Student life at LSPU" aria-roledescription="carousel">
           <div class="about-carousel-viewport">
             <ul class="about-carousel-track" id="aboutCarouselTrack">
-              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 10">
+                <img src="assets/about/1.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 10">
+                <img src="assets/about/2.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 10">
+                <img src="assets/about/3.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 10">
+                <img src="assets/about/4.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 10">
+                <img src="assets/about/5.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="6 of 10">
+                <img src="assets/about/6.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="7 of 10">
+                <img src="assets/about/7.webp" alt="LSPU campus life" width="1920" height="1080" loading="lazy"
+                  draggable="false">
+              </li>
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="8 of 10">
                 <img src="assets/about/Student%20Raising%20Hands.webp"
                   alt="LSPU student raising their hand to participate in class" width="539" height="360" loading="lazy"
                   draggable="false">
               </li>
-              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="9 of 10">
                 <img src="assets/about/Student%20Entering%20Classroom.webp" alt="LSPU student entering a classroom"
-                  width="3264" height="4928" loading="lazy" draggable="false">
+                  width="662" height="1000" loading="lazy" draggable="false">
               </li>
-              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+              <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="10 of 10">
                 <img src="assets/about/Students%20Talking.webp" alt="LSPU students talking together on campus"
-                  width="3264" height="4928" loading="lazy" draggable="false">
+                  width="662" height="1000" loading="lazy" draggable="false">
               </li>
             </ul>
 
@@ -707,6 +753,20 @@
                 aria-label="Slide 2"></button>
               <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
                 aria-label="Slide 3"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 4"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 5"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 6"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 7"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 8"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 9"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 10"></button>
             </div>
           </div>
 
@@ -1471,11 +1531,15 @@
           <p class="footer-brand-tagline">Empowering Laguna through Quality Higher Education.</p>
         </div>
 
-        <!-- Footer sitemap: curated subset of the full site map -->
+        <!-- Footer sitemap: curated subset of the full site map. Each group is
+             a native <details>/<summary> — collapsed by default on mobile/
+             tablet (no JS needed) and forced open on desktop via CSS
+             (see "Footer accordion" rules), so desktop keeps its original
+             always-expanded look untouched. -->
         <div class="footer-groups">
 
-          <div class="footer-group">
-            <h3 class="footer-heading">About</h3>
+          <details class="footer-group">
+            <summary class="footer-heading">About</summary>
             <ul class="footer-links">
               <li><a href="#about">Why LSPU</a></li>
               <li><a href="" target="_blank" rel="noopener">Mission, Vision &amp; Mandate</a></li>
@@ -1483,10 +1547,10 @@
               <li><a href="" target="_blank" rel="noopener">Quality Policy</a></li>
               <li><a href="" target="_blank" rel="noopener">University Seal</a></li>
             </ul>
-          </div>
+          </details>
 
-          <div class="footer-group">
-            <h3 class="footer-heading">Admission</h3>
+          <details class="footer-group">
+            <summary class="footer-heading">Admission</summary>
             <ul class="footer-links">
               <li><a href="" target="_blank" rel="noopener">Admission Requirements</a></li>
               <li><a href="" target="_blank" rel="noopener">New Student Application</a></li>
@@ -1494,10 +1558,10 @@
               <li><a href="" target="_blank" rel="noopener">Foreign Student Admission</a></li>
               <li><a href="" target="_blank" rel="noopener">Admission Portal</a></li>
             </ul>
-          </div>
+          </details>
 
-          <div class="footer-group">
-            <h3 class="footer-heading">Academics</h3>
+          <details class="footer-group">
+            <summary class="footer-heading">Academics</summary>
             <ul class="footer-links">
               <li><a href="#programs">College and Programs</a></li>
               <li><a href="#campuses">Campuses</a></li>
@@ -1505,10 +1569,10 @@
               <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
               <li><a href="" target="_blank" rel="noopener">Research &amp; Extension</a></li>
             </ul>
-          </div>
+          </details>
 
-          <div class="footer-group">
-            <h3 class="footer-heading">Good Governance</h3>
+          <details class="footer-group">
+            <summary class="footer-heading">Good Governance</summary>
             <ul class="footer-links">
               <li><a href="" target="_blank" rel="noopener">PhilGEPS Posting</a></li>
               <li><a href="" target="_blank" rel="noopener">Transparency Seal</a></li>
@@ -1516,10 +1580,10 @@
               <li><a href="" target="_blank" rel="noopener">Freedom of Information</a></li>
               <li><a href="" target="_blank" rel="noopener">Procurement / Bids</a></li>
             </ul>
-          </div>
+          </details>
 
-          <div class="footer-group">
-            <h3 class="footer-heading">Careers</h3>
+          <details class="footer-group">
+            <summary class="footer-heading">Careers</summary>
             <ul class="footer-links">
               <li><a href="" target="_blank" rel="noopener">Teaching Positions</a></li>
               <li><a href="" target="_blank" rel="noopener">Non-Teaching Positions</a></li>
@@ -1527,17 +1591,17 @@
               <li><a href="" target="_blank" rel="noopener">Student e-Services</a></li>
               <li><a href="" target="_blank" rel="noopener">View full site map &rarr;</a></li>
             </ul>
-          </div>
+          </details>
 
-          <div class="footer-group">
-            <h3 class="footer-heading">Connect</h3>
+          <details class="footer-group">
+            <summary class="footer-heading">Connect</summary>
             <ul class="footer-links">
               <li><span class="footer-detail">Brgy. Bubukal, Santa Cruz, Laguna</span></li>
               <li><a href="">info@lspu.edu.ph</a></li>
               <li><a href="tel:+63493047000">(049) 304-7000</a></li>
               <li><a href="" target="_blank" rel="noopener">Student Portal</a></li>
             </ul>
-          </div>
+          </details>
 
         </div>
 

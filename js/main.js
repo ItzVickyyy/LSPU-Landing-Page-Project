@@ -54,6 +54,11 @@ function initHeroVideo() {
     if (volumeInput) {
       volumeInput.value = String(Math.round(video.volume * 100));
     }
+    // The volume slider is only rendered once audio is actually on — not
+    // on hover — so it doesn't show/hide based on pointer type.
+    if (musicControl) {
+      musicControl.classList.toggle('is-on', isOn);
+    }
   };
 
   // Flips the control between "anchored inside the Hero" and "pinned to
@@ -121,6 +126,51 @@ function initHeroVideo() {
   window.addEventListener('scroll', updatePinnedState, { passive: true });
   window.addEventListener('resize', updatePinnedState);
 
+  // Mobile-only: the control auto-fades after a few seconds of no
+  // interaction (matching the desktop volume popover, which only shows on
+  // hover/focus) and wakes back up on any tap/scroll, so it doesn't sit
+  // permanently over the video on a phone screen. Desktop is unaffected —
+  // is-idle has no effect outside the max-width: 1023px CSS block.
+  const mobileQuery = window.matchMedia('(max-width: 1023px)');
+  const MOBILE_IDLE_DELAY = 3000;
+  let idleTimer = null;
+
+  const clearIdleTimer = () => {
+    if (idleTimer) {
+      window.clearTimeout(idleTimer);
+      idleTimer = null;
+    }
+  };
+
+  const scheduleIdle = () => {
+    clearIdleTimer();
+    if (!mobileQuery.matches || !musicControl || musicControl.hidden) return;
+    idleTimer = window.setTimeout(() => {
+      idleTimer = null;
+      musicControl.classList.add('is-idle');
+    }, MOBILE_IDLE_DELAY);
+  };
+
+  const wakeMusicControl = () => {
+    if (!musicControl || !mobileQuery.matches) return;
+    musicControl.classList.remove('is-idle');
+    scheduleIdle();
+  };
+
+  // Any tap/scroll in the Hero counts as activity, not just direct taps on
+  // the control itself — otherwise the very first tap needed to reveal it
+  // would have to land exactly on a control that's currently invisible.
+  hero.addEventListener('pointerdown', wakeMusicControl, { passive: true });
+  window.addEventListener('scroll', wakeMusicControl, { passive: true });
+  mobileQuery.addEventListener('change', (event) => {
+    if (event.matches) {
+      scheduleIdle();
+    } else {
+      clearIdleTimer();
+      musicControl && musicControl.classList.remove('is-idle');
+    }
+  });
+
   const showMusicToggle = () => {
     if (!musicControl) return;
     musicControl.hidden = false;
@@ -128,6 +178,7 @@ function initHeroVideo() {
     // state before the opacity/transform transition kicks in.
     requestAnimationFrame(() => musicControl.classList.add('is-visible'));
     updatePinnedState();
+    scheduleIdle();
   };
 
   // Matches the .hero-music-control opacity/transform transition duration
@@ -174,6 +225,7 @@ function initHeroVideo() {
 
   if (musicToggle) {
     musicToggle.addEventListener('click', () => {
+      wakeMusicControl();
       if (video.muted || video.volume === 0) {
         turnAudioOn();
       } else {
@@ -183,7 +235,12 @@ function initHeroVideo() {
   }
 
   if (volumeInput) {
+    // Keep the control fully awake for the duration of an active drag —
+    // 'input' alone would let the idle timer fire mid-gesture on a long
+    // press-and-hold.
+    volumeInput.addEventListener('pointerdown', clearIdleTimer);
     volumeInput.addEventListener('input', () => {
+      wakeMusicControl();
       const level = Number(volumeInput.value) / 100;
       video.volume = level;
       if (level === 0) {
@@ -253,7 +310,8 @@ function initHeroVideo() {
     hero.classList.remove('is-video-active');
     if (header) header.classList.remove('is-hero-video-active');
     if (musicControl) {
-      musicControl.classList.remove('is-visible', 'is-pinned');
+      clearIdleTimer();
+      musicControl.classList.remove('is-visible', 'is-pinned', 'is-idle');
       musicControl.hidden = true;
     }
   }, { once: true });
@@ -295,11 +353,30 @@ function initHeader() {
 
   if (!toggle || !nav) return;
 
-  const closeMenu = () => {
+  // Backdrop behind the mobile/tablet nav drawer (<1024px only — see
+  // .nav-overlay in CSS); tapping it closes the menu, same pattern as the
+  // Site Directory's own overlay.
+  const navOverlay = document.getElementById('navOverlay');
+
+  const closeMenu = ({ refocus = false } = {}) => {
     nav.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open menu');
     document.body.classList.remove('menu-open');
+
+    // Reset any open accordion item so reopening the drawer always starts
+    // from a predictable state, especially on small touch screens.
+    nav.querySelectorAll('.nav-item.has-dropdown.is-open').forEach((item) => {
+      item.classList.remove('is-open');
+      item.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+
+    if (navOverlay) {
+      navOverlay.classList.remove('is-visible');
+      window.setTimeout(() => { navOverlay.hidden = true; }, 250);
+    }
+
+    if (refocus) toggle.focus();
   };
 
   const openMenu = () => {
@@ -307,15 +384,36 @@ function initHeader() {
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-label', 'Close menu');
     document.body.classList.add('menu-open');
+    if (navOverlay) {
+      navOverlay.hidden = false;
+      requestAnimationFrame(() => navOverlay.classList.add('is-visible'));
+    }
   };
 
   toggle.addEventListener('click', () => {
-    nav.classList.contains('is-open') ? closeMenu() : openMenu();
+    nav.classList.contains('is-open') ? closeMenu({ refocus: true }) : openMenu();
   });
 
-  nav.querySelectorAll('.nav-link:not(.nav-dropdown-toggle), .nav-dropdown-link, .nav-cta-mobile a').forEach((link) => {
+  navOverlay?.addEventListener('click', closeMenu);
+
+  nav.querySelectorAll('.nav-link:not(.nav-dropdown-toggle):not(.nav-directory-link), .nav-dropdown-link, .nav-cta-mobile a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
+
+  // "Full Site Directory" lives inside this same drawer so there's only
+  // one hamburger on mobile, but the drawer it opens (search, accordion
+  // groups, etc.) is still the existing #siteDirectory panel — reuse its
+  // own toggle/open logic (see initSiteDirectory) instead of duplicating
+  // it. Closing this drawer first keeps the two off-canvas panels from
+  // animating open on top of each other.
+  const directoryLink = document.getElementById('navDirectoryLink');
+  const directoryToggle = document.getElementById('siteDirectoryToggle');
+  if (directoryLink && directoryToggle) {
+    directoryLink.addEventListener('click', () => {
+      closeMenu();
+      window.setTimeout(() => directoryToggle.click(), 220);
+    });
+  }
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
@@ -1352,11 +1450,12 @@ function initProgramFinder() {
    prefers-reduced-motion. */
 function initAboutCarousel() {
   const root = document.querySelector('.about-carousel');
+  const viewport = document.querySelector('.about-carousel-viewport');
   const track = document.getElementById('aboutCarouselTrack');
   const prevBtn = document.getElementById('aboutCarouselPrev');
   const nextBtn = document.getElementById('aboutCarouselNext');
   const dotsWrap = document.getElementById('aboutCarouselDots');
-  if (!root || !track || !prevBtn || !nextBtn || !dotsWrap) return;
+  if (!root || !viewport || !track || !prevBtn || !nextBtn || !dotsWrap) return;
 
   const slides = [...track.children];
   const dots = [...dotsWrap.children];
@@ -1402,6 +1501,84 @@ function initAboutCarousel() {
   root.addEventListener('focusin', stopAutoplay);
   root.addEventListener('focusout', startAutoplay);
 
+  /* Swipe support (touch + mouse via Pointer Events). Horizontal drags move
+     the track live; a vertical-leaning drag is left alone so the page can
+     still scroll normally (touch-action: pan-y on the viewport backs this
+     up at the browser level). A drag past the threshold advances/retreats
+     one slide; otherwise it snaps back to the current slide. */
+  let dragging = false;
+  let dragLocked = false; // true once we've decided this gesture is horizontal
+  let startX = 0;
+  let startY = 0;
+  let dragOffset = 0;
+  let pointerId = null;
+
+  const SWIPE_THRESHOLD_RATIO = 0.15; // fraction of viewport width
+
+  const onPointerDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    dragging = true;
+    dragLocked = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    dragOffset = 0;
+    pointerId = e.pointerId;
+    track.style.transition = 'none';
+    stopAutoplay();
+  };
+
+  const onPointerMove = (e) => {
+    if (!dragging || e.pointerId !== pointerId) return;
+    const deltaX = e.clientX - startX;
+    const deltaY = e.clientY - startY;
+
+    if (!dragLocked) {
+      if (Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
+      dragLocked = Math.abs(deltaX) > Math.abs(deltaY);
+      if (!dragLocked) {
+        // Vertical gesture — bail out and let the page scroll.
+        dragging = false;
+        track.style.transition = '';
+        return;
+      }
+      viewport.setPointerCapture(pointerId);
+    }
+
+    e.preventDefault();
+    dragOffset = deltaX;
+    const width = viewport.getBoundingClientRect().width || 1;
+    const percent = (dragOffset / width) * 100;
+    track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
+  };
+
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    track.style.transition = '';
+
+    if (dragLocked) {
+      const width = viewport.getBoundingClientRect().width || 1;
+      if (Math.abs(dragOffset) > width * SWIPE_THRESHOLD_RATIO) {
+        goTo(index + (dragOffset < 0 ? 1 : -1));
+      } else {
+        render();
+      }
+    }
+
+    dragLocked = false;
+    dragOffset = 0;
+    pointerId = null;
+    startAutoplay();
+  };
+
+  viewport.addEventListener('pointerdown', onPointerDown);
+  viewport.addEventListener('pointermove', onPointerMove);
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+  viewport.addEventListener('pointerleave', (e) => {
+    if (dragging && e.pointerId === pointerId) endDrag();
+  });
+
   render();
   startAutoplay();
 }
@@ -1409,6 +1586,26 @@ function initAboutCarousel() {
 function initFooter() {
   const yearEl = document.getElementById('footerYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* Desktop keeps the footer's original always-expanded look. The CSS alone
+     (forcing display:block on a closed <details>'s children) is not enough:
+     several browsers skip rendering a closed <details>'s content regardless
+     of a display override, so the CSS-only approach silently fails and the
+     five collapsed groups render empty at desktop widths. Setting the real
+     `open` attribute is the only reliable fix. Below 1024px we leave each
+     group's open/closed state alone so the mobile/tablet accordion (and any
+     state the visitor has already toggled) is untouched. */
+  const footerGroups = document.querySelectorAll('.footer-group');
+  if (footerGroups.length) {
+    const desktopQuery = window.matchMedia('(min-width: 1024px)');
+    const syncFooterGroupsForViewport = () => {
+      if (desktopQuery.matches) {
+        footerGroups.forEach((group) => { group.open = true; });
+      }
+    };
+    syncFooterGroupsForViewport();
+    desktopQuery.addEventListener('change', syncFooterGroupsForViewport);
+  }
 }
 
 /* Campus location modal — triggered by each campus card's map-pin icon.
