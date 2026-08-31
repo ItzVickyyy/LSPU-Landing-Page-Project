@@ -505,7 +505,16 @@ select:focus-visible {
 }
 
 .brand-name {
-  font-family: "Old English Text MT", "UnifrakturMaguntia", var(--font-display);
+  /* UnifrakturMaguntia is loaded via Google Fonts (see index.html <head>)
+     and is available on every device once that stylesheet loads. "Old
+     English Text MT" is a Windows/Office-only system font that no phone
+     (iOS or Android) ships with, so listing it first meant phones never
+     actually got the intended blackletter look — only Windows machines
+     that happen to have that exact font installed did, which is why a
+     desktop dev-tools check could look right while a real phone didn't.
+     Trying the always-available web font first makes the brand mark
+     render identically everywhere. */
+  font-family: "UnifrakturMaguntia", "Old English Text MT", var(--font-display);
   font-weight: 400;
   font-size: var(--fs-md);
   color: var(--color-blue-900);
@@ -4373,14 +4382,20 @@ body.modal-open {
   }
 
   /* Auto-fade after a few seconds of no interaction (JS adds/removes
-     is-idle — see initHeroVideo). Stays hittable at opacity 0 rather than
+     is-idle — see initHeroVideo) — but only the volume slider popover,
+     never the toggle button itself. The toggle is the only way to
+     mute/unmute, so it has to stay visible and tappable at all times;
+     only the extra volume-slider affordance next to it declutters after
+     a few idle seconds. Stays hittable at opacity 0 rather than
      visibility: hidden so the first tap both wakes it and registers, and
      tapping anywhere else in the Hero also wakes it via a pointerdown
      listener. Disabled during an active drag on the volume slider so it
      can't fade out mid-gesture. */
-  .hero-music-control.is-idle {
+  .hero-music-control.is-idle .hero-music-volume {
     opacity: 0;
-    transition: opacity .6s ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .6s ease, visibility .6s ease;
   }
 
   .site-directory {
@@ -4708,13 +4723,6 @@ body.modal-open {
   .brand-mark img {
     width: 34px;
     height: 34px;
-  }
-
-  /* Three icon controls plus two seals leave very little room on narrow
-     phones. Search remains available in the drawer/desktop-sized layouts,
-     while the primary hamburger stays the most important control. */
-  .header-search-toggle {
-    display: none;
   }
 
   .header-search-panel,

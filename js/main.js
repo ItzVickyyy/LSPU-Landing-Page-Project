@@ -496,7 +496,6 @@ function initSiteDirectory() {
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-label', 'Close site directory');
     document.body.classList.add('directory-open');
-    if (search) search.focus({ preventScroll: true });
   };
 
   const closeDirectory = () => {
