@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <!-- Adds .js to <html> so reveal-on-scroll styles only apply when JS runs -->
@@ -12,9 +13,12 @@
   <link rel="apple-touch-icon" href="assets/branding/LSPU-Seal.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- Scroll progress indicator -->
@@ -27,8 +31,10 @@
     <div class="container topbar-container">
       <div class="topbar-side topbar-side-left">
         <div class="topbar-seals" aria-label="Philippine government affiliations">
-          <img src="assets/gov-seal/Gov-PH.webp" alt="Government of the Philippines" width="24" height="29" loading="eager" draggable="false">
-          <img src="assets/gov-seal/CHED.webp" alt="Commission on Higher Education" width="24" height="24" loading="eager" draggable="false">
+          <img src="assets/gov-seal/Gov-PH.webp" alt="Government of the Philippines" width="24" height="29"
+            loading="eager" draggable="false">
+          <img src="assets/gov-seal/CHED.webp" alt="Commission on Higher Education" width="24" height="24"
+            loading="eager" draggable="false">
         </div>
         <ul class="topbar-list topbar-list-left">
           <li><a href="" class="topbar-link" target="_blank" rel="noopener">Academic Calendar</a></li>
@@ -42,9 +48,12 @@
           <li><a href="" class="topbar-link" target="_blank" rel="noopener">FAQs</a></li>
         </ul>
         <div class="topbar-seals" aria-label="Government transparency and privacy compliance">
-          <img src="assets/gov-seal/Philippine-Transparency-Seal.webp" alt="Philippine Transparency Seal" width="24" height="24" loading="eager" draggable="false">
-          <img src="assets/gov-seal/Freedom-of-Information.webp" alt="Freedom of Information" width="24" height="24" loading="eager" draggable="false">
-          <img src="assets/gov-seal/DPO.webp" alt="Data Privacy Office" width="24" height="22" loading="eager" draggable="false">
+          <img src="assets/gov-seal/Philippine-Transparency-Seal.webp" alt="Philippine Transparency Seal" width="24"
+            height="24" loading="eager" draggable="false">
+          <img src="assets/gov-seal/Freedom-of-Information.webp" alt="Freedom of Information" width="24" height="24"
+            loading="eager" draggable="false">
+          <img src="assets/gov-seal/DPO.webp" alt="Data Privacy Office" width="24" height="22" loading="eager"
+            draggable="false">
         </div>
       </div>
     </div>
@@ -54,25 +63,34 @@
   <header id="header" class="site-header">
     <div class="container header-container">
 
-      <a href="#hero" class="brand">
+      <div class="brand">
         <span class="brand-gov-mark" aria-hidden="true">
-          <img src="assets/gov-seal/Bagong-Pilipinas.webp" alt="" width="298" height="298" loading="eager" draggable="false">
+          <img src="assets/gov-seal/Bagong-Pilipinas.webp" alt="" width="298" height="298" loading="eager"
+            draggable="false">
         </span>
-        <span class="brand-mark" aria-hidden="true">
-          <img src="assets/branding/LSPU-Seal.webp" alt="" width="240" height="240" draggable="false">
-        </span>
-        <span class="brand-text">
-          <span class="brand-name">Laguna State Polytechnic University</span>
-          <span class="brand-tagline">Leadership, Integrity, Professionalism, Innovation</span>
-        </span>
-      </a>
+
+        <a href="#hero" class="brand-home-link">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/branding/LSPU-Seal.webp" alt="" width="240" height="240" draggable="false">
+          </span>
+
+          <span class="brand-text">
+            <span class="brand-name">Laguna State Polytechnic University</span>
+            <span class="brand-tagline">Leadership, Integrity, Professionalism, Innovation</span>
+          </span>
+        </a>
+      </div>
 
       <nav class="main-nav" id="mainNav" aria-label="Primary">
         <ul class="nav-list" id="navList">
           <li class="nav-item has-dropdown">
-            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="dropdown-about" data-section="about">
+            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false"
+              aria-controls="dropdown-about" data-section="about">
               About
-              <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
             </button>
             <div class="nav-dropdown" id="dropdown-about">
               <a href="#about" class="nav-dropdown-link">Why LSPU</a>
@@ -88,9 +106,13 @@
           <li><a href="#programs" class="nav-link">Academics</a></li>
 
           <li class="nav-item has-dropdown">
-            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="dropdown-admission">
+            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false"
+              aria-controls="dropdown-admission">
               Admissions
-              <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="nav-caret" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
             </button>
             <div class="nav-dropdown" id="dropdown-admission">
               <a href="" class="nav-dropdown-link" target="_blank" rel="noopener">Admission Requirements</a>
@@ -114,45 +136,29 @@
         <div class="header-search" id="headerSearchWrap">
           <div class="header-search-panel" id="headerSearch">
             <form role="search" onsubmit="return false;">
-              <input type="search" id="headerSearchInput" class="header-search-input" placeholder="Search the site&hellip;" aria-label="Search the site" tabindex="-1">
+              <input type="search" id="headerSearchInput" class="header-search-input"
+                placeholder="Search the site&hellip;" aria-label="Search the site" tabindex="-1">
             </form>
           </div>
-          <button
-            type="button"
-            class="header-search-toggle"
-            id="searchToggle"
-            aria-expanded="false"
-            aria-controls="headerSearch"
-            aria-label="Open search"
-          >
+          <button type="button" class="header-search-toggle" id="searchToggle" aria-expanded="false"
+            aria-controls="headerSearch" aria-label="Open search">
             <svg class="header-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
-              <line x1="16.2" y1="16.2" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+              <line x1="16.2" y1="16.2" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              </line>
             </svg>
           </button>
         </div>
         <a href="" class="btn btn-primary header-cta" target="_blank" rel="noopener">Apply Now</a>
-        <button
-          type="button"
-          class="site-directory-toggle"
-          id="siteDirectoryToggle"
-          aria-expanded="false"
-          aria-controls="siteDirectory"
-          aria-label="Open site directory"
-        >
+        <button type="button" class="site-directory-toggle" id="siteDirectoryToggle" aria-expanded="false"
+          aria-controls="siteDirectory" aria-label="Open site directory">
           <span class="site-directory-toggle-bar"></span>
           <span class="site-directory-toggle-bar"></span>
           <span class="site-directory-toggle-bar"></span>
           <span class="sr-only">Site Directory</span>
         </button>
-        <button
-          type="button"
-          class="nav-toggle"
-          id="navToggle"
-          aria-expanded="false"
-          aria-controls="mainNav"
-          aria-label="Open menu"
-        >
+        <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav"
+          aria-label="Open menu">
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>
@@ -171,11 +177,13 @@
   <aside class="site-directory" id="siteDirectory" aria-hidden="true" aria-label="Full site directory">
     <div class="site-directory-header">
       <span class="site-directory-title">Site Directory</span>
-      <button type="button" class="site-directory-close" id="siteDirectoryClose" aria-label="Close site directory">Close</button>
+      <button type="button" class="site-directory-close" id="siteDirectoryClose"
+        aria-label="Close site directory">Close</button>
     </div>
 
     <div class="site-directory-search">
-      <input type="search" id="siteDirectorySearch" class="site-directory-search-input" placeholder="Search pages&hellip;" aria-label="Search the site directory">
+      <input type="search" id="siteDirectorySearch" class="site-directory-search-input"
+        placeholder="Search pages&hellip;" aria-label="Search the site directory">
     </div>
 
     <nav class="site-directory-nav" aria-label="Full site directory links" data-sd-accordion>
@@ -183,19 +191,22 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="true" aria-controls="sd-panel-about">
           <span>About LSPU</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-about">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="#about">Why LSPU</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Mission, Vision &amp; Mandate</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Quality Policy</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Historical Development</a></li>
-                        <li><a href="" target="_blank" rel="noopener">University Seal</a></li>
-                        <li><a href="" target="_blank" rel="noopener">University Hymn</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Group Values &amp; Performance Pledge</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="#about">Why LSPU</a></li>
+              <li><a href="" target="_blank" rel="noopener">Mission, Vision &amp; Mandate</a></li>
+              <li><a href="" target="_blank" rel="noopener">Quality Policy</a></li>
+              <li><a href="" target="_blank" rel="noopener">Historical Development</a></li>
+              <li><a href="" target="_blank" rel="noopener">University Seal</a></li>
+              <li><a href="" target="_blank" rel="noopener">University Hymn</a></li>
+              <li><a href="" target="_blank" rel="noopener">Group Values &amp; Performance Pledge</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -203,18 +214,21 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-admissions">
           <span>Admissions</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-admissions">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Admission Requirements</a></li>
-                        <li><a href="" target="_blank" rel="noopener">New / Freshmen Application</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Transferee Admission</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Non-Regular Admission</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Foreign Student Admission</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Admission Portal</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Admission Requirements</a></li>
+              <li><a href="" target="_blank" rel="noopener">New / Freshmen Application</a></li>
+              <li><a href="" target="_blank" rel="noopener">Transferee Admission</a></li>
+              <li><a href="" target="_blank" rel="noopener">Non-Regular Admission</a></li>
+              <li><a href="" target="_blank" rel="noopener">Foreign Student Admission</a></li>
+              <li><a href="" target="_blank" rel="noopener">Admission Portal</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -222,18 +236,21 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-academics">
           <span>Academics</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-academics">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="#programs">Program Offerings</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; Santa Cruz</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; San Pablo City</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; Los Ba&ntilde;os</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Programs &ndash; Siniloan</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="#programs">Program Offerings</a></li>
+              <li><a href="" target="_blank" rel="noopener">Programs &ndash; Santa Cruz</a></li>
+              <li><a href="" target="_blank" rel="noopener">Programs &ndash; San Pablo City</a></li>
+              <li><a href="" target="_blank" rel="noopener">Programs &ndash; Los Ba&ntilde;os</a></li>
+              <li><a href="" target="_blank" rel="noopener">Programs &ndash; Siniloan</a></li>
+              <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -241,16 +258,19 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-campuses">
           <span>Campuses</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-campuses">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="#campuses">Santa Cruz (Main)</a></li>
-                        <li><a href="" target="_blank" rel="noopener">San Pablo City</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Los Ba&ntilde;os</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Siniloan</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="#campuses">Santa Cruz (Main)</a></li>
+              <li><a href="" target="_blank" rel="noopener">San Pablo City</a></li>
+              <li><a href="" target="_blank" rel="noopener">Los Ba&ntilde;os</a></li>
+              <li><a href="" target="_blank" rel="noopener">Siniloan</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -258,17 +278,20 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-services">
           <span>Student &amp; Online Services</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-services">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Library Services</a></li>
-                        <li><a href="" target="_blank" rel="noopener">LSPU Online (Students &amp; Faculty)</a></li>
-                        <li><a href="" target="_blank" rel="noopener">MyAccount (Legacy System)</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Student Admission Form</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Student Portal</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Library Services</a></li>
+              <li><a href="" target="_blank" rel="noopener">LSPU Online (Students &amp; Faculty)</a></li>
+              <li><a href="" target="_blank" rel="noopener">MyAccount (Legacy System)</a></li>
+              <li><a href="" target="_blank" rel="noopener">Student Admission Form</a></li>
+              <li><a href="" target="_blank" rel="noopener">Student Portal</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -276,17 +299,20 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-news">
           <span>News &amp; Updates</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-news">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="#news">News &amp; Articles</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Alumni News</a></li>
-                        <li><a href="" target="_blank" rel="noopener">President's Report</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Photo News</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Upcoming Events</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="#news">News &amp; Articles</a></li>
+              <li><a href="" target="_blank" rel="noopener">Alumni News</a></li>
+              <li><a href="" target="_blank" rel="noopener">President's Report</a></li>
+              <li><a href="" target="_blank" rel="noopener">Photo News</a></li>
+              <li><a href="" target="_blank" rel="noopener">Upcoming Events</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -294,22 +320,26 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-rde">
           <span>Research, Development &amp; Extension</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-rde">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Thrust and Priorities</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Faculty Research</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Research Publication &amp; Presentation</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Patents and Utility Models</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Innovation &amp; Technology Support Office</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Intellectual Property &amp; Tech Business Management</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Extension &amp; Training Services</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Symposiums &amp; Conferences</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Agri-Aqua Technology Business Incubation (AATBI)</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
+              <li><a href="" target="_blank" rel="noopener">Thrust and Priorities</a></li>
+              <li><a href="" target="_blank" rel="noopener">Faculty Research</a></li>
+              <li><a href="" target="_blank" rel="noopener">Research Publication &amp; Presentation</a></li>
+              <li><a href="" target="_blank" rel="noopener">Patents and Utility Models</a></li>
+              <li><a href="" target="_blank" rel="noopener">Innovation &amp; Technology Support Office</a></li>
+              <li><a href="" target="_blank" rel="noopener">Intellectual Property &amp; Tech Business Management</a>
+              </li>
+              <li><a href="" target="_blank" rel="noopener">Extension &amp; Training Services</a></li>
+              <li><a href="" target="_blank" rel="noopener">Symposiums &amp; Conferences</a></li>
+              <li><a href="" target="_blank" rel="noopener">Agri-Aqua Technology Business Incubation (AATBI)</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -317,14 +347,17 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-careers">
           <span>Careers</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-careers">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Teaching Positions</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Non-Teaching Positions</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Teaching Positions</a></li>
+              <li><a href="" target="_blank" rel="noopener">Non-Teaching Positions</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -332,64 +365,77 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-admin">
           <span>Administration</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-admin">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Board of Regents</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Office of the President</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Gender and Development (GAD)</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Management Information System</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Planning &amp; Development</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Executive Assistant</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Internal Control Unit</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Quality Assurance</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Disaster Risk Reduction &amp; Management</a></li>
-                      </ul>
-      <div class="sd-subgroups" data-sd-accordion>
-        <div class="sd-subgroup" data-sd-item>
-          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-admin-aa">
-            <span>Academic Affairs</span>
-            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="sd-panel" id="sd-panel-admin-aa">
-            <div class="sd-panel-inner">
-              <ul class="sd-links">
-          <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
-          <li><a href="" target="_blank" rel="noopener">Admission &amp; Registrarship</a></li>
-          <li><a href="" target="_blank" rel="noopener">Curriculum Instruction Development</a></li>
-          <li><a href="" target="_blank" rel="noopener">Library Services</a></li>
-          <li><a href="" target="_blank" rel="noopener">National Service Training Program</a></li>
-          <li><a href="" target="_blank" rel="noopener">Scholarship &amp; Financial Assistance</a></li>
-          <li><a href="" target="_blank" rel="noopener">Sports</a></li>
-          <li><a href="" target="_blank" rel="noopener">Alumni Affairs &amp; Placement Services</a></li>
-          <li><a href="" target="_blank" rel="noopener">International Affairs</a></li>
-          <li><a href="" target="_blank" rel="noopener">Office of Student Affairs &amp; Services (OSAS)</a></li>
-          <li><a href="" target="_blank" rel="noopener">Cultural &amp; Literary Arts</a></li>
-        </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Board of Regents</a></li>
+              <li><a href="" target="_blank" rel="noopener">Office of the President</a></li>
+              <li><a href="" target="_blank" rel="noopener">Gender and Development (GAD)</a></li>
+              <li><a href="" target="_blank" rel="noopener">Management Information System</a></li>
+              <li><a href="" target="_blank" rel="noopener">Planning &amp; Development</a></li>
+              <li><a href="" target="_blank" rel="noopener">Executive Assistant</a></li>
+              <li><a href="" target="_blank" rel="noopener">Internal Control Unit</a></li>
+              <li><a href="" target="_blank" rel="noopener">Quality Assurance</a></li>
+              <li><a href="" target="_blank" rel="noopener">Disaster Risk Reduction &amp; Management</a></li>
+            </ul>
+            <div class="sd-subgroups" data-sd-accordion>
+              <div class="sd-subgroup" data-sd-item>
+                <button type="button" class="sd-subgroup-summary" aria-expanded="false"
+                  aria-controls="sd-panel-admin-aa">
+                  <span>Academic Affairs</span>
+                  <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="sd-panel" id="sd-panel-admin-aa">
+                  <div class="sd-panel-inner">
+                    <ul class="sd-links">
+                      <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Admission &amp; Registrarship</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Curriculum Instruction Development</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Library Services</a></li>
+                      <li><a href="" target="_blank" rel="noopener">National Service Training Program</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Scholarship &amp; Financial Assistance</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Sports</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Alumni Affairs &amp; Placement Services</a></li>
+                      <li><a href="" target="_blank" rel="noopener">International Affairs</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Office of Student Affairs &amp; Services (OSAS)</a>
+                      </li>
+                      <li><a href="" target="_blank" rel="noopener">Cultural &amp; Literary Arts</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="sd-subgroup" data-sd-item>
+                <button type="button" class="sd-subgroup-summary" aria-expanded="false"
+                  aria-controls="sd-panel-admin-as">
+                  <span>Administrative Services</span>
+                  <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="sd-panel" id="sd-panel-admin-as">
+                  <div class="sd-panel-inner">
+                    <ul class="sd-links">
+                      <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Budget &amp; Finance Services</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Business Affairs, Production &amp; Marketing</a>
+                      </li>
+                      <li><a href="" target="_blank" rel="noopener">Information Communication &amp; Technology</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Physical Plant &amp; Site Development</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Security Management &amp; Services</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="sd-subgroup" data-sd-item>
-          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-admin-as">
-            <span>Administrative Services</span>
-            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="sd-panel" id="sd-panel-admin-as">
-            <div class="sd-panel-inner">
-              <ul class="sd-links">
-          <li><a href="" target="_blank" rel="noopener">About the Vice President</a></li>
-          <li><a href="" target="_blank" rel="noopener">Budget &amp; Finance Services</a></li>
-          <li><a href="" target="_blank" rel="noopener">Business Affairs, Production &amp; Marketing</a></li>
-          <li><a href="" target="_blank" rel="noopener">Information Communication &amp; Technology</a></li>
-          <li><a href="" target="_blank" rel="noopener">Physical Plant &amp; Site Development</a></li>
-          <li><a href="" target="_blank" rel="noopener">Security Management &amp; Services</a></li>
-        </ul>
-            </div>
-          </div>
-        </div>
-      </div>
           </div>
         </div>
       </div>
@@ -397,75 +443,96 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-governance">
           <span>Good Governance &amp; Transparency</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-governance">
           <div class="sd-panel-inner">
-      <div class="sd-subgroups" data-sd-accordion>
-        <div class="sd-subgroup" data-sd-item>
-          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-proc">
-            <span>Procurement &amp; Bids</span>
-            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="sd-panel" id="sd-panel-gov-proc">
-            <div class="sd-panel-inner">
-              <ul class="sd-links">
-          <li><a href="" target="_blank" rel="noopener">PhilGEPS Posting</a></li>
-          <li><a href="" target="_blank" rel="noopener">Invitation to Bid (ITB)</a></li>
-          <li><a href="" target="_blank" rel="noopener">Request for Quotation (RFQ)</a></li>
-          <li><a href="" target="_blank" rel="noopener">Negotiated Procurement &ndash; Two Failed Biddings</a></li>
-        </ul>
+            <div class="sd-subgroups" data-sd-accordion>
+              <div class="sd-subgroup" data-sd-item>
+                <button type="button" class="sd-subgroup-summary" aria-expanded="false"
+                  aria-controls="sd-panel-gov-proc">
+                  <span>Procurement &amp; Bids</span>
+                  <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="sd-panel" id="sd-panel-gov-proc">
+                  <div class="sd-panel-inner">
+                    <ul class="sd-links">
+                      <li><a href="" target="_blank" rel="noopener">PhilGEPS Posting</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Invitation to Bid (ITB)</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Request for Quotation (RFQ)</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Negotiated Procurement &ndash; Two Failed
+                          Biddings</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="sd-subgroup" data-sd-item>
+                <button type="button" class="sd-subgroup-summary" aria-expanded="false"
+                  aria-controls="sd-panel-gov-cert">
+                  <span>Certification &amp; Compliance</span>
+                  <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="sd-panel" id="sd-panel-gov-cert">
+                  <div class="sd-panel-inner">
+                    <ul class="sd-links">
+                      <li><a href="" target="_blank" rel="noopener">ISO Certificate of Compliance</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Quality Manual &amp; Work Instructions</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Government Procurement Policy Board (GPPB)</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Agency Procurement Compliance Indicator (APCPI)</a>
+                      </li>
+                      <li><a href="" target="_blank" rel="noopener">Procurement Monitoring Reports</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="sd-subgroup" data-sd-item>
+                <button type="button" class="sd-subgroup-summary" aria-expanded="false"
+                  aria-controls="sd-panel-gov-foi">
+                  <span>Freedom of Information</span>
+                  <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="sd-panel" id="sd-panel-gov-foi">
+                  <div class="sd-panel-inner">
+                    <ul class="sd-links">
+                      <li><a href="" target="_blank" rel="noopener">People's FOI Manual</a></li>
+                      <li><a href="" target="_blank" rel="noopener">eFOI Portal Link</a></li>
+                      <li><a href="" target="_blank" rel="noopener">AID-FOI Tool</a></li>
+                      <li><a href="" target="_blank" rel="noopener">FOI Reports &amp; Feedback</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="sd-subgroup" data-sd-item>
+                <button type="button" class="sd-subgroup-summary" aria-expanded="false"
+                  aria-controls="sd-panel-gov-seal">
+                  <span>Transparency Seal</span>
+                  <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="sd-panel" id="sd-panel-gov-seal">
+                  <div class="sd-panel-inner">
+                    <ul class="sd-links">
+                      <li><a href="" target="_blank" rel="noopener">Citizen's Charter (by year)</a></li>
+                      <li><a href="" target="_blank" rel="noopener">Annual Report</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="sd-subgroup" data-sd-item>
-          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-cert">
-            <span>Certification &amp; Compliance</span>
-            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="sd-panel" id="sd-panel-gov-cert">
-            <div class="sd-panel-inner">
-              <ul class="sd-links">
-          <li><a href="" target="_blank" rel="noopener">ISO Certificate of Compliance</a></li>
-          <li><a href="" target="_blank" rel="noopener">Quality Manual &amp; Work Instructions</a></li>
-          <li><a href="" target="_blank" rel="noopener">Government Procurement Policy Board (GPPB)</a></li>
-          <li><a href="" target="_blank" rel="noopener">Agency Procurement Compliance Indicator (APCPI)</a></li>
-          <li><a href="" target="_blank" rel="noopener">Procurement Monitoring Reports</a></li>
-        </ul>
-            </div>
-          </div>
-        </div>
-        <div class="sd-subgroup" data-sd-item>
-          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-foi">
-            <span>Freedom of Information</span>
-            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="sd-panel" id="sd-panel-gov-foi">
-            <div class="sd-panel-inner">
-              <ul class="sd-links">
-          <li><a href="" target="_blank" rel="noopener">People's FOI Manual</a></li>
-          <li><a href="" target="_blank" rel="noopener">eFOI Portal Link</a></li>
-          <li><a href="" target="_blank" rel="noopener">AID-FOI Tool</a></li>
-          <li><a href="" target="_blank" rel="noopener">FOI Reports &amp; Feedback</a></li>
-        </ul>
-            </div>
-          </div>
-        </div>
-        <div class="sd-subgroup" data-sd-item>
-          <button type="button" class="sd-subgroup-summary" aria-expanded="false" aria-controls="sd-panel-gov-seal">
-            <span>Transparency Seal</span>
-            <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="sd-panel" id="sd-panel-gov-seal">
-            <div class="sd-panel-inner">
-              <ul class="sd-links">
-          <li><a href="" target="_blank" rel="noopener">Citizen's Charter (by year)</a></li>
-          <li><a href="" target="_blank" rel="noopener">Annual Report</a></li>
-        </ul>
-            </div>
-          </div>
-        </div>
-      </div>
           </div>
         </div>
       </div>
@@ -473,18 +540,21 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-advocacies">
           <span>Advocacies</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-advocacies">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Bagong Pilipinas (Pledge &amp; Hymn)</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Sustainable Development Goals</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Green University</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Internationalization</a></li>
-                        <li><a href="" target="_blank" rel="noopener">DRRM Climate Action Center</a></li>
-                        <li><a href="" target="_blank" rel="noopener">GAD Corner</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Bagong Pilipinas (Pledge &amp; Hymn)</a></li>
+              <li><a href="" target="_blank" rel="noopener">Sustainable Development Goals</a></li>
+              <li><a href="" target="_blank" rel="noopener">Green University</a></li>
+              <li><a href="" target="_blank" rel="noopener">Internationalization</a></li>
+              <li><a href="" target="_blank" rel="noopener">DRRM Climate Action Center</a></li>
+              <li><a href="" target="_blank" rel="noopener">GAD Corner</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -492,16 +562,19 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-downloads">
           <span>Downloads</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-downloads">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
-                        <li><a href="" target="_blank" rel="noopener">CART Directory</a></li>
-                        <li><a href="" target="_blank" rel="noopener">LSPU Institutional Templates</a></li>
-                        <li><a href="" target="_blank" rel="noopener">General Downloads Hub</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Student Handbook</a></li>
+              <li><a href="" target="_blank" rel="noopener">CART Directory</a></li>
+              <li><a href="" target="_blank" rel="noopener">LSPU Institutional Templates</a></li>
+              <li><a href="" target="_blank" rel="noopener">General Downloads Hub</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -509,15 +582,18 @@
       <div class="sd-group" data-sd-item>
         <button type="button" class="sd-group-summary" aria-expanded="false" aria-controls="sd-panel-connect">
           <span>Connect</span>
-          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sd-chevron" viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+            <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="sd-panel" id="sd-panel-connect">
           <div class="sd-panel-inner">
-              <ul class="sd-links">
-                        <li><a href="" target="_blank" rel="noopener">Address &amp; Contact Information</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Social Media</a></li>
-                        <li><a href="" target="_blank" rel="noopener">Campus Directory</a></li>
-                      </ul>
+            <ul class="sd-links">
+              <li><a href="" target="_blank" rel="noopener">Address &amp; Contact Information</a></li>
+              <li><a href="" target="_blank" rel="noopener">Social Media</a></li>
+              <li><a href="" target="_blank" rel="noopener">Campus Directory</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -534,7 +610,8 @@
         <div class="hero-content">
           <h1 class="hero-title">Shaping <span>Futures.</span><br>Empowering <span>Lives.</span></h1>
           <div class="hero-accent" aria-hidden="true"></div>
-          <p class="hero-subtitle">A premier ASEAN polytechnic university committed to quality education, applied research, innovation, and sustainable regional development.</p>
+          <p class="hero-subtitle">A premier ASEAN polytechnic university committed to quality education, applied
+            research, innovation, and sustainable regional development.</p>
           <div class="hero-actions">
             <a href="" class="btn btn-primary" target="_blank" rel="noopener">Apply Now</a>
             <a href="#programs" class="btn btn-secondary">Explore Programs</a>
@@ -542,8 +619,10 @@
         </div>
 
         <div class="hero-media" aria-hidden="true">
-          <img class="hero-background-image" src="assets/hero/Hero.webp" alt="" width="2400" height="667" loading="eager" draggable="false">
-          <video class="hero-background-video" muted loop playsinline preload="none" poster="assets/hero/Hero.webp" tabindex="-1" data-src="assets/hero/LSPU-Hymn.mp4"></video>
+          <img class="hero-background-image" src="assets/hero/Hero.webp" alt="" width="2400" height="667"
+            loading="eager" draggable="false">
+          <video class="hero-background-video" muted loop playsinline preload="none" poster="assets/hero/Hero.webp"
+            tabindex="-1" data-src="assets/hero/LSPU-Hymn.mp4"></video>
         </div>
 
         <div class="hero-overlay hero-image-overlay" aria-hidden="true"></div>
@@ -551,11 +630,22 @@
 
         <div class="hero-music-control" id="heroMusicControl" hidden>
           <div class="hero-music-volume">
-            <input type="range" class="hero-music-volume-input" id="heroMusicVolume" min="0" max="100" step="1" value="80" aria-label="Hero video volume">
+            <input type="range" class="hero-music-volume-input" id="heroMusicVolume" min="0" max="100" step="1"
+              value="80" aria-label="Hero video volume">
           </div>
-          <button type="button" class="hero-music-toggle" id="heroMusicToggle" aria-label="Unmute hero video" aria-pressed="false">
-            <svg class="hero-music-icon hero-music-icon-muted" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.94 8.94 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="currentColor"/></svg>
-            <svg class="hero-music-icon hero-music-icon-unmuted" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/></svg>
+          <button type="button" class="hero-music-toggle" id="heroMusicToggle" aria-label="Unmute hero video"
+            aria-pressed="false">
+            <svg class="hero-music-icon hero-music-icon-muted" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.94 8.94 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"
+                fill="currentColor" />
+            </svg>
+            <svg class="hero-music-icon hero-music-icon-unmuted" viewBox="0 0 24 24" aria-hidden="true"
+              focusable="false">
+              <path
+                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+                fill="currentColor" />
+            </svg>
           </button>
         </div>
 
@@ -569,15 +659,24 @@
         <div class="why-lspu-editorial reveal">
           <h2>About LSPU</h2>
 
-          <p class="why-lspu-body">The university is governed by its Board of Regents and led by senior administrative officials overseeing multiple campuses. Its strategic plan focuses on sustainable growth and expanding academic offerings across diverse programs.</p>
+          <p class="why-lspu-body">The university is governed by its Board of Regents and led by senior administrative
+            officials overseeing multiple campuses. Its strategic plan focuses on sustainable growth and expanding
+            academic offerings across diverse programs.</p>
 
-          <p class="why-lspu-body">LSPU has consistently demonstrated operational efficiency and public service excellence, as evidenced by awards such as the Performance-Based Bonus (PBB) from the DBM, the Quality Management System Award from GQMP, the PRIME-HR Award from CSC, and the Platinum Award from IPOPHIL for intellectual property innovation.</p>
+          <p class="why-lspu-body">LSPU has consistently demonstrated operational efficiency and public service
+            excellence, as evidenced by awards such as the Performance-Based Bonus (PBB) from the DBM, the Quality
+            Management System Award from GQMP, the PRIME-HR Award from CSC, and the Platinum Award from IPOPHIL for
+            intellectual property innovation.</p>
 
-          <p class="why-lspu-body">Internationally, LSPU is steadily climbing university rankings, including EduRank, UniRank, Webometrics, AD Scientific Index, and Study Abroad Aide, reflecting strong research productivity, digital presence, and global competitiveness.</p>
+          <p class="why-lspu-body">Internationally, LSPU is steadily climbing university rankings, including EduRank,
+            UniRank, Webometrics, AD Scientific Index, and Study Abroad Aide, reflecting strong research productivity,
+            digital presence, and global competitiveness.</p>
 
-          <p class="why-lspu-body">This chapter outlines LSPU's historical roots, governance, academic profile, and institutional standing, highlighting its continuous pursuit of quality education and innovation.</p>
+          <p class="why-lspu-body">This chapter outlines LSPU's historical roots, governance, academic profile, and
+            institutional standing, highlighting its continuous pursuit of quality education and innovation.</p>
 
-          <p class="why-lspu-body">With a legacy spanning over 73 years, LSPU is a Level III State University and College holding ISO 9001:2015 and AACCUP accreditation.</p>
+          <p class="why-lspu-body">With a legacy spanning over 73 years, LSPU is a Level III State University and
+            College holding ISO 9001:2015 and AACCUP accreditation.</p>
 
           <a href="" class="btn btn-primary why-lspu-cta" target="_blank" rel="noopener">Inquire Now</a>
         </div>
@@ -587,30 +686,45 @@
           <div class="about-carousel-viewport">
             <ul class="about-carousel-track" id="aboutCarouselTrack">
               <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
-                <img src="assets/about/Student%20Raising%20Hands.webp" alt="LSPU student raising their hand to participate in class" width="539" height="360" loading="lazy" draggable="false">
+                <img src="assets/about/Student%20Raising%20Hands.webp"
+                  alt="LSPU student raising their hand to participate in class" width="539" height="360" loading="lazy"
+                  draggable="false">
               </li>
               <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
-                <img src="assets/about/Student%20Entering%20Classroom.webp" alt="LSPU student entering a classroom" width="3264" height="4928" loading="lazy" draggable="false">
+                <img src="assets/about/Student%20Entering%20Classroom.webp" alt="LSPU student entering a classroom"
+                  width="3264" height="4928" loading="lazy" draggable="false">
               </li>
               <li class="about-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
-                <img src="assets/about/Students%20Talking.webp" alt="LSPU students talking together on campus" width="3264" height="4928" loading="lazy" draggable="false">
+                <img src="assets/about/Students%20Talking.webp" alt="LSPU students talking together on campus"
+                  width="3264" height="4928" loading="lazy" draggable="false">
               </li>
             </ul>
 
             <div class="about-carousel-dots" id="aboutCarouselDots" role="tablist" aria-label="Choose slide">
-              <button type="button" class="about-carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+              <button type="button" class="about-carousel-dot is-active" role="tab" aria-selected="true"
+                aria-label="Slide 1"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 2"></button>
+              <button type="button" class="about-carousel-dot" role="tab" aria-selected="false"
+                aria-label="Slide 3"></button>
             </div>
           </div>
 
           <div class="about-carousel-controls">
             <div class="about-carousel-arrows">
-              <button type="button" class="about-carousel-arrow about-carousel-prev" id="aboutCarouselPrev" aria-label="Previous slide">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <button type="button" class="about-carousel-arrow about-carousel-prev" id="aboutCarouselPrev"
+                aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
               </button>
-              <button type="button" class="about-carousel-arrow about-carousel-next" id="aboutCarouselNext" aria-label="Next slide">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <button type="button" class="about-carousel-arrow about-carousel-next" id="aboutCarouselNext"
+                aria-label="Next slide">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
               </button>
             </div>
           </div>
@@ -731,18 +845,21 @@
 
         <div class="campuses-intro reveal">
           <h2>Our Campuses</h2>
-          <p>LSPU serves students across four campuses throughout Laguna, each offering its own mix of programs and community life.</p>
+          <p>LSPU serves students across four campuses throughout Laguna, each offering its own mix of programs and
+            community life.</p>
         </div>
 
         <div class="campuses-grid reveal-stagger">
 
           <article class="campus-card">
             <span class="campus-media">
-              <img src="assets/campuses/SC.webp" alt="Gate and entrance of LSPU Santa Cruz Campus" width="345" height="310" loading="lazy" draggable="false">
+              <img src="assets/campuses/SC.webp" alt="Gate and entrance of LSPU Santa Cruz Campus" width="345"
+                height="310" loading="lazy" draggable="false">
             </span>
             <div class="campus-info">
               <h3 class="campus-name">Santa Cruz</h3>
-              <p class="campus-desc">The University's main campus, home to central administration and the widest range of academic programs.</p>
+              <p class="campus-desc">The University's main campus, home to central administration and the widest range
+                of academic programs.</p>
 
               <ul class="campus-actions" aria-label="Santa Cruz campus contact options">
                 <li>
@@ -750,25 +867,46 @@
                     data-campus-name="LSPU Santa Cruz Campus (Main)"
                     data-map-query="Laguna State Polytechnic University Santa Cruz Campus, Brgy. Bubukal, Santa Cruz, Laguna"
                     aria-label="Show LSPU Santa Cruz Campus location on Google Maps" title="View location on map">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                      <circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+                    </svg>
                     <span class="sr-only">Brgy. Bubukal, Santa Cruz, Laguna — view on map</span>
                   </button>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="tel:+63493047000" aria-label="Call LSPU Santa Cruz Campus at (049) 304-7000" title="Call (049) 304-7000">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="tel:+63493047000"
+                    aria-label="Call LSPU Santa Cruz Campus at (049) 304-7000" title="Call (049) 304-7000">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">(049) 304-7000</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="mailto:stacruz@lspu.edu.ph" aria-label="Email LSPU Santa Cruz Campus at stacruz@lspu.edu.ph" title="Email stacruz@lspu.edu.ph">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="mailto:stacruz@lspu.edu.ph"
+                    aria-label="Email LSPU Santa Cruz Campus at stacruz@lspu.edu.ph" title="Email stacruz@lspu.edu.ph">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor"
+                        stroke-width="1.8"></rect>
+                      <path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">stacruz@lspu.edu.ph</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="https://www.facebook.com/lspustacruzcampus/" target="_blank" rel="noopener" aria-label="Open LSPU Santa Cruz Campus Facebook page" title="Visit Facebook page">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M15 8.5h2.2V5.4c-.38-.05-1.68-.16-3.2-.16-3.17 0-5.34 1.99-5.34 5.66v2.8H5.4v3.5h3.26V21h3.6v-8.8h3.13l.5-3.5h-3.63V11.3c0-1.01.27-1.8 1.74-1.8Z" fill="currentColor"></path></svg>
+                  <a class="campus-icon-btn" href="https://www.facebook.com/lspustacruzcampus/" target="_blank"
+                    rel="noopener" aria-label="Open LSPU Santa Cruz Campus Facebook page" title="Visit Facebook page">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.5-1.5h1.7V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h2.7v8h3.8Z"
+                        fill="currentColor">
+                      </path>
+                    </svg>
                     <span class="sr-only">Facebook page</span>
                   </a>
                 </li>
@@ -778,11 +916,13 @@
 
           <article class="campus-card">
             <span class="campus-media">
-              <img src="assets/campuses/SPCS.webp" alt="Gate and entrance of LSPU San Pablo City Campus" width="345" height="310" loading="lazy" draggable="false">
+              <img src="assets/campuses/SPCS.webp" alt="Gate and entrance of LSPU San Pablo City Campus" width="345"
+                height="310" loading="lazy" draggable="false">
             </span>
             <div class="campus-info">
               <h3 class="campus-name">San Pablo City</h3>
-              <p class="campus-desc">Situated in the historic Seven Lakes City, offering strong programs in business, agriculture, and technology.</p>
+              <p class="campus-desc">Situated in the historic Seven Lakes City, offering strong programs in business,
+                agriculture, and technology.</p>
 
               <ul class="campus-actions" aria-label="San Pablo City campus contact options">
                 <li>
@@ -790,25 +930,48 @@
                     data-campus-name="LSPU San Pablo City Campus"
                     data-map-query="Laguna State Polytechnic University San Pablo City Campus, Brgy. Del Remedio, San Pablo City, Laguna"
                     aria-label="Show LSPU San Pablo City Campus location on Google Maps" title="View location on map">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                      <circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+                    </svg>
                     <span class="sr-only">Del Remedio, San Pablo City, Laguna — view on map</span>
                   </button>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="tel:+63495549910" aria-label="Call LSPU San Pablo City Campus at (049) 554-9910" title="Call (049) 554-9910">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="tel:+63495549910"
+                    aria-label="Call LSPU San Pablo City Campus at (049) 554-9910" title="Call (049) 554-9910">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">(049) 554-9910</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="mailto:sanpablo@lspu.edu.ph" aria-label="Email LSPU San Pablo City Campus at sanpablo@lspu.edu.ph" title="Email sanpablo@lspu.edu.ph">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="mailto:sanpablo@lspu.edu.ph"
+                    aria-label="Email LSPU San Pablo City Campus at sanpablo@lspu.edu.ph"
+                    title="Email sanpablo@lspu.edu.ph">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor"
+                        stroke-width="1.8"></rect>
+                      <path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">sanpablo@lspu.edu.ph</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="https://www.facebook.com/LSPUSanPabloCityCampus/" target="_blank" rel="noopener" aria-label="Open LSPU San Pablo City Campus Facebook page" title="Visit Facebook page">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M15 8.5h2.2V5.4c-.38-.05-1.68-.16-3.2-.16-3.17 0-5.34 1.99-5.34 5.66v2.8H5.4v3.5h3.26V21h3.6v-8.8h3.13l.5-3.5h-3.63V11.3c0-1.01.27-1.8 1.74-1.8Z" fill="currentColor"></path></svg>
+                  <a class="campus-icon-btn" href="https://www.facebook.com/LSPUSanPabloCityCampus/" target="_blank"
+                    rel="noopener" aria-label="Open LSPU San Pablo City Campus Facebook page"
+                    title="Visit Facebook page">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.5-1.5h1.7V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h2.7v8h3.8Z"
+                        fill="currentColor">
+                      </path>
+                    </svg>
                     <span class="sr-only">Facebook page</span>
                   </a>
                 </li>
@@ -818,37 +981,59 @@
 
           <article class="campus-card">
             <span class="campus-media">
-              <img src="assets/campuses/LBC.webp" alt="Gate and entrance of LSPU Los Baños Campus" width="345" height="310" loading="lazy" draggable="false">
+              <img src="assets/campuses/LBC.webp" alt="Gate and entrance of LSPU Los Baños Campus" width="345"
+                height="310" loading="lazy" draggable="false">
             </span>
             <div class="campus-info">
               <h3 class="campus-name">Los Baños</h3>
-              <p class="campus-desc">Located in a hub for science and research, with programs geared toward applied sciences and technology.</p>
+              <p class="campus-desc">Located in a hub for science and research, with programs geared toward applied
+                sciences and technology.</p>
 
               <ul class="campus-actions" aria-label="Los Baños campus contact options">
                 <li>
-                  <button type="button" class="campus-icon-btn" data-campus-map
-                    data-campus-name="LSPU Los Baños Campus"
+                  <button type="button" class="campus-icon-btn" data-campus-map data-campus-name="LSPU Los Baños Campus"
                     data-map-query="Laguna State Polytechnic University Los Ba%C3%B1os Campus, Malinta, Los Ba%C3%B1os, Laguna"
                     aria-label="Show LSPU Los Baños Campus location on Google Maps" title="View location on map">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                      <circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+                    </svg>
                     <span class="sr-only">Malinta, Los Baños, Laguna — view on map</span>
                   </button>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="tel:+63493084530" aria-label="Call LSPU Los Baños Campus at (049) 308-4530" title="Call (049) 308-4530">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="tel:+63493084530"
+                    aria-label="Call LSPU Los Baños Campus at (049) 308-4530" title="Call (049) 308-4530">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">(049) 308-4530</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="mailto:losbanos@lspu.edu.ph" aria-label="Email LSPU Los Baños Campus at losbanos@lspu.edu.ph" title="Email losbanos@lspu.edu.ph">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="mailto:losbanos@lspu.edu.ph"
+                    aria-label="Email LSPU Los Baños Campus at losbanos@lspu.edu.ph" title="Email losbanos@lspu.edu.ph">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor"
+                        stroke-width="1.8"></rect>
+                      <path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">losbanos@lspu.edu.ph</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="https://www.facebook.com/LSPULBCOfficial/" target="_blank" rel="noopener" aria-label="Open LSPU Los Baños Campus Facebook page" title="Visit Facebook page">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M15 8.5h2.2V5.4c-.38-.05-1.68-.16-3.2-.16-3.17 0-5.34 1.99-5.34 5.66v2.8H5.4v3.5h3.26V21h3.6v-8.8h3.13l.5-3.5h-3.63V11.3c0-1.01.27-1.8 1.74-1.8Z" fill="currentColor"></path></svg>
+                  <a class="campus-icon-btn" href="https://www.facebook.com/LSPULBCOfficial/" target="_blank"
+                    rel="noopener" aria-label="Open LSPU Los Baños Campus Facebook page" title="Visit Facebook page">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.5-1.5h1.7V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h2.7v8h3.8Z"
+                        fill="currentColor">
+                      </path>
+                    </svg>
                     <span class="sr-only">Facebook page</span>
                   </a>
                 </li>
@@ -858,11 +1043,13 @@
 
           <article class="campus-card">
             <span class="campus-media">
-              <img src="assets/campuses/SCS.webp" alt="Gate and entrance of LSPU Siniloan Campus" width="345" height="310" loading="lazy" draggable="false">
+              <img src="assets/campuses/SCS.webp" alt="Gate and entrance of LSPU Siniloan Campus" width="345"
+                height="310" loading="lazy" draggable="false">
             </span>
             <div class="campus-info">
               <h3 class="campus-name">Siniloan</h3>
-              <p class="campus-desc">Serving communities in eastern Laguna and neighboring Quezon Province with growing academic offerings.</p>
+              <p class="campus-desc">Serving communities in eastern Laguna and neighboring Quezon Province with growing
+                academic offerings.</p>
 
               <ul class="campus-actions" aria-label="Siniloan campus contact options">
                 <li>
@@ -870,25 +1057,46 @@
                     data-campus-name="LSPU Siniloan Campus (Host)"
                     data-map-query="Laguna State Polytechnic University Siniloan Campus, L. de Leon St., Siniloan, Laguna"
                     aria-label="Show LSPU Siniloan Campus location on Google Maps" title="View location on map">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                      <circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+                    </svg>
                     <span class="sr-only">L. de Leon St., Siniloan, Laguna — view on map</span>
                   </button>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="tel:+63493030030" aria-label="Call LSPU Siniloan Campus at (049) 303-0030" title="Call (049) 303-0030">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="tel:+63493030030"
+                    aria-label="Call LSPU Siniloan Campus at (049) 303-0030" title="Call (049) 303-0030">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">(049) 303-0030</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="mailto:siniloan@lspu.edu.ph" aria-label="Email LSPU Siniloan Campus at siniloan@lspu.edu.ph" title="Email siniloan@lspu.edu.ph">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <a class="campus-icon-btn" href="mailto:siniloan@lspu.edu.ph"
+                    aria-label="Email LSPU Siniloan Campus at siniloan@lspu.edu.ph" title="Email siniloan@lspu.edu.ph">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor"
+                        stroke-width="1.8"></rect>
+                      <path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                     <span class="sr-only">siniloan@lspu.edu.ph</span>
                   </a>
                 </li>
                 <li>
-                  <a class="campus-icon-btn" href="https://www.facebook.com/lspusc/" target="_blank" rel="noopener" aria-label="Open LSPU Siniloan Campus Facebook page" title="Visit Facebook page">
-                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true"><path d="M15 8.5h2.2V5.4c-.38-.05-1.68-.16-3.2-.16-3.17 0-5.34 1.99-5.34 5.66v2.8H5.4v3.5h3.26V21h3.6v-8.8h3.13l.5-3.5h-3.63V11.3c0-1.01.27-1.8 1.74-1.8Z" fill="currentColor"></path></svg>
+                  <a class="campus-icon-btn" href="https://www.facebook.com/lspusc/" target="_blank" rel="noopener"
+                    aria-label="Open LSPU Siniloan Campus Facebook page" title="Visit Facebook page">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                      <path
+                        d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.5-1.5h1.7V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h2.7v8h3.8Z"
+                        fill="currentColor">
+                      </path>
+                    </svg>
                     <span class="sr-only">Facebook page</span>
                   </a>
                 </li>
@@ -913,7 +1121,8 @@
         <div class="programs-intro reveal">
           <p class="programs-eyebrow">Academics</p>
           <h2>Academic Programs</h2>
-          <p>Set your Program Level, Area of Study, and Campus below, then select "Find Your Program" to browse matching colleges and their full list of programs and majors.</p>
+          <p>Set your Program Level, Area of Study, and Campus below, then select "Find Your Program" to browse matching
+            colleges and their full list of programs and majors.</p>
         </div>
 
         <div id="program-finder" class="program-finder-panel reveal">
@@ -966,20 +1175,17 @@
           </div>
 
           <div class="program-finder-actions">
-            <button type="button" id="pfFindBtn" class="btn btn-primary program-finder-btn">Find Your Program</button>
+            <div class="program-finder-actions-group">
+              <span class="program-finder-label program-finder-actions-spacer" aria-hidden="true">Actions</span>
+              <button type="button" id="pfFindBtn" class="btn btn-primary program-finder-btn">Find Your Program</button>
+            </div>
             <button type="button" id="pfResetBtn" class="btn btn-tertiary program-finder-reset">Reset Filters</button>
           </div>
 
         </div>
 
         <div class="programs-cta">
-          <a href="" class="btn btn-primary" target="_blank" rel="noopener">
-            <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false" width="18" height="18">
-              <path d="M14.2 2.5a1.7 1.7 0 0 1 2.4 2.4l-8.3 8.3-3.2.8.8-3.2 8.3-8.3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
-              <path d="M3 17.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
-            </svg>
-            Apply to Your Preferred Program
-          </a>
+          <a href="" class="btn btn-primary" target="_blank" rel="noopener">Apply Now</a>
         </div>
 
       </div>
@@ -998,57 +1204,77 @@
 
           <article class="news-feature">
             <span class="news-media">
-              <img src="assets/news/News-01.webp" alt="LSPU officials and staff at the Philippine Quality Award executive briefing" width="1600" height="1067" loading="lazy" draggable="false">
+              <img src="assets/news/News-01.webp"
+                alt="LSPU officials and staff at the Philippine Quality Award executive briefing" width="1600"
+                height="1067" loading="lazy" draggable="false">
             </span>
             <div class="news-feature-body">
               <p class="news-date">August 27, 2026</p>
               <h3 class="news-headline">LSPU embarks on PQA journey with Executive Briefing</h3>
-              <p class="news-summary">Laguna State Polytechnic University took a step toward strengthening its institutional performance and aligning its practices with national standards for public sector excellence through an executive briefing on the Philippine Quality Award, held at the University Conference Hall.</p>
+              <p class="news-summary">Laguna State Polytechnic University took a step toward strengthening its
+                institutional performance and aligning its practices with national standards for public sector
+                excellence through an executive briefing on the Philippine Quality Award, held at the University
+                Conference Hall.</p>
             </div>
           </article>
 
           <div class="news-list">
             <article class="news-row">
               <span class="news-media">
-                <img src="assets/news/News-02.webp" alt="LSPU officials presenting during the midyear performance review" width="1200" height="629" loading="lazy" draggable="false">
+                <img src="assets/news/News-02.webp"
+                  alt="LSPU officials presenting during the midyear performance review" width="1200" height="629"
+                  loading="lazy" draggable="false">
               </span>
               <div class="news-row-body">
                 <p class="news-date">August 26, 2026</p>
                 <h3 class="news-headline">Charting Progress: LSPU Midyear Review shows strong gains</h3>
-                <p class="news-summary">LSPU recorded strong gains in the first half of 2026, with its midyear performance highlighting significant achievements in academics, research, and extension services.</p>
+                <p class="news-summary">LSPU recorded strong gains in the first half of 2026, with its midyear
+                  performance highlighting significant achievements in academics, research, and extension services.</p>
               </div>
             </article>
 
             <article class="news-row">
               <span class="news-media">
-                <img src="assets/news/News-03.webp" alt="Newly appointed LSPU employees taking their oath of office" width="1200" height="825" loading="lazy" draggable="false">
+                <img src="assets/news/News-03.webp" alt="Newly appointed LSPU employees taking their oath of office"
+                  width="1200" height="825" loading="lazy" draggable="false">
               </span>
               <div class="news-row-body">
                 <p class="news-date">August 14, 2026</p>
                 <h3 class="news-headline">54 newly appointed, promoted LSPU employees take oath</h3>
-                <p class="news-summary">Fifty-four teaching and non-teaching personnel from the four regular campuses of LSPU formally took their oath of office at the LSPU-Santa Cruz Campus CIHTM Function Hall.</p>
+                <p class="news-summary">Fifty-four teaching and non-teaching personnel from the four regular campuses of
+                  LSPU formally took their oath of office at the LSPU-Santa Cruz Campus CIHTM Function Hall.</p>
               </div>
             </article>
 
             <article class="news-row">
               <span class="news-media">
-                <img src="assets/news/News-04.webp" alt="LSPU-Liliw Extension Classes building unveiling with Mayor Ildefonso Monleon" width="3000" height="2000" loading="lazy" draggable="false">
+                <img src="assets/news/News-04.webp"
+                  alt="LSPU-Liliw Extension Classes building unveiling with Mayor Ildefonso Monleon" width="3000"
+                  height="2000" loading="lazy" draggable="false">
               </span>
               <div class="news-row-body">
                 <p class="news-date">July 28, 2026</p>
-                <h3 class="news-headline">New Academic Year, New Building: LSPU unveils Liliw Extension Classes building, honors Mayor Monleon</h3>
-                <p class="news-summary">LSPU welcomed students of the LSPU-Liliw Extension Classes with its own building this Academic Year 2026-2027, and honored Liliw Mayor Ildefonso "Ide" D. Monleon with a Presidential Recognition Award for the LGU's support.</p>
+                <h3 class="news-headline">New Academic Year, New Building: LSPU unveils Liliw Extension Classes
+                  building, honors Mayor Monleon</h3>
+                <p class="news-summary">LSPU welcomed students of the LSPU-Liliw Extension Classes with its own building
+                  this Academic Year 2026-2027, and honored Liliw Mayor Ildefonso "Ide" D. Monleon with a Presidential
+                  Recognition Award for the LGU's support.</p>
               </div>
             </article>
 
             <article class="news-row">
               <span class="news-media">
-                <img src="assets/news/News-05.webp" alt="LSPU senior officials and stakeholders during the manual review and harmonization activity" width="6364" height="4243" loading="lazy" draggable="false">
+                <img src="assets/news/News-05.webp"
+                  alt="LSPU senior officials and stakeholders during the manual review and harmonization activity"
+                  width="6364" height="4243" loading="lazy" draggable="false">
               </span>
               <div class="news-row-body">
                 <p class="news-date">July 24, 2026</p>
-                <h3 class="news-headline">LSPU charts path towards its vision; conducts manual review, revision, and harmonization</h3>
-                <p class="news-summary">LSPU convened university senior officials and key stakeholders for a three-day review, revision, and harmonization of its institutional manuals at the Holiday Suites and Inn, Lipa-Malvar, Batangas, ensuring policies remain relevant, responsive, and legally compliant.</p>
+                <h3 class="news-headline">LSPU charts path towards its vision; conducts manual review, revision, and
+                  harmonization</h3>
+                <p class="news-summary">LSPU convened university senior officials and key stakeholders for a three-day
+                  review, revision, and harmonization of its institutional manuals at the Holiday Suites and Inn,
+                  Lipa-Malvar, Batangas, ensuring policies remain relevant, responsive, and legally compliant.</p>
               </div>
             </article>
           </div>
@@ -1070,14 +1296,18 @@
 
         <a href="#" class="spotlight-card">
           <span class="spotlight-media">
-            <img src="assets/spotlight/SDGs.webp" alt="LSPU Sustainable Development Goals" width="1100" height="825" loading="lazy" draggable="false">
+            <img src="assets/spotlight/SDGs.webp" alt="LSPU Sustainable Development Goals" width="1100" height="825"
+              loading="lazy" draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">LSPU Sustainable Development Goals</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1085,14 +1315,18 @@
 
         <a href="#" class="spotlight-card">
           <span class="spotlight-media">
-            <img src="assets/spotlight/Green-University.webp" alt="Green University" width="1100" height="733" loading="lazy" draggable="false">
+            <img src="assets/spotlight/Green-University.webp" alt="Green University" width="1100" height="733"
+              loading="lazy" draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">Green University</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1100,14 +1334,18 @@
 
         <a href="#" class="spotlight-card">
           <span class="spotlight-media">
-            <img src="assets/spotlight/PhilGEPS.webp" alt="PhilGEPS" width="1100" height="733" loading="lazy" draggable="false">
+            <img src="assets/spotlight/PhilGEPS.webp" alt="PhilGEPS" width="1100" height="733" loading="lazy"
+              draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">PhilGEPS</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1115,14 +1353,18 @@
 
         <a href="#" class="spotlight-card">
           <span class="spotlight-media">
-            <img src="assets/spotlight/GAD-Corner.webp" alt="GAD Corner" width="733" height="1100" loading="lazy" draggable="false">
+            <img src="assets/spotlight/GAD-Corner.webp" alt="GAD Corner" width="733" height="1100" loading="lazy"
+              draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">GAD Corner</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1137,7 +1379,10 @@
             <span class="spotlight-title">ISO</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1145,29 +1390,38 @@
 
         <a href="#" class="spotlight-card">
           <span class="spotlight-media">
-            <img src="assets/spotlight/Annual-Report.webp" alt="LSPU Annual Report" width="1100" height="825" loading="lazy" draggable="false">
+            <img src="assets/spotlight/Annual-Report.webp" alt="LSPU Annual Report" width="1100" height="825"
+              loading="lazy" draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">LSPU Annual Report</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
         </a>
 
-        <a href="https://admissions.lspusys.com/" class="spotlight-card spotlight-card-wide" target="_blank" rel="noopener">
+        <a href="https://admissions.lspusys.com/" class="spotlight-card spotlight-card-wide" target="_blank"
+          rel="noopener">
           <span class="spotlight-media">
-            <img src="assets/spotlight/Admission.webp" alt="Admissions" width="1600" height="900" loading="lazy" draggable="false">
+            <img src="assets/spotlight/Admission.webp" alt="Admissions" width="1600" height="900" loading="lazy"
+              draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">Admissions</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1175,14 +1429,18 @@
 
         <a href="https://online.lspusys.com/" class="spotlight-card spotlight-card-wide" target="_blank" rel="noopener">
           <span class="spotlight-media">
-            <img src="assets/spotlight/Student-Portal.webp" alt="Student Portal" width="1600" height="900" loading="lazy" draggable="false">
+            <img src="assets/spotlight/Student-Portal.webp" alt="Student Portal" width="1600" height="900"
+              loading="lazy" draggable="false">
           </span>
           <span class="spotlight-overlay" aria-hidden="true"></span>
           <span class="spotlight-content">
             <span class="spotlight-title">Student Portal</span>
             <span class="spotlight-cta">
               <span class="spotlight-cta-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </span>
             </span>
           </span>
@@ -1202,7 +1460,8 @@
         <div class="footer-brand">
           <a href="#hero" class="footer-brand-link">
             <span class="footer-brand-mark" aria-hidden="true">
-              <img src="assets/branding/LSPU-Seal.webp" alt="" width="240" height="240" loading="lazy" draggable="false">
+              <img src="assets/branding/LSPU-Seal.webp" alt="" width="240" height="240" loading="lazy"
+                draggable="false">
             </span>
             <span class="footer-brand-text">
               <span class="footer-brand-name">LSPU</span>
@@ -1285,23 +1544,32 @@
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; <span id="footerYear">2026</span> Laguna State Polytechnic University. All rights reserved.</p>
+        <p class="footer-copyright">&copy; <span id="footerYear">2026</span> Laguna State Polytechnic University. All
+          rights reserved.</p>
 
         <div class="footer-social" aria-label="LSPU on social media">
           <a href="" class="footer-social-link" aria-label="Email LSPU at information.office@lspu.edu.ph">
             <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
-              <rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
-              <path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              <rect x="2.5" y="5" width="19" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8">
+              </rect>
+              <path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </a>
-          <a href="https://www.facebook.com/LSPUOfficial" class="footer-social-link" aria-label="LSPU on Facebook" target="_blank" rel="noopener">
+          <a href="https://www.facebook.com/LSPUOfficial" class="footer-social-link" aria-label="LSPU on Facebook"
+            target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
-              <path d="M15 8.5h2.2V5.4c-.38-.05-1.68-.16-3.2-.16-3.17 0-5.34 1.99-5.34 5.66v2.8H5.4v3.5h3.26V21h3.6v-8.8h3.13l.5-3.5h-3.63V11.3c0-1.01.27-1.8 1.74-1.8Z" fill="currentColor"></path>
+              <path
+                d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.5-1.5h1.7V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h2.7v8h3.8Z"
+                fill="currentColor">
+              </path>
             </svg>
           </a>
-          <a href="https://www.youtube.com/@LSPUOfficial" class="footer-social-link" aria-label="LSPU on YouTube" target="_blank" rel="noopener">
+          <a href="https://www.youtube.com/@LSPUOfficial" class="footer-social-link" aria-label="LSPU on YouTube"
+            target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
-              <rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+              <rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.8">
+              </rect>
               <polygon points="10.2,9.2 15.4,12 10.2,14.8" fill="currentColor"></polygon>
             </svg>
           </a>
@@ -1325,7 +1593,8 @@
         </button>
       </div>
       <div class="campus-map-modal-body">
-        <iframe id="campusMapModalFrame" class="campus-map-modal-iframe" title="Campus location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src=""></iframe>
+        <iframe id="campusMapModalFrame" class="campus-map-modal-iframe" title="Campus location on Google Maps"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" src=""></iframe>
       </div>
     </div>
   </div>
@@ -1339,7 +1608,8 @@
        that college's full program/major detail. -->
   <div class="site-modal" id="pfResultsModal" hidden>
     <div class="site-modal-overlay" id="pfResultsModalOverlay"></div>
-    <div class="site-modal-dialog site-modal-dialog--wide" role="dialog" aria-modal="true" aria-labelledby="pfResultsModalTitle">
+    <div class="site-modal-dialog site-modal-dialog--wide" role="dialog" aria-modal="true"
+      aria-labelledby="pfResultsModalTitle">
       <div class="site-modal-header">
         <div>
           <h3 class="site-modal-title" id="pfResultsModalTitle">Your Matching Programs</h3>
@@ -1358,7 +1628,8 @@
         </div>
         <p class="programs-empty-message" id="programsEmptyMessage" hidden>
           <span class="programs-empty-title">No matching programs found.</span>
-          <span class="programs-empty-hint">Try a different Program Level, Area of Study, or Campus, or <button type="button" class="link-button" id="pfResultsResetLink">reset the Program Finder</button>.</span>
+          <span class="programs-empty-hint">Try a different Program Level, Area of Study, or Campus, or <button
+              type="button" class="link-button" id="pfResultsResetLink">reset the Program Finder</button>.</span>
         </p>
       </div>
     </div>
@@ -1388,7 +1659,9 @@
 
   <!-- Back to top -->
   <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor" />
+    </svg>
   </button>
 
   <script src="js/main.js"></script>

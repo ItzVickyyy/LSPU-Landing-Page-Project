@@ -71,6 +71,7 @@ select {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
@@ -146,17 +147,34 @@ select {
 /* -------------------------------------------------------------------------
    3. Base Typography
    ------------------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--color-blue-900);
   line-height: 1.2;
 }
 
-h1 { font-size: var(--fs-3xl); }
-h2 { font-size: clamp(1.9rem, 3.2vw, var(--fs-2xl)); letter-spacing: -0.02em; }
-h3 { font-size: var(--fs-xl); }
-h4 { font-size: var(--fs-lg); }
+h1 {
+  font-size: var(--fs-3xl);
+}
+
+h2 {
+  font-size: clamp(1.9rem, 3.2vw, var(--fs-2xl));
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: var(--fs-xl);
+}
+
+h4 {
+  font-size: var(--fs-lg);
+}
 
 p {
   color: var(--color-text-muted);
@@ -164,9 +182,17 @@ p {
 }
 
 @media (max-width: 600px) {
-  h1 { font-size: var(--fs-2xl); }
-  h2 { font-size: var(--fs-xl); }
-  h3 { font-size: var(--fs-md); }
+  h1 {
+    font-size: var(--fs-2xl);
+  }
+
+  h2 {
+    font-size: var(--fs-xl);
+  }
+
+  h3 {
+    font-size: var(--fs-md);
+  }
 }
 
 a:focus-visible,
@@ -219,11 +245,15 @@ select:focus-visible {
 }
 
 @media (min-width: 768px) {
-  :root { --container-padding: var(--space-lg); }
+  :root {
+    --container-padding: var(--space-lg);
+  }
 }
 
 @media (min-width: 1024px) {
-  :root { --container-padding: var(--space-xl); }
+  :root {
+    --container-padding: var(--space-xl);
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -299,7 +329,9 @@ select:focus-visible {
   transform: none;
 }
 
-.btn-block { width: 100%; }
+.btn-block {
+  width: 100%;
+}
 
 /* -------------------------------------------------------------------------
    5. Header — Top bar (normal flow) + Main Nav (sticky, pins to top
@@ -324,7 +356,9 @@ select:focus-visible {
   scrollbar-width: none;
 }
 
-.topbar-container::-webkit-scrollbar { display: none; }
+.topbar-container::-webkit-scrollbar {
+  display: none;
+}
 
 .topbar-side {
   display: flex;
@@ -440,6 +474,13 @@ select:focus-visible {
   flex-shrink: 0;
 }
 
+.brand-home-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
 .brand-text {
   display: flex;
   flex-direction: column;
@@ -490,7 +531,10 @@ select:focus-visible {
   color: var(--color-ink-600);
 }
 
-.main-nav { flex: 1 1 auto; position: relative; }
+.main-nav {
+  flex: 1 1 auto;
+  position: relative;
+}
 
 .nav-list {
   display: flex;
@@ -544,7 +588,9 @@ select:focus-visible {
   background: rgba(255, 255, 255, 0.12);
 }
 
-.nav-cta-mobile { display: none; }
+.nav-cta-mobile {
+  display: none;
+}
 
 .header-actions {
   display: flex;
@@ -553,7 +599,9 @@ select:focus-visible {
   flex-shrink: 0;
 }
 
-.header-cta { padding: 0.65rem 1.3rem; }
+.header-cta {
+  padding: 0.65rem 1.3rem;
+}
 
 /* Search toggle — icon-only button; sits immediately before Apply Now,
    in the position previously occupied by the Student Portal link. */
@@ -599,7 +647,10 @@ select:focus-visible {
   background: var(--color-blue-050);
 }
 
-.header-search-icon { width: 20px; height: 20px; }
+.header-search-icon {
+  width: 20px;
+  height: 20px;
+}
 
 /* Search — icon-anchored expanding panel. The panel is absolutely
    positioned just to the left of the toggle button (its nearest
@@ -636,7 +687,9 @@ select:focus-visible {
   visibility: visible;
 }
 
-.header-search-panel form { display: flex; }
+.header-search-panel form {
+  display: flex;
+}
 
 .header-search-input {
   width: 100%;
@@ -655,10 +708,14 @@ select:focus-visible {
   background: var(--color-blue-050);
 }
 
-.header-search-input::-webkit-search-cancel-button { display: none; }
+.header-search-input::-webkit-search-cancel-button {
+  display: none;
+}
 
 @media (max-width: 599px) {
-  .header-search-panel.is-open { width: min(200px, 56vw); }
+  .header-search-panel.is-open {
+    width: min(200px, 56vw);
+  }
 }
 
 .nav-toggle {
@@ -685,9 +742,17 @@ select:focus-visible {
   background-color: var(--color-blue-900);
 }
 
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 /* -------------------------------------------------------------------------
    5b. Site Directory — off-canvas full-sitemap drawer, separate from the
@@ -728,9 +793,17 @@ select:focus-visible {
   background-color: var(--color-blue-050);
 }
 
-.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(2) { opacity: 0; }
-.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.site-directory-toggle[aria-expanded="true"] .site-directory-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 .site-directory-overlay {
   position: fixed;
@@ -741,7 +814,9 @@ select:focus-visible {
   transition: opacity 0.3s ease;
 }
 
-.site-directory-overlay[hidden] { display: none; }
+.site-directory-overlay[hidden] {
+  display: none;
+}
 
 .site-directory {
   position: fixed;
@@ -767,9 +842,13 @@ select:focus-visible {
   transition: transform 0.32s ease, visibility 0s linear 0s;
 }
 
-.site-directory-overlay.is-visible { opacity: 1; }
+.site-directory-overlay.is-visible {
+  opacity: 1;
+}
 
-body.directory-open { overflow: hidden; }
+body.directory-open {
+  overflow: hidden;
+}
 
 .site-directory-header {
   display: flex;
@@ -834,7 +913,9 @@ body.directory-open { overflow: hidden; }
   padding: var(--space-xs) 0 var(--space-lg);
 }
 
-.sd-group { border-bottom: 1px solid var(--color-border); }
+.sd-group {
+  border-bottom: 1px solid var(--color-border);
+}
 
 .sd-group-summary,
 .sd-subgroup-summary {
@@ -859,7 +940,9 @@ body.directory-open { overflow: hidden; }
 
 .sd-group-summary:hover,
 .sd-group-summary:focus-visible,
-.sd-group-summary[aria-expanded="true"] { color: var(--color-blue-700); }
+.sd-group-summary[aria-expanded="true"] {
+  color: var(--color-blue-700);
+}
 
 /* The grid-rows trick: 0fr collapses the row to zero height, 1fr lets it
    grow to content height — both are transition-able, unlike max-height. */
@@ -869,12 +952,15 @@ body.directory-open { overflow: hidden; }
   transition: grid-template-rows 0.3s ease;
 }
 
-.sd-group-summary[aria-expanded="true"] + .sd-panel,
-.sd-subgroup-summary[aria-expanded="true"] + .sd-panel {
+.sd-group-summary[aria-expanded="true"]+.sd-panel,
+.sd-subgroup-summary[aria-expanded="true"]+.sd-panel {
   grid-template-rows: 1fr;
 }
 
-.sd-panel-inner { overflow: hidden; min-height: 0; }
+.sd-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
 
 .sd-chevron {
   flex-shrink: 0;
@@ -913,9 +999,13 @@ body.directory-open { overflow: hidden; }
 
 .sd-subgroup-summary:hover,
 .sd-subgroup-summary:focus-visible,
-.sd-subgroup-summary[aria-expanded="true"] { color: var(--color-blue-900); }
+.sd-subgroup-summary[aria-expanded="true"] {
+  color: var(--color-blue-900);
+}
 
-.sd-subgroup .sd-links { padding: 0 var(--space-sm) var(--space-xs); }
+.sd-subgroup .sd-links {
+  padding: 0 var(--space-sm) var(--space-xs);
+}
 
 .sd-links {
   padding: var(--space-2xs) var(--space-md) var(--space-sm);
@@ -941,19 +1031,26 @@ body.directory-open { overflow: hidden; }
 }
 
 .sd-links li.is-hidden,
-.sd-group.is-hidden { display: none; }
+.sd-group.is-hidden {
+  display: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
+
   .site-directory,
   .site-directory-overlay,
   .sd-panel,
-  .sd-chevron { transition: none; }
+  .sd-chevron {
+    transition: none;
+  }
 }
 
 /* -------------------------------------------------------------------------
    5c. Nav dropdowns + sliding indicator
    ------------------------------------------------------------------------- */
-.nav-item { position: relative; }
+.nav-item {
+  position: relative;
+}
 
 .nav-dropdown-toggle {
   display: inline-flex;
@@ -969,7 +1066,9 @@ body.directory-open { overflow: hidden; }
   transition: transform var(--transition-base);
 }
 
-.nav-dropdown-toggle[aria-expanded="true"] .nav-caret { transform: rotate(180deg); }
+.nav-dropdown-toggle[aria-expanded="true"] .nav-caret {
+  transform: rotate(180deg);
+}
 
 .nav-dropdown {
   position: absolute;
@@ -1026,10 +1125,14 @@ body.directory-open { overflow: hidden; }
   transition: transform var(--transition-base), width var(--transition-base), opacity var(--transition-base);
 }
 
-.nav-indicator.is-visible { opacity: 1; }
+.nav-indicator.is-visible {
+  opacity: 1;
+}
 
 @media (max-width: 1023px) {
-  .nav-indicator { display: none; }
+  .nav-indicator {
+    display: none;
+  }
 
   .nav-dropdown-toggle {
     width: 100%;
@@ -1050,7 +1153,9 @@ body.directory-open { overflow: hidden; }
     margin: 0 0 var(--space-xs);
   }
 
-  .has-dropdown.is-open .nav-dropdown { display: block; }
+  .has-dropdown.is-open .nav-dropdown {
+    display: block;
+  }
 
   .nav-dropdown-link {
     color: var(--color-text-muted, var(--color-text));
@@ -1075,7 +1180,9 @@ body.directory-open { overflow: hidden; }
     height: 44px;
   }
 
-  .nav-toggle { display: flex; }
+  .nav-toggle {
+    display: flex;
+  }
 
   /* Off-canvas menu open: pin Main Nav to top and collapse Top bar so the
    menu panel lines up regardless of prior scroll position. */
@@ -1197,40 +1304,37 @@ body.directory-open { overflow: hidden; }
 .hero-image-overlay {
   opacity: 1;
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, .97) 0%,
       rgba(255, 255, 255, .93) 27%,
       rgba(255, 255, 255, .76) 50%,
       rgba(255, 255, 255, .34) 75%,
-      rgba(255, 255, 255, .08) 100%
-    ),
-    linear-gradient(
-      0deg,
+      rgba(255, 255, 255, .08) 100%),
+    linear-gradient(0deg,
       rgba(255, 255, 255, .22),
-      transparent 34%
-    );
+      transparent 34%);
 }
 
 .hero-video-overlay {
   opacity: 0;
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(5, 24, 39, .82) 0%,
       rgba(5, 24, 39, .68) 38%,
       rgba(5, 24, 39, .42) 70%,
-      rgba(5, 24, 39, .28) 100%
-    ),
-    linear-gradient(
-      0deg,
+      rgba(5, 24, 39, .28) 100%),
+    linear-gradient(0deg,
       rgba(0, 0, 0, .28),
-      transparent 45%
-    );
+      transparent 45%);
 }
 
-.hero.is-video-active .hero-image-overlay { opacity: 0; }
-.hero.is-video-active .hero-video-overlay { opacity: 1; }
+.hero.is-video-active .hero-image-overlay {
+  opacity: 0;
+}
+
+.hero.is-video-active .hero-video-overlay {
+  opacity: 1;
+}
 
 .hero-content {
   position: relative;
@@ -1254,7 +1358,9 @@ body.directory-open { overflow: hidden; }
   transition: color 1.2s ease, text-shadow 1.2s ease;
 }
 
-.hero-title span { color: var(--color-gold-500); }
+.hero-title span {
+  color: var(--color-gold-500);
+}
 
 .hero-accent {
   width: 60px;
@@ -1451,29 +1557,69 @@ body.directory-open { overflow: hidden; }
   background: var(--color-blue-700);
 }
 
-.hero-music-icon { width: 20px; height: 20px; }
+.hero-music-icon {
+  width: 20px;
+  height: 20px;
+}
 
-.hero-music-icon-unmuted { display: none; }
+.hero-music-icon-unmuted {
+  display: none;
+}
 
-.hero-music-toggle[aria-pressed="true"] .hero-music-icon-muted { display: none; }
-.hero-music-toggle[aria-pressed="true"] .hero-music-icon-unmuted { display: block; }
+.hero-music-toggle[aria-pressed="true"] .hero-music-icon-muted {
+  display: none;
+}
+
+.hero-music-toggle[aria-pressed="true"] .hero-music-icon-unmuted {
+  display: block;
+}
 
 @keyframes hero-fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1023px) {
-  .hero { min-height: 640px; height: auto; }
-  .hero-container { padding: 4rem var(--container-padding) 4.5rem; }
-  .hero-title { font-size: clamp(2.6rem, 8vw, 4.2rem); }
+  .hero {
+    min-height: 640px;
+    height: auto;
+  }
+
+  .hero-container {
+    padding: 4rem var(--container-padding) 4.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.6rem, 8vw, 4.2rem);
+  }
 }
 
 @media (max-width: 599px) {
-  .hero-music-control { right: var(--space-sm); bottom: var(--space-sm); }
-  .hero-music-toggle { width: 40px; height: 40px; }
-  .hero-music-icon { width: 18px; height: 18px; }
-  .hero-music-volume-input { height: 72px; }
+  .hero-music-control {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+  }
+
+  .hero-music-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-music-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-music-volume-input {
+    height: 72px;
+  }
 }
 
 /* Touch devices have no hover; tapping the button is the only realistic
@@ -1489,24 +1635,51 @@ body.directory-open { overflow: hidden; }
     transform: none;
     position: static;
   }
-  .hero-music-control { flex-direction: row; }
+
+  .hero-music-control {
+    flex-direction: row;
+  }
 }
 
 @media (max-width: 599px) {
-  .hero { min-height: 680px; }
-  .hero-container { min-height: 680px; padding: 3.5rem 1.1rem 3.5rem; align-items: flex-end; }
-  .hero-image-overlay {
-    background: linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.74) 25%, rgba(255,255,255,.93) 64%, rgba(255,255,255,.98) 100%);
+  .hero {
+    min-height: 680px;
   }
+
+  .hero-container {
+    min-height: 680px;
+    padding: 3.5rem 1.1rem 3.5rem;
+    align-items: flex-end;
+  }
+
+  .hero-image-overlay {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .78) 0%, rgba(255, 255, 255, .74) 25%, rgba(255, 255, 255, .93) 64%, rgba(255, 255, 255, .98) 100%);
+  }
+
   .hero-media img,
-  .hero-media video { object-position: 62% center; }
-  .hero-title { font-size: clamp(2.3rem, 11vw, 3.3rem); }
-  .hero-actions { width: 100%; flex-direction: column; }
-  .hero-actions .btn { width: 100%; }
+  .hero-media video {
+    object-position: 62% center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.3rem, 11vw, 3.3rem);
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-content { animation: none; }
+  .hero-content {
+    animation: none;
+  }
+
   .hero-background-image,
   .hero-background-video,
   .hero-image-overlay,
@@ -1594,7 +1767,9 @@ body.directory-open { overflow: hidden; }
   transition: border-color var(--transition-base);
 }
 
-.program-finder-select:hover { border-color: var(--color-blue-500); }
+.program-finder-select:hover {
+  border-color: var(--color-blue-500);
+}
 
 .program-finder-select:focus-visible {
   border-color: var(--color-blue-700);
@@ -1623,13 +1798,34 @@ body.directory-open { overflow: hidden; }
   gap: 0.6rem;
 }
 
+/* Groups the (invisible) label spacer with the Find button so the button's
+   own top edge — not the whole actions block's bottom edge — is what lines
+   up with the select boxes once the panel switches to align-items: start. */
+.program-finder-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.program-finder-actions-spacer {
+  display: none;
+}
+
 .program-finder-reset {
   align-self: center;
   font-size: var(--fs-xs);
 }
 
 @media (min-width: 700px) {
-  .program-finder-panel { grid-template-columns: 1fr 1fr; align-items: end; }
+  .program-finder-panel {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .program-finder-actions-spacer {
+    display: block;
+    visibility: hidden;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1638,9 +1834,19 @@ body.directory-open { overflow: hidden; }
     gap: 1.25rem;
     padding: 1.5rem 1.75rem;
   }
-  .program-finder-btn.btn { width: auto; min-width: 200px; }
-  .program-finder-actions { align-items: center; }
-  .program-finder-reset { align-self: center; }
+
+  .program-finder-btn.btn {
+    width: auto;
+    min-width: 200px;
+  }
+
+  .program-finder-actions {
+    align-items: center;
+  }
+
+  .program-finder-reset {
+    align-self: center;
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -1654,7 +1860,9 @@ body.directory-open { overflow: hidden; }
    Finder. Each row's "View Programs" opens #collegeDetailModal, stacked
    on top, for that college's full program/major detail.
    ------------------------------------------------------------------------- */
-.programs { background: var(--color-blue-050); }
+.programs {
+  background: var(--color-blue-050);
+}
 
 .programs-intro {
   max-width: 640px;
@@ -1670,7 +1878,9 @@ body.directory-open { overflow: hidden; }
   color: var(--color-gold-600);
 }
 
-.programs-intro h2 { margin-bottom: 0.6rem; }
+.programs-intro h2 {
+  margin-bottom: 0.6rem;
+}
 
 /* Compact college directory — one slim row per college (code badge, name,
    program count, chevron). Replaces an earlier card-grid layout that grew
@@ -1686,7 +1896,9 @@ body.directory-open { overflow: hidden; }
 }
 
 /* `display: grid` above would otherwise beat the UA [hidden] rule. */
-.college-list[hidden] { display: none; }
+.college-list[hidden] {
+  display: none;
+}
 
 .college-row {
   display: flex;
@@ -1764,10 +1976,15 @@ body.directory-open { overflow: hidden; }
   transition: transform var(--transition-base), color var(--transition-base);
 }
 
-.college-row-chevron svg { width: 18px; height: 18px; }
+.college-row-chevron svg {
+  width: 18px;
+  height: 18px;
+}
 
 @media (min-width: 900px) {
-  .college-list { grid-template-columns: repeat(2, 1fr); }
+  .college-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Program / major detail — reused inside #collegeDetailModal by
@@ -1862,7 +2079,9 @@ body.directory-open { overflow: hidden; }
 /* `display: flex` below would otherwise beat the UA [hidden] rule
    (author-origin styles win cascade ties against the UA stylesheet, same
    reason .college-list[hidden] is spelled out above). */
-.programs-empty-message[hidden] { display: none; }
+.programs-empty-message[hidden] {
+  display: none;
+}
 
 .programs-empty-message {
   display: flex;
@@ -1906,7 +2125,10 @@ body.directory-open { overflow: hidden; }
   cursor: pointer;
 }
 
-.programs-cta { margin-top: 2.25rem; text-align: center; }
+.programs-cta {
+  margin-top: 2.25rem;
+  text-align: center;
+}
 
 /* -------------------------------------------------------------------------
    11. Why LSPU — editorial split layout
@@ -1938,9 +2160,13 @@ body.directory-open { overflow: hidden; }
   color: var(--color-text-muted);
 }
 
-.why-lspu-body:last-of-type { margin-bottom: 0; }
+.why-lspu-body:last-of-type {
+  margin-bottom: 0;
+}
 
-.why-lspu-cta { margin-top: 1.35rem; }
+.why-lspu-cta {
+  margin-top: 1.35rem;
+}
 
 /* Fixed aspect-ratio viewport + object-fit: cover keeps all three
    carousel images (two portrait, one landscape) at consistent proportions. */
@@ -2005,9 +2231,14 @@ body.directory-open { overflow: hidden; }
   transition: background-color var(--transition-base), color var(--transition-base), transform var(--transition-base);
 }
 
-.about-carousel-arrow svg { width: 22px; height: 22px; }
+.about-carousel-arrow svg {
+  width: 22px;
+  height: 22px;
+}
 
-.about-carousel-arrow:active { transform: scale(0.94); }
+.about-carousel-arrow:active {
+  transform: scale(0.94);
+}
 
 .about-carousel-arrow:hover,
 .about-carousel-arrow:focus-visible {
@@ -2041,7 +2272,9 @@ body.directory-open { overflow: hidden; }
   transition: background-color var(--transition-base), transform var(--transition-base);
 }
 
-.about-carousel-dot:hover { background: rgba(255, 255, 255, 0.85); }
+.about-carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
 
 .about-carousel-dot.is-active {
   background: var(--color-gold-500);
@@ -2054,15 +2287,22 @@ body.directory-open { overflow: hidden; }
     align-items: start;
   }
 
-  .about-carousel { 
-    max-width: 500px; 
-    margin-inline: auto; 
+  .about-carousel {
+    max-width: 500px;
+    margin-inline: auto;
   }
 }
 
 @media (max-width: 420px) {
-  .about-carousel-arrow { width: 46px; height: 46px; }
-  .about-carousel-arrow svg { width: 19px; height: 19px; }
+  .about-carousel-arrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .about-carousel-arrow svg {
+    width: 19px;
+    height: 19px;
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -2111,8 +2351,13 @@ body.directory-open { overflow: hidden; }
 }
 
 @keyframes stats-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2125,7 +2370,9 @@ body.directory-open { overflow: hidden; }
 /* -------------------------------------------------------------------------
    13. Campuses — image-focused layout
    ------------------------------------------------------------------------- */
-.campuses { background: #fff; }
+.campuses {
+  background: #fff;
+}
 
 .campuses-intro {
   max-width: 640px;
@@ -2133,7 +2380,9 @@ body.directory-open { overflow: hidden; }
   text-align: center;
 }
 
-.campuses-intro h2 { margin-bottom: var(--space-xs); }
+.campuses-intro h2 {
+  margin-bottom: var(--space-xs);
+}
 
 .campuses-grid {
   display: grid;
@@ -2169,12 +2418,23 @@ body.directory-open { overflow: hidden; }
   transition: transform 350ms ease;
 }
 
-.campus-card:hover .campus-media img { transform: scale(1.05); }
+.campus-card:hover .campus-media img {
+  transform: scale(1.05);
+}
 
-.campus-info { padding: 1.25rem 1.4rem 1.5rem; }
+.campus-info {
+  padding: 1.25rem 1.4rem 1.5rem;
+}
 
-.campus-name { margin-bottom: 0.4rem; font-size: 1.2rem; }
-.campus-desc { margin-bottom: 0.85rem; font-size: 0.93rem; }
+.campus-name {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+}
+
+.campus-desc {
+  margin-bottom: 0.85rem;
+  font-size: 0.93rem;
+}
 
 /* Icon-based contact row: replaces the old large address/phone text block.
    Each icon is a real functional control (map modal, tel:, mailto:, external link). */
@@ -2199,7 +2459,10 @@ body.directory-open { overflow: hidden; }
   transition: background-color var(--transition-base), color var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
 }
 
-.campus-icon-btn svg { width: 19px; height: 19px; }
+.campus-icon-btn svg {
+  width: 19px;
+  height: 19px;
+}
 
 .campus-icon-btn:hover,
 .campus-icon-btn:focus-visible {
@@ -2209,29 +2472,48 @@ body.directory-open { overflow: hidden; }
   transform: translateY(-2px);
 }
 
-.campus-icon-btn:active { transform: translateY(0); }
+.campus-icon-btn:active {
+  transform: translateY(0);
+}
 
 @media (max-width: 380px) {
-  .campus-icon-btn { width: 40px; height: 40px; }
-  .campus-icon-btn svg { width: 18px; height: 18px; }
+  .campus-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .campus-icon-btn svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (min-width: 600px) {
-  .campuses-grid { grid-template-columns: repeat(2, 1fr); }
+  .campuses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
-  .campuses-grid { grid-template-columns: repeat(4, 1fr); }
+  .campuses-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .campus-media img { transition: none; }
+  .campus-media img {
+    transition: none;
+  }
 }
 
 /* -------------------------------------------------------------------------
    14. News — editorial layout (feature + list)
    ------------------------------------------------------------------------- */
-.news { background: #fff; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.news {
+  background: #fff;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
 
 .news-intro {
   max-width: 640px;
@@ -2239,7 +2521,9 @@ body.directory-open { overflow: hidden; }
   text-align: center;
 }
 
-.news-intro h2 { margin-bottom: var(--space-xs); }
+.news-intro h2 {
+  margin-bottom: var(--space-xs);
+}
 
 .news-editorial {
   display: grid;
@@ -2263,9 +2547,15 @@ body.directory-open { overflow: hidden; }
   background: var(--color-blue-100);
 }
 
-.news-feature .news-media img { width: 100%; height: 100%; object-fit: cover; }
+.news-feature .news-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-.news-feature-body { padding: 1.5rem 1.6rem 1.75rem; }
+.news-feature-body {
+  padding: 1.5rem 1.6rem 1.75rem;
+}
 
 .news-list {
   display: flex;
@@ -2290,7 +2580,11 @@ body.directory-open { overflow: hidden; }
   background: var(--color-blue-100);
 }
 
-.news-row .news-media img { width: 100%; height: 100%; object-fit: cover; }
+.news-row .news-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .news-date {
   font-size: var(--fs-xs);
@@ -2312,13 +2606,25 @@ body.directory-open { overflow: hidden; }
   line-height: 1.35;
 }
 
-.news-summary { font-size: 0.93rem; }
-.news-feature .news-summary { font-size: 1rem; }
-.news-row .news-summary { display: none; }
+.news-summary {
+  font-size: 0.93rem;
+}
 
-.news-cta { margin-top: 2.25rem; text-align: center; }
+.news-feature .news-summary {
+  font-size: 1rem;
+}
+
+.news-row .news-summary {
+  display: none;
+}
+
+.news-cta {
+  margin-top: 2.25rem;
+  text-align: center;
+}
 
 @media (min-width: 900px) {
+
   /* Aim for a viewport-sized News section on desktop, but use min-height
      (not height) so that if the editorial content ever needs more room
      than the viewport gives it — narrower windows, larger text settings,
@@ -2333,8 +2639,13 @@ body.directory-open { overflow: hidden; }
     margin-bottom: 1.25rem;
   }
 
-  .news-intro h2 { margin-bottom: 0.25rem; }
-  .news-intro p { line-height: 1.45; }
+  .news-intro h2 {
+    margin-bottom: 0.25rem;
+  }
+
+  .news-intro p {
+    line-height: 1.45;
+  }
 
   .news-editorial {
     grid-template-columns: 1.4fr 1fr;
@@ -2384,13 +2695,17 @@ body.directory-open { overflow: hidden; }
     overflow: hidden;
   }
 
-  .news-row-body { min-width: 0; }
+  .news-row-body {
+    min-width: 0;
+  }
 
   .news-row .news-media {
     aspect-ratio: 4 / 3;
   }
 
-  .news-date { font-size: 0.7rem; }
+  .news-date {
+    font-size: 0.7rem;
+  }
 
   .news-row .news-headline {
     margin-top: 0.2rem;
@@ -2405,7 +2720,9 @@ body.directory-open { overflow: hidden; }
     line-height: 1.4;
   }
 
-  .news-cta { margin-top: 1rem; }
+  .news-cta {
+    margin-top: 1rem;
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -2467,13 +2784,11 @@ body.directory-open { overflow: hidden; }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(12, 20, 18, 0.62) 0%,
-    rgba(12, 20, 18, 0.16) 42%,
-    rgba(12, 20, 18, 0.12) 58%,
-    rgba(8, 16, 14, 0.72) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(12, 20, 18, 0.62) 0%,
+      rgba(12, 20, 18, 0.16) 42%,
+      rgba(12, 20, 18, 0.12) 58%,
+      rgba(8, 16, 14, 0.72) 100%);
   transition: opacity var(--transition-base);
 }
 
@@ -2620,9 +2935,12 @@ body.directory-open { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .spotlight-media img,
   .spotlight-cta,
-  .spotlight-cta-icon { transition: none; }
+  .spotlight-cta-icon {
+    transition: none;
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -2655,9 +2973,18 @@ body.directory-open { overflow: hidden; }
   gap: var(--space-xs);
 }
 
-.footer-brand-mark img { display: block; width: 40px; height: 40px; object-fit: contain; }
+.footer-brand-mark img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
 
-.footer-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
 
 .footer-brand-name {
   font-family: var(--font-display);
@@ -2673,7 +3000,10 @@ body.directory-open { overflow: hidden; }
   color: var(--color-blue-100);
 }
 
-.footer-brand-tagline { font-size: var(--fs-sm); color: var(--color-blue-100); }
+.footer-brand-tagline {
+  font-size: var(--fs-sm);
+  color: var(--color-blue-100);
+}
 
 .footer-groups {
   display: grid;
@@ -2691,7 +3021,11 @@ body.directory-open { overflow: hidden; }
   margin-bottom: var(--space-sm);
 }
 
-.footer-links { display: flex; flex-direction: column; gap: var(--space-xs); }
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
 
 .footer-links li a {
   font-size: var(--fs-sm);
@@ -2711,7 +3045,11 @@ body.directory-open { overflow: hidden; }
   color: var(--color-blue-100);
 }
 
-.footer-social { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
 
 .footer-social-link {
   display: flex;
@@ -2725,7 +3063,10 @@ body.directory-open { overflow: hidden; }
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-.footer-social-link svg { width: 16px; height: 16px; }
+.footer-social-link svg {
+  width: 16px;
+  height: 16px;
+}
 
 .footer-social-link:hover,
 .footer-social-link:focus-visible {
@@ -2744,7 +3085,10 @@ body.directory-open { overflow: hidden; }
   text-align: center;
 }
 
-.footer-copyright { font-size: var(--fs-xs); color: var(--color-blue-100); }
+.footer-copyright {
+  font-size: var(--fs-xs);
+  color: var(--color-blue-100);
+}
 
 @media (min-width: 600px) {
   .footer-bottom {
@@ -2756,7 +3100,9 @@ body.directory-open { overflow: hidden; }
 }
 
 @media (min-width: 600px) {
-  .footer-groups { grid-template-columns: repeat(3, 1fr); }
+  .footer-groups {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -2766,41 +3112,85 @@ body.directory-open { overflow: hidden; }
     justify-content: space-between;
     gap: var(--space-xl);
   }
-  .footer-brand { flex-shrink: 0; width: 220px; }
-  .footer-groups { flex: 1 1 auto; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); margin-left: auto; }
+
+  .footer-brand {
+    flex-shrink: 0;
+    width: 220px;
+  }
+
+  .footer-groups {
+    flex: 1 1 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-left: auto;
+  }
 }
 
 @media (min-width: 1280px) {
-  .footer-groups { grid-template-columns: repeat(6, 1fr); gap: var(--space-md); }
+  .footer-groups {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-md);
+  }
 }
 
 /* -------------------------------------------------------------------------
    16. Responsive polish
    ------------------------------------------------------------------------- */
 @media (max-width: 699px) {
-  .container { padding-inline: 1.1rem; }
-  .section { padding-block: 3.5rem; }
-  .news-row { grid-template-columns: 88px 1fr; }
+  .container {
+    padding-inline: 1.1rem;
+  }
+
+  .section {
+    padding-block: 3.5rem;
+  }
+
+  .news-row {
+    grid-template-columns: 88px 1fr;
+  }
 
   /* Room for the hamburger + Apply Now next to the full university name
    on narrow phones. */
-  .brand-mark img { width: 40px; height: 40px; }
-  .brand-gov-mark img { width: 40px; height: 40px; }
-  .brand-name { font-size: 0.92rem; }
-  .brand-tagline { font-size: 0.6rem; }
-  .header-cta { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
+  .brand-mark img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-gov-mark img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 0.92rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.6rem;
+  }
+
+  .header-cta {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.82rem;
+  }
 }
 
 @media (min-width: 1440px) {
-  :root { --container-width: 1320px; }
+  :root {
+    --container-width: 1320px;
+  }
 }
 
 @media (min-width: 1680px) {
-  :root { --container-width: 1440px; }
+  :root {
+    --container-width: 1440px;
+  }
 }
 
 @media (min-width: 1920px) {
-  :root { --container-width: 1560px; }
+  :root {
+    --container-width: 1560px;
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -2818,24 +3208,41 @@ body.directory-open { overflow: hidden; }
 }
 
 .js .reveal,
-.js .reveal-stagger > * {
+.js .reveal-stagger>* {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .js .reveal.is-visible,
-.js .reveal-stagger.is-visible > * {
+.js .reveal-stagger.is-visible>* {
   opacity: 1;
   transform: translateY(0);
 }
 
-.reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
-.reveal-stagger > *:nth-child(2) { transition-delay: 0.08s; }
-.reveal-stagger > *:nth-child(3) { transition-delay: 0.16s; }
-.reveal-stagger > *:nth-child(4) { transition-delay: 0.24s; }
-.reveal-stagger > *:nth-child(5) { transition-delay: 0.32s; }
-.reveal-stagger > *:nth-child(6) { transition-delay: 0.4s; }
+.reveal-stagger>*:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.reveal-stagger>*:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.reveal-stagger>*:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+.reveal-stagger>*:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+.reveal-stagger>*:nth-child(5) {
+  transition-delay: 0.32s;
+}
+
+.reveal-stagger>*:nth-child(6) {
+  transition-delay: 0.4s;
+}
 
 .back-to-top {
   position: fixed;
@@ -2857,7 +3264,10 @@ body.directory-open { overflow: hidden; }
   z-index: 90;
 }
 
-.back-to-top svg { width: 20px; height: 20px; }
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
 
 .back-to-top.is-visible {
   opacity: 1;
@@ -2871,8 +3281,9 @@ body.directory-open { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .js .reveal,
-  .js .reveal-stagger > * {
+  .js .reveal-stagger>* {
     opacity: 1;
     transform: none;
   }
@@ -2892,7 +3303,9 @@ body.directory-open { overflow: hidden; }
   padding: var(--space-md);
 }
 
-.campus-map-modal[hidden] { display: none; }
+.campus-map-modal[hidden] {
+  display: none;
+}
 
 .campus-map-modal-overlay {
   position: absolute;
@@ -2944,7 +3357,10 @@ body.directory-open { overflow: hidden; }
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-.campus-map-modal-close svg { width: 18px; height: 18px; }
+.campus-map-modal-close svg {
+  width: 18px;
+  height: 18px;
+}
 
 .campus-map-modal-close:hover,
 .campus-map-modal-close:focus-visible {
@@ -2968,19 +3384,39 @@ body.directory-open { overflow: hidden; }
 }
 
 @keyframes campus-modal-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes campus-modal-pop {
-  from { opacity: 0; transform: translateY(14px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 599px) {
-  .campus-map-modal { padding: 0.75rem; }
-  .campus-map-modal-dialog { max-height: min(560px, 82vh); }
-  .campus-map-modal-body { min-height: 260px; }
+  .campus-map-modal {
+    padding: 0.75rem;
+  }
+
+  .campus-map-modal-dialog {
+    max-height: min(560px, 82vh);
+  }
+
+  .campus-map-modal-body {
+    min-height: 260px;
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -3000,7 +3436,9 @@ body.directory-open { overflow: hidden; }
   padding: var(--space-md);
 }
 
-.site-modal[hidden] { display: none; }
+.site-modal[hidden] {
+  display: none;
+}
 
 .site-modal-overlay {
   position: absolute;
@@ -3025,7 +3463,9 @@ body.directory-open { overflow: hidden; }
   animation: campus-modal-pop 0.22s ease both;
 }
 
-.site-modal-dialog--wide { max-width: 920px; }
+.site-modal-dialog--wide {
+  max-width: 920px;
+}
 
 .site-modal-header {
   display: flex;
@@ -3044,8 +3484,16 @@ body.directory-open { overflow: hidden; }
   min-width: 0;
 }
 
-.site-modal-header-college .college-card-icon { width: 36px; height: 36px; margin-bottom: 0; }
-.site-modal-header-college .college-card-icon svg { width: 20px; height: 20px; }
+.site-modal-header-college .college-card-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 0;
+}
+
+.site-modal-header-college .college-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
 
 .site-modal-title {
   margin: 0;
@@ -3073,7 +3521,10 @@ body.directory-open { overflow: hidden; }
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-.site-modal-close svg { width: 18px; height: 18px; }
+.site-modal-close svg {
+  width: 18px;
+  height: 18px;
+}
 
 .site-modal-close:hover,
 .site-modal-close:focus-visible {
@@ -3089,10 +3540,15 @@ body.directory-open { overflow: hidden; }
   padding: 1.25rem;
 }
 
-body.modal-open { overflow: hidden; }
+body.modal-open {
+  overflow: hidden;
+}
 
 @media (max-width: 599px) {
-  .site-modal { padding: 0.75rem; }
+  .site-modal {
+    padding: 0.75rem;
+  }
+
   .site-modal-dialog,
   .site-modal-dialog--wide {
     max-width: 100%;
@@ -3101,6 +3557,7 @@ body.modal-open { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .site-modal-overlay,
   .site-modal-dialog {
     animation: none;
@@ -3108,6 +3565,7 @@ body.modal-open { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .campus-map-modal-overlay,
   .campus-map-modal-dialog {
     animation: none;
