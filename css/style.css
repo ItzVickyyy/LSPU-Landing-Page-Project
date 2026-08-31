@@ -4668,9 +4668,10 @@ body.modal-open {
 }
 
 @media (max-width: 767px) {
-  .brand-gov-mark img {
-    width: 34px;
-    height: 34px;
+  /* Bagong Pilipinas seal is hidden on mobile to save header space;
+     the LSPU seal remains as the sole brand mark at this width. */
+  .brand-gov-mark {
+    display: none;
   }
 
   .brand-mark img {
@@ -4735,11 +4736,6 @@ body.modal-open {
 @media (max-width: 420px) {
   .site-header .container {
     padding-inline: 0.7rem;
-  }
-
-  .brand-gov-mark img {
-    width: 30px;
-    height: 30px;
   }
 
   .brand-mark img {
