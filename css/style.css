@@ -1,6 +1,27 @@
 /* LSPU Landing Page — Stylesheet: design tokens, layout primitives, components */
 
 /* -------------------------------------------------------------------------
+   0. Self-hosted fonts
+   ------------------------------------------------------------------------- */
+/* The blackletter brand wordmark previously depended on either a
+   Windows-only system font ("Old English Text MT", which no phone has) or
+   Google Fonts' "UnifrakturMaguntia" loading successfully over the network
+   — on some devices/connections that fetch never completes, silently
+   falling back to a plain sans/serif. Self-hosting the .ttf removes that
+   network dependency entirely: it ships with the site, so it's guaranteed
+   to render identically everywhere. Registered under its own unique family
+   name (rather than reusing "Old English Text MT") so it can never be
+   shadowed or substituted by whatever an OS's font-matching engine decides
+   to do with that name. */
+@font-face {
+  font-family: "LSPU Old English";
+  src: url("../assets/font/Old-English-Text-MT.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------------------
    1. Reset
    ------------------------------------------------------------------------- */
 *,
@@ -505,16 +526,12 @@ select:focus-visible {
 }
 
 .brand-name {
-  /* UnifrakturMaguntia is loaded via Google Fonts (see index.html <head>)
-     and is available on every device once that stylesheet loads. "Old
-     English Text MT" is a Windows/Office-only system font that no phone
-     (iOS or Android) ships with, so listing it first meant phones never
-     actually got the intended blackletter look — only Windows machines
-     that happen to have that exact font installed did, which is why a
-     desktop dev-tools check could look right while a real phone didn't.
-     Trying the always-available web font first makes the brand mark
-     render identically everywhere. */
-  font-family: "UnifrakturMaguntia", "Old English Text MT", var(--font-display);
+  /* Self-hosted "LSPU Old English" (see the @font-face at the top of this
+     file) is now the primary choice — it ships with the site, so unlike
+     the Google Fonts / system-font fallbacks that used to sit here, it
+     never depends on a network fetch succeeding and renders identically
+     on every device, including phones. */
+  font-family: "LSPU Old English", "UnifrakturMaguntia", "Old English Text MT", var(--font-display);
   font-weight: 400;
   font-size: var(--fs-md);
   color: var(--color-blue-900);
@@ -3055,9 +3072,14 @@ body.directory-open {
 }
 
 .footer-brand-name {
-  font-family: var(--font-display);
-  font-weight: 800;
+  /* Now holds the full "Laguna State Polytechnic University" text (copied
+     from the Main Nav brand, not the old abbreviated "LSPU" logotype), so
+     it uses the same blackletter wordmark treatment as .brand-name in the
+     header for visual consistency between header and footer. */
+  font-family: "LSPU Old English", "UnifrakturMaguntia", "Old English Text MT", var(--font-display);
+  font-weight: 400;
   font-size: var(--fs-md);
+  line-height: 1.15;
   color: var(--color-white);
 }
 
