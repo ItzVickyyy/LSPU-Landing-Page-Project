@@ -3041,8 +3041,8 @@ body.directory-open {
 .footer-top {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
-  padding-bottom: var(--space-xl);
+  gap: var(--space-lg);
+  padding-bottom: var(--space-lg);
 }
 
 .footer-brand {
@@ -3085,8 +3085,9 @@ body.directory-open {
 
 .footer-brand-full {
   font-family: var(--font-body);
-  font-size: var(--fs-xs);
+  font-size: 0.65rem;
   font-weight: 500;
+  letter-spacing: 0.03em;
   color: var(--color-blue-100);
 }
 
@@ -3095,10 +3096,27 @@ body.directory-open {
   color: var(--color-blue-100);
 }
 
+/* Institutional thrust strip + government/transparency seals, shown
+   alongside the wordmark at the top of the footer. */
+.footer-seals {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.footer-seals img {
+  display: block;
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
 .footer-groups {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg) var(--space-md);
+  padding-bottom: var(--space-lg);
 }
 
 .footer-heading {
@@ -3133,6 +3151,42 @@ body.directory-open {
   display: inline-block;
   font-size: var(--fs-sm);
   color: var(--color-blue-100);
+}
+
+/* Campus group — merges campus name, telephone # and address into a single
+   set of rows (three columns per row) instead of three separate footer
+   groups, matching the campus directly to its own contact details. */
+.footer-campus-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer-campus-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.3fr) minmax(110px, 1fr) minmax(160px, 1.6fr);
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+
+.footer-campus-name,
+.footer-campus-phone,
+.footer-campus-address {
+  font-size: var(--fs-sm);
+  color: var(--color-blue-100);
+}
+
+.footer-campus-name,
+.footer-campus-phone {
+  transition: color var(--transition-base);
+}
+
+.footer-campus-name:hover,
+.footer-campus-name:focus-visible,
+.footer-campus-phone:hover,
+.footer-campus-phone:focus-visible {
+  color: var(--color-white);
+  text-decoration: underline;
 }
 
 .footer-social {
@@ -3175,9 +3229,36 @@ body.directory-open {
   text-align: center;
 }
 
+.footer-bottom-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
 .footer-copyright {
   font-size: var(--fs-xs);
   color: var(--color-blue-100);
+}
+
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.footer-legal-links a {
+  font-size: var(--fs-xs);
+  color: var(--color-blue-100);
+  transition: color var(--transition-base);
+}
+
+.footer-legal-links a:hover,
+.footer-legal-links a:focus-visible {
+  color: var(--color-white);
+  text-decoration: underline;
 }
 
 @media (min-width: 600px) {
@@ -3186,6 +3267,12 @@ body.directory-open {
     align-items: center;
     justify-content: space-between;
     text-align: left;
+  }
+
+  .footer-bottom-left {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
   }
 }
 
@@ -3198,28 +3285,34 @@ body.directory-open {
 @media (min-width: 1024px) {
   .footer-top {
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
     gap: var(--space-xl);
   }
 
   .footer-brand {
     flex-shrink: 0;
-    width: 220px;
+    width: 320px;
   }
 
   .footer-groups {
-    flex: 1 1 auto;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr 1fr 1fr;
     gap: var(--space-lg);
-    margin-left: auto;
+  }
+
+  .footer-group--campus {
+    grid-column: span 2;
   }
 }
 
 @media (min-width: 1280px) {
   .footer-groups {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr 2.4fr 1fr 1fr 1fr;
     gap: var(--space-md);
+  }
+
+  .footer-group--campus {
+    grid-column: span 1;
   }
 }
 
@@ -4302,6 +4395,22 @@ body.modal-open {
     padding-top: var(--space-xl);
   }
 
+  /* Center the wordmark and the government seal row as a stacked block,
+     matching the mobile design (logo+name centered, seals centered below
+     it, accordion list underneath). */
+  .footer-top {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-brand {
+    align-items: center;
+  }
+
+  .footer-seals {
+    justify-content: center;
+  }
+
   .footer-groups {
     display: block;
   }
@@ -4353,6 +4462,17 @@ body.modal-open {
 
   .footer-bottom {
     padding-bottom: calc(var(--space-md) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer-campus-item {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    padding-bottom: var(--space-xs);
+  }
+
+  .footer-campus-phone {
+    color: var(--color-blue-100);
+    opacity: 0.85;
   }
 }
 
@@ -4446,6 +4566,7 @@ body.modal-open {
    20. Final mobile responsiveness pass
    ------------------------------------------------------------------------- */
 @media (max-width: 1023px) {
+
   html,
   body {
     overflow-x: hidden;
@@ -4668,6 +4789,7 @@ body.modal-open {
 }
 
 @media (max-width: 767px) {
+
   /* Bagong Pilipinas seal is hidden on mobile to save header space;
      the LSPU seal remains as the sole brand mark at this width. */
   .brand-gov-mark {
@@ -4774,6 +4896,7 @@ body.modal-open {
 }
 
 @media (max-width: 1023px) and (orientation: landscape) and (max-height: 520px) {
+
   .hero,
   .hero-container {
     min-height: 100svh;
